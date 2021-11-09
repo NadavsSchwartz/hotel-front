@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.less';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
-
+import { ConfigProvider } from 'antd';
+import en_US from 'antd/lib/locale-provider/en_US';
 ReactDOM.render(
-	<React.StrictMode>
+	<ConfigProvider locale={en_US}>
 		<Router>
 			<App />
 		</Router>
-	</React.StrictMode>,
+	</ConfigProvider>,
 	document.getElementById('root')
 );
