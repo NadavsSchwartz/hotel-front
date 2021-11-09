@@ -1,62 +1,36 @@
-import { Form, Button, Card, AutoComplete, DatePicker, Row, Col } from 'antd';
-import { Content } from 'antd/lib/layout/layout';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import _ from 'lodash';
-import HotelCard from '../cards/HotelCard';
+import { Form, Button, Card, AutoComplete, DatePicker, Row, Spin } from 'antd';
+import { useDispatch } from 'react-redux';
+import { setRequestBody } from '../../services/reducer';
 import { autoCities } from '../constants/cities';
+import { useHistory } from 'react-router-dom';
+import { useGetClientIpQuery } from '../../services/pricelineApi';
 const { RangePicker } = DatePicker;
 
 const HotelSearchForm = () => {
-	const [loading, setLoading] = useState(false);
 	const [form] = Form.useForm();
-	const [clientIp, setClientIp] = useState('');
-	const [hotelList, setHotelList] = useState([]);
-	useEffect(() => {
-		const getClientIp = async () => {
-			const { data } = await axios.get('https://geolocation-db.com/json/');
-			setClientIp(data.IPv4);
-		};
-		getClientIp();
-	}, []);
+	const dispatch = useDispatch();
+	const history = useHistory();
+	const { data, isLoading } = useGetClientIpQuery();
+	if (isLoading) return <Spin />;
 	const onFinish = async (values) => {
 		const { cityName, dates } = values;
 		const checkIn = dates[0].format('YYYYMMDD');
 		const checkOut = dates[1].format('YYYYMMDD');
-		setLoading(true);
-		const { data } = await axios.post('http://localhost:4000/api/hotelDeals', {
-			clientIp,
-			cityName,
-			checkIn,
-			checkOut,
-		});
-		const deepPick = (paths, obj) => {
-			return _.fromPairs(
-				paths.map((p) => [_.last(p.split('.')), _.get(obj, p)])
-			);
-		};
-
-		const expressDeals = data.expressDeals.map((hotel) =>
-			deepPick(
-				[
-					'starRating',
-					'totalReviewCount',
-					'overallGuestRating',
-					'displayStrikePrice',
-					'location.neighborhoodName',
-					'location.neighborhoodID',
-					'location.cityId',
-				],
-				hotel
-			)
+		const { IPv4 } = data;
+		dispatch(
+			setRequestBody({
+				checkIn: checkIn,
+				checkOut: checkOut,
+				cityName: cityName,
+				clientIp: IPv4,
+			})
 		);
-
-		debugger;
-		setHotelList(data.expressDeals.listings.hotels);
-		setLoading(false);
+		setTimeout(() => {
+			history.push('/results');
+		}, 2000);
 	};
+	// Can not select days before today
 	const disabledDate = (current) => {
-		// Can not select days before today and today
 		return (
 			current &&
 			current < ((d) => new Date(d.setDate(d.getDate() - 1)))(new Date())
@@ -65,16 +39,16 @@ const HotelSearchForm = () => {
 	return (
 		<div
 			style={{
-				overflow: 'auto',
-				backgroundImage: `url('https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg?auto=compress&cs=tinysrgb&dpr=1&h=450&w=30)`,
+				backgroundImage: `url('https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg?auto=compress&cs=tinysrgb&dpr=1&h=1220&w=750)`,
 			}}
 		>
-			<Row justify='center'>
-				<Card
-					loading={loading}
-					size='small'
-					style={{ marginTop: '10px', width: '500px' }}
-				>
+			<Row
+				type='flex'
+				justify='center'
+				align='middle'
+				style={{ minHeight: '100vh' }}
+			>
+				<Card size='large'>
 					<div
 						style={{
 							textAlign: 'center',
@@ -108,36 +82,13 @@ const HotelSearchForm = () => {
 						</Form.Item>
 
 						<Form.Item>
-							<Button type='primary' htmlType='submit'>
+							<Button type='primary' htmlType='submit' block>
 								Submit
 							</Button>
 						</Form.Item>
 					</Form>
 				</Card>
 			</Row>
-
-			<Content style={{ marginTop: '20px' }}>
-				{hotelList &&
-					hotelList.map((hotel) => (
-						<Col style={{ padding: '25px', overflow: 'auto' }}>
-							<HotelCard
-								totalStayPrice={hotel.ratesSummary.displayPricePerStay}
-								neighborhoodName={hotel.location.neighborhoodName}
-								description={
-									hotel.description
-										? hotel.description
-										: 'That hotel does not have description'
-								}
-								guestRating={hotel.overallGuestRating}
-								hotelStars={hotel.starRating}
-								dailyPrice={hotel.ratesSummary.minPrice}
-								reviewCount={hotel.totalReviewCount}
-								key={hotel.ratesSummary.rateIdentifier}
-								name={hotel.name ? hotel.name : 'No name'}
-							/>
-						</Col>
-					))}
-			</Content>
 		</div>
 	);
 };

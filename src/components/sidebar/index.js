@@ -13,7 +13,9 @@ const Sidebar = ({ collapsed }) => {
 			width={170}
 			className='sidebar'
 		>
-			<div className='sider-menu-logo'>hotel revealer</div>
+			<div className='sider-menu-logo'>
+				<Link to='/'>hotel revealer</Link>
+			</div>
 			<Menu theme='dark' mode='inline' defaultSelectedKeys={['4']}>
 				<Menu.Item key='1' icon={<QuestionOutlined />}>
 					<Link to='about'>About</Link>

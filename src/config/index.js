@@ -4,7 +4,7 @@ const isDevelopment = !isProduction;
 const CONFIG = {
 	isProduction,
 	isDevelopment,
-	baseURL: 'http://localhost:4000/api/v1/',
+	baseURL: 'http://localhost:4000/api/v1/hotelDeals',
 	title: 'Hotel Revealer',
 };
 export default CONFIG;

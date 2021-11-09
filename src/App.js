@@ -1,7 +1,9 @@
-import { Layout, Row } from 'antd';
-import { Header } from 'antd/lib/layout/layout';
+import { Layout } from 'antd';
+import { Route, Router } from 'react-router';
 import HotelSearchForm from './components/HotelSearchForm';
 import Sidebar from './components/sidebar';
+import Results from './screens/results';
+
 const { Content } = Layout;
 const App = () => {
 	return (
@@ -10,9 +12,13 @@ const App = () => {
 				<Sidebar />
 				<Layout className='home-layout'>
 					<Content id='container'>
-						<div>
+						<Route exact path='/'>
 							<HotelSearchForm />
-						</div>
+						</Route>
+
+						<Route exact path='/results'>
+							<Results />
+						</Route>
 					</Content>
 				</Layout>
 			</Layout>

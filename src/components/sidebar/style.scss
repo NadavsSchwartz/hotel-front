@@ -13,14 +13,11 @@ $bg-color: #304156;
         overflow: hidden;
         height: 64px;
         line-height: 64px;
-        background: #2b2f3a;
+        background: #304156;
         color: #fff;
-        font-size: 20px;
+        font-size: 23px;
         font-weight: 600;
         text-align: center;
-        img {
-            width: 30px;
-            height: 30px;
-        }
+        border-bottom: 1px solid #3b5998;
     }
 }
