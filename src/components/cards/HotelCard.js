@@ -14,6 +14,7 @@ const HotelCard = ({
 }) => {
 	return (
 		<Card hoverable>
+			<h2>{name ? name : 'No name'}</h2>
 			<Meta title={`$${dailyPrice} Per Day`} description={description} />
 			<p>Total trip for all days ${totalStayPrice}</p>
 			<p>The hotel will be around {neighborhoodName}</p>

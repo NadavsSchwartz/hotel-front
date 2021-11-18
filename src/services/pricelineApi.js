@@ -11,7 +11,7 @@ export const pricelineApi = createApi({
 			query: (body) => ({
 				url: CONFIG.baseURL,
 				method: 'POST',
-				body: body,
+				body: { hash: body },
 			}),
 		}),
 		getClientIp: builder.query({

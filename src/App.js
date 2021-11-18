@@ -1,5 +1,5 @@
 import { Layout } from 'antd';
-import { Route, Router } from 'react-router';
+import { Route } from 'react-router';
 import HotelSearchForm from './components/HotelSearchForm';
 import Sidebar from './components/sidebar';
 import Results from './screens/results';

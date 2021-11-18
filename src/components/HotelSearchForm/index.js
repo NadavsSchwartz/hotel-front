@@ -4,6 +4,7 @@ import { setRequestBody } from '../../services/reducer';
 import { autoCities } from '../constants/cities';
 import { useHistory } from 'react-router-dom';
 import { useGetClientIpQuery } from '../../services/pricelineApi';
+import { AES } from 'crypto-js';
 const { RangePicker } = DatePicker;
 
 const HotelSearchForm = () => {
@@ -16,18 +17,19 @@ const HotelSearchForm = () => {
 		const { cityName, dates } = values;
 		const checkIn = dates[0].format('YYYYMMDD');
 		const checkOut = dates[1].format('YYYYMMDD');
-		const { IPv4 } = data;
-		dispatch(
-			setRequestBody({
-				checkIn: checkIn,
-				checkOut: checkOut,
-				cityName: cityName,
-				clientIp: IPv4,
-			})
-		);
-		setTimeout(() => {
-			history.push('/results');
-		}, 2000);
+		const body = {
+			checkIn: checkIn,
+			checkOut: checkOut,
+			cityName: cityName,
+			clientIp: data && data.IPv4 ? data.IPv4 : '',
+		};
+		const encrypted = AES.encrypt(
+			JSON.stringify(body),
+			process.env.REACT_APP_SECRET
+		).toString();
+
+		dispatch(setRequestBody(encrypted));
+		history.push(`/results?q=${encrypted}`);
 	};
 	// Can not select days before today
 	const disabledDate = (current) => {

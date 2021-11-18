@@ -23,6 +23,9 @@ const Sidebar = ({ collapsed }) => {
 				<Menu.Item key='2' icon={<InfoCircleOutlined />}>
 					<Link to='disclamer'>disclamer</Link>
 				</Menu.Item>
+				<Menu.Item key='3' icon={<InfoCircleOutlined />}>
+					<Link to='results'>result</Link>
+				</Menu.Item>
 			</Menu>
 		</Sider>
 	);
