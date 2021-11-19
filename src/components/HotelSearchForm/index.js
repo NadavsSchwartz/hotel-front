@@ -17,6 +17,7 @@ const HotelSearchForm = () => {
 		const { cityName, dates } = values;
 		const checkIn = dates[0].format('YYYYMMDD');
 		const checkOut = dates[1].format('YYYYMMDD');
+		
 		const body = {
 			checkIn: checkIn,
 			checkOut: checkOut,
@@ -38,6 +39,7 @@ const HotelSearchForm = () => {
 			current < ((d) => new Date(d.setDate(d.getDate() - 1)))(new Date())
 		);
 	};
+
 	return (
 		<div
 			style={{

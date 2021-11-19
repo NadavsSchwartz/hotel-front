@@ -14,19 +14,16 @@ const Sidebar = ({ collapsed }) => {
 			className='sidebar'
 		>
 			<div className='sider-menu-logo'>
-				<Link to='/'>hotel revealer</Link>
-			</div>
+				<Link to='/'> hotel revealer </Link>{' '}
+			</div>{' '}
 			<Menu theme='dark' mode='inline' defaultSelectedKeys={['4']}>
 				<Menu.Item key='1' icon={<QuestionOutlined />}>
-					<Link to='about'>About</Link>
-				</Menu.Item>
+					<Link to='about'> About </Link>{' '}
+				</Menu.Item>{' '}
 				<Menu.Item key='2' icon={<InfoCircleOutlined />}>
-					<Link to='disclamer'>disclamer</Link>
-				</Menu.Item>
-				<Menu.Item key='3' icon={<InfoCircleOutlined />}>
-					<Link to='results'>result</Link>
-				</Menu.Item>
-			</Menu>
+					<Link to='disclamer'> disclamer </Link>{' '}
+				</Menu.Item>{' '}
+			</Menu>{' '}
 		</Sider>
 	);
 };

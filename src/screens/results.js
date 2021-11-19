@@ -1,55 +1,107 @@
-import { Col, Row, Skeleton } from 'antd';
+import { Col, PageHeader, Row, Skeleton, Alert, List } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import HotelCard from '../components/cards/HotelCard';
 import { useGetPricelineDealsQuery } from '../services/pricelineApi';
-import { useSelector } from 'react-redux';
 
 import { useHistory } from 'react-router';
-
 const Results = () => {
+	const [pageSize, setPageSize] = useState(12);
 	const history = useHistory();
 	const hash = history.location.search.split('=')[1];
-	const { data: pricelineQueryResponse, isLoading } =
-		useGetPricelineDealsQuery(hash);
+	const {
+		data: pricelineQueryResponse,
+		isLoading,
+		error,
+	} = useGetPricelineDealsQuery(hash);
 	useEffect(() => {
-		if (hash.lengnth === 0) {
+		if (!hash) {
 			return history.push('/');
 		}
 	}, [hash, history]);
-
 	return (
 		<Content style={{ marginTop: '20px', overflow: 'auto' }}>
-			<Row>
-				<Skeleton loading={isLoading} active>
-					<Col style={{ padding: '25px', overflow: 'auto' }} lg={12}>
-						<h3 style={{ paddingLeft: '115px', overflow: 'auto' }}>
-							Express Deals
-						</h3>
+			<div>
+				<PageHeader
+					ghost={true}
+					onBack={() => window.history.back()}
+					title='Go Back'
+				/>
+			</div>
+
+			<List
+				grid={{
+					gutter: 12,
+					xs: 1,
+					sm: 2,
+					md: 2,
+					lg: 3,
+					xl: 4,
+					xxl: 5,
+				}}
+				pagination={{
+					pageSize: pageSize,
+					onShowSizeChange: (current, size) => {
+						setPageSize(size);
+					},
+					showTotal: (total, range) =>
+						`${range[0]}-${range[1]} of ${total} items`,
+				}}
+				dataSource={pricelineQueryResponse}
+				loading={isLoading}
+				renderItem={(hotel) => (
+					<List.Item>
+						<HotelCard
+							totalStayPrice={hotel.expressDealPricePerStay}
+							neighborhoodName={hotel.location.neighborhoodName}
+							description={hotel.description}
+							guestRating={hotel.overallGuestRating}
+							hotelStars={hotel.starRating}
+							dailyPrice={hotel.expressDealDailyPrice}
+							reviewCount={hotel.totalReviewCount}
+							key={hotel.retailPclnId}
+							name={hotel.hotelName}
+							thumbnailUrl={hotel.thumbnailUrl}
+							style={{ height: '100%' }}
+						/>
+					</List.Item>
+				)}
+			>
+				{/* <Skeleton loading={isLoading} active>
 						{pricelineQueryResponse &&
-							pricelineQueryResponse?.expressDeals?.map((hotel) => (
-								<div style={{ padding: '5px' }}>
+							pricelineQueryResponse.length > 0 &&
+							pricelineQueryResponse.map((hotel) => (
+								<Col
+									style={{ padding: '5px', minHeight: '100%' }}
+							 
+								>
 									<HotelCard
-										totalStayPrice={hotel.ratesSummary.displayPricePerStay}
+										totalStayPrice={hotel.expressDealPricePerStay}
 										neighborhoodName={hotel.location.neighborhoodName}
-										description={
-											hotel.description
-												? hotel.description
-												: 'That hotel does not have description'
-										}
+										description={hotel.description}
 										guestRating={hotel.overallGuestRating}
 										hotelStars={hotel.starRating}
-										dailyPrice={hotel.ratesSummary.minPrice}
+										dailyPrice={hotel.expressDealDailyPrice}
 										reviewCount={hotel.totalReviewCount}
-										key={hotel.ratesSummary.rateIdentifier}
-										name={hotel.name ? hotel.name : 'No name'}
+										key={hotel.retailPclnId}
+										name={hotel.hotelName}
+										thumbnailUrl={hotel.thumbnailUrl}
 										style={{ height: '100%' }}
 									/>
-								</div>
-							))}
-					</Col>
-				</Skeleton>
-			</Row>
+								</Col>
+							))} */}
+				{error && (
+					<Alert
+						style={{ width: '100%' }}
+						message={error.data.message}
+						description={'if the error persists, please contact us'}
+						type='error'
+						closable
+					/>
+				)}
+				{/* </Col> */}
+				{/* </Skeleton> */}
+			</List>
 		</Content>
 	);
 };

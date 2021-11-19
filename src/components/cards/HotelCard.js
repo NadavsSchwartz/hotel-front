@@ -1,6 +1,7 @@
 import React from 'react';
-import { Card, Col } from 'antd';
+import { Card, Rate, Typography } from 'antd';
 const { Meta } = Card;
+const { Paragraph, Text } = Typography;
 
 const HotelCard = ({
 	totalStayPrice,
@@ -11,11 +12,30 @@ const HotelCard = ({
 	hotelStars,
 	dailyPrice,
 	reviewCount,
+	thumbnailUrl,
 }) => {
+	console.log(thumbnailUrl);
 	return (
-		<Card hoverable>
-			<h2>{name ? name : 'No name'}</h2>
-			<Meta title={`$${dailyPrice} Per Day`} description={description} />
+		<Card
+			hoverable
+			cover={<img alt='hotel thumbnail ' src={`${thumbnailUrl}`} />}
+		>
+			<Meta
+				title={
+					<Text underline strong>
+						{name}
+					</Text>
+				}
+				description={
+					<div>
+						<Rate value={hotelStars} disabled />
+						<Paragraph type='secondary' ellipsis={{ rows: 2 }}>
+							{description}
+						</Paragraph>
+					</div>
+				}
+			/>
+			<p>trip price each day ${dailyPrice}</p>
 			<p>Total trip for all days ${totalStayPrice}</p>
 			<p>The hotel will be around {neighborhoodName}</p>
 			<p>
