@@ -20,7 +20,7 @@ const Results = () => {
 		}
 	}, [hash, history]);
 	return (
-		<Content style={{ marginTop: '20px', overflow: 'auto' }}>
+		<Content style={{ marginTop: '10px', overflow: 'scroll' }}>
 			<div>
 				<PageHeader
 					ghost={true}
@@ -29,45 +29,48 @@ const Results = () => {
 				/>
 			</div>
 
-			<List
-				grid={{
-					gutter: 12,
-					xs: 1,
-					sm: 2,
-					md: 2,
-					lg: 3,
-					xl: 4,
-					xxl: 5,
-				}}
-				pagination={{
-					pageSize: pageSize,
-					onShowSizeChange: (current, size) => {
-						setPageSize(size);
-					},
-					showTotal: (total, range) =>
-						`${range[0]}-${range[1]} of ${total} items`,
-				}}
-				dataSource={pricelineQueryResponse}
-				loading={isLoading}
-				renderItem={(hotel) => (
-					<List.Item>
-						<HotelCard
-							totalStayPrice={hotel.expressDealPricePerStay}
-							neighborhoodName={hotel.location.neighborhoodName}
-							description={hotel.description}
-							guestRating={hotel.overallGuestRating}
-							hotelStars={hotel.starRating}
-							dailyPrice={hotel.expressDealDailyPrice}
-							reviewCount={hotel.totalReviewCount}
-							key={hotel.retailPclnId}
-							name={hotel.hotelName}
-							thumbnailUrl={hotel.thumbnailUrl}
-							style={{ height: '100%' }}
-						/>
-					</List.Item>
-				)}
-			>
-				{/* <Skeleton loading={isLoading} active>
+			<Row align='middle' justify='center'>
+				<List
+					style={{ width: '90%' }}
+					grid={{
+						gutter: 12,
+						xs: 1,
+						sm: 2,
+						md: 2,
+						lg: 3,
+						xl: 4,
+						xxl: 5,
+					}}
+					pagination={{
+						position: 'top',
+						responsive: true,
+						pageSizeOptions: ['12', '24', '36'],
+						pageSize: pageSize,
+						onShowSizeChange: (current, size) => {
+							setPageSize(size);
+						},
+						showTotal: (total, range) =>
+							`${range[0]}-${range[1]} of ${total} items`,
+					}}
+					dataSource={pricelineQueryResponse}
+					loading={isLoading}
+					renderItem={(hotel) => (
+						<List.Item style={{ marginTop: '10px' }}>
+							<HotelCard
+								totalStayPrice={hotel.expressDealPricePerStay}
+								neighborhoodName={hotel.location.neighborhoodName}
+								guestRating={hotel.overallGuestRating}
+								hotelStars={hotel.starRating}
+								dailyPrice={hotel.expressDealDailyPrice}
+								reviewCount={hotel.totalReviewCount}
+								key={hotel.retailPclnId}
+								name={hotel.hotelName}
+								thumbnailUrl={hotel.thumbnailUrl}
+							/>
+						</List.Item>
+					)}
+				>
+					{/* <Skeleton loading={isLoading} active>
 						{pricelineQueryResponse &&
 							pricelineQueryResponse.length > 0 &&
 							pricelineQueryResponse.map((hotel) => (
@@ -90,18 +93,19 @@ const Results = () => {
 									/>
 								</Col>
 							))} */}
-				{error && (
-					<Alert
-						style={{ width: '100%' }}
-						message={error.data.message}
-						description={'if the error persists, please contact us'}
-						type='error'
-						closable
-					/>
-				)}
-				{/* </Col> */}
-				{/* </Skeleton> */}
-			</List>
+					{error && (
+						<Alert
+							style={{ width: '100%' }}
+							message={error.data.message}
+							description={'if the error persists, please contact us'}
+							type='error'
+							closable
+						/>
+					)}
+					{/* </Col> */}
+					{/* </Skeleton> */}
+				</List>
+			</Row>
 		</Content>
 	);
 };
