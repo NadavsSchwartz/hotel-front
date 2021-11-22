@@ -17,7 +17,6 @@ const HotelCard = ({
 	reviewCount,
 	thumbnailUrl,
 }) => {
-	console.log(thumbnailUrl);
 	return (
 		<Badge.Ribbon
 			text={
