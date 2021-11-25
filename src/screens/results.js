@@ -54,13 +54,6 @@ const Results = () => {
 	};
 	return (
 		<Content style={{ marginTop: '10px', overflow: 'scroll' }}>
-			<Row>
-				<PageHeader
-					ghost={true}
-					onBack={() => window.history.back()}
-					title='Back'
-				/>
-			</Row>
 			<Menu mode='horizontal'>
 				<SubMenu key='Price' icon={<SettingOutlined />} title={'Sort By'}>
 					{menuItems(handleClick)}
@@ -68,7 +61,6 @@ const Results = () => {
 			</Menu>
 			<Row justify='center'>
 				<List
-					style={{ width: '90%' }}
 					grid={{
 						gutter: 12,
 						xs: 1,

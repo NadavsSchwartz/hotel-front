@@ -1,34 +1,32 @@
-import { Layout } from 'antd';
-import { Footer } from 'antd/lib/layout/layout';
-import { Route } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import HotelSearchForm from './components/HotelSearchForm';
-import Sidebar from './components/sidebar';
-import hotelDetails from './screens/hotelDetails';
 import Results from './screens/results';
+import 'antd/dist/antd.css';
+import './assets/styles/main.css';
+import './assets/styles/responsive.css';
+import Main from './components/layout';
 
-const { Content } = Layout;
 const App = () => {
 	return (
-		<section className='home-main'>
-			<Layout>
-				<Sidebar />
-				<Layout className='home-layout'>
-					<Content id='container'>
-						<Route exact path='/'>
-							<HotelSearchForm />
-						</Route>
+		<div className='App'>
+			<Switch>
+				<Main>
 
-						<Route exact path='/results'>
-							<Results />
-						</Route>
-						<Route exact path='/deal/:dealData'>
-							<hotelDetails />
-						</Route>
-					</Content>
-				</Layout>
-			</Layout>
-			<Footer style={{ textAlign: 'center' }}>hotel revealer ©2020-2021</Footer>
-		</section>
+				<Route exact path='/dashboard'>
+					<HotelSearchForm />
+				</Route>
+
+				<Route path='/results'>
+					<Results />
+				</Route>
+				<Route exact path='/deal/:dealData'>
+					<hotelDetails />
+				</Route>
+				<Redirect from='*' to='/dashboard' />
+				</Main>
+			</Switch>
+			{/* <Footer style={{ textAlign: 'center' }}>hotel revealer ©2020-2021</Footer> */}
+		</div>
 	);
 };
 
