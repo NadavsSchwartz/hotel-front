@@ -10,7 +10,7 @@ const Sidebar = ({ collapsed }) => {
 			trigger={null}
 			collapsible
 			collapsed={collapsed}
-			width={170}
+			width={150}
 			className='sidebar'
 		>
 			<div className='sider-menu-logo'>

@@ -10,7 +10,10 @@ const HotelCard = ({
 	totalStayPrice,
 	name,
 	neighborhoodName,
-
+	pclnId,
+	checkIn,
+	checkOut,
+	cityId,
 	guestRating,
 	hotelStars,
 	dailyPrice,
@@ -97,9 +100,15 @@ const HotelCard = ({
 				</Col>
 				<Col span={24}>
 					<Button block type='primary' style={{ backgroundColor: '#0068ef' }}>
-						<h5 style={{ color: '#fff', marginTop: '2px' }}>
-							HEAD TO PRICELINE
-						</h5>
+						<a
+							target='_blank'
+							href={`https://www.priceline.com/relax/at/express/${cityId}/${pclnId}/from/${checkIn}/to/${checkOut}/rooms/1?cjevent=fcfda7644b3611ec811b250b0a1c0e0d&refid=CO8733109&refclickid=11554367SID&vrid=c9cef1a61be73ee0974a88e1c8437fc5}`}
+							rel='noreferrer'
+						>
+							<h5 style={{ color: '#fff', marginTop: '2px' }}>
+								HEAD TO PRICELINE
+							</h5>
+						</a>
 					</Button>
 				</Col>
 			</Row>
@@ -108,3 +117,4 @@ const HotelCard = ({
 };
 
 export default HotelCard;
+ 

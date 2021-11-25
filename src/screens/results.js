@@ -104,6 +104,10 @@ const Results = () => {
 								key={hotel.retailPclnId}
 								name={hotel.hotelName}
 								thumbnailUrl={hotel.thumbnailUrl}
+								cityId={hotel.location.cityId}
+								pclnId={hotel.pclnId}
+								checkIn={hotel.checkIn}
+								checkOut={hotel.checkOut}
 							/>
 						</List.Item>
 					)}
@@ -111,7 +115,7 @@ const Results = () => {
 					{error && (
 						<Alert
 							style={{ width: '100%' }}
-							message={error.data.message}
+							message={error?.data?.message}
 							description={'if the error persists, please contact us'}
 							type='error'
 							closable
