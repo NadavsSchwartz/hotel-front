@@ -9,8 +9,6 @@ const { Header: AntHeader, Content, Sider } = Layout;
 
 const Main = ({ children }) => {
 	const [visible, setVisible] = useState(false);
-	const [sidebarColor, setSidebarColor] = useState('#1890ff');
-	const [sidebarType, setSidebarType] = useState('transparent');
 	const [fixed, setFixed] = useState(false);
 
 	const openDrawer = () => setVisible(!visible);
@@ -40,11 +38,11 @@ const Main = ({ children }) => {
 						width={200}
 						theme='light'
 						className={`sider-primary ant-layout-sider-primary ${
-							sidebarType === '#fff' ? 'active-route' : ''
+							'transparent' === '#fff' ? 'active-route' : ''
 						}`}
-						style={{ background: sidebarType }}
+						style={{ background: 'transparent' }}
 					>
-						<Sidebar color={sidebarColor} />
+						<Sidebar color={'#1890ff'} />
 					</Sider>
 				</Layout>
 			</Drawer>
@@ -58,11 +56,11 @@ const Main = ({ children }) => {
 				width={200}
 				theme='light'
 				className={`sider-primary ant-layout-sider-primary ${
-					sidebarType === '#fff' ? 'active-route' : ''
+					'transparent' === '#fff' ? 'active-route' : ''
 				}`}
-				style={{ background: sidebarType }}
+				style={{ background: 'transparent' }}
 			>
-				<Sidebar color={sidebarColor} />
+				<Sidebar color={'#1890ff'} />
 			</Sider>
 			<Layout>
 				<AntHeader className={`${fixed ? 'ant-header-fixed' : ''}`}>

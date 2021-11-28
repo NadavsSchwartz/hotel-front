@@ -1468,7 +1468,7 @@ ul.ant-menu.ant-menu-root.ant-menu-inline.ant-menu-light.left-nav li:active {
 }
 
 .ant-card-body {
-    padding: 16px;
+    padding: 2px;
 }
 
 ul.ant-menu.ant-menu-root.ant-menu-inline.ant-menu-light.left-nav li svg path {
@@ -2611,7 +2611,7 @@ section.ant-layout.layout-content .ant-layout-content.content-ant {
 }
 
 .profile-nav-bg {
-    height: 350px;
+    height: 400px;
     margin-top: -137.8px;
     border-radius: 12px;
     box-shadow: 0 20px 27px rgb(0 0 0 / 5%);

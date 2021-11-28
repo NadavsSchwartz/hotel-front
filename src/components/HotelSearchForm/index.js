@@ -20,6 +20,7 @@ import {
 	getHotelDeals,
 	getLatestHotelDeals,
 } from '../../store/actions/HotelDealsAction';
+import Text from 'antd/lib/typography/Text';
 const { RangePicker } = DatePicker;
 const HotelSearchForm = () => {
 	const [form] = Form.useForm();
@@ -31,7 +32,7 @@ const HotelSearchForm = () => {
 
 	useEffect(() => {
 		if (!clientIp) dispatch(getClientIp());
-		if (!latestDeals) dispatch(getLatestHotelDeals());
+		dispatch(getLatestHotelDeals());
 	}, [clientIp, dispatch]);
 
 	const onFinish = async (values) => {
@@ -140,10 +141,10 @@ const HotelSearchForm = () => {
 										<Card
 											bordered={false}
 											className='card-project'
-											cover={<img alt='example' src={deal.data.[0].thumbnailUrl} />}
+											cover={<img alt='example' src={deal.data.[0].thumbnailUrl} style={{objectFit:'cover'}}/>}
 										>
-											<div className='card-tag'>{deal.data.[0].hotelName}</div>
-											<h5>{deal.data.[0].title}</h5>
+											<div className='card-tag'><Text ellipsis={true}>{deal.data.[0].hotelName}</Text></div>
+											<p>{deal.data.[0].title && deal.data.[0].title}</p>
 											<p>{deal.data.[0].address.cityName}, {deal.data.[0].address.provinceCode }</p>
 											{/* <Row gutter={[6, 0]} className='card-footer'>
 												<Col span={12}>
