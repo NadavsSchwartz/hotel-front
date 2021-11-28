@@ -1,35 +1,56 @@
-import { Form, Button, Card, AutoComplete, DatePicker, Row, Spin } from 'antd';
-import { useDispatch } from 'react-redux';
-import { setRequestBody } from '../../services/reducer';
+import {
+	Form,
+	Button,
+	Card,
+	AutoComplete,
+	DatePicker,
+	Row,
+	Col,
+	Skeleton,
+} from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { autoCities } from '../constants/cities';
 import { useHistory } from 'react-router-dom';
-import { useGetClientIpQuery } from '../../services/pricelineApi';
+import { useEffect } from 'react';
 import { AES } from 'crypto-js';
+import logo from '../../assets/images/bg-image.jpeg';
+import {
+	getClientIp,
+	getHotelDeals,
+	getLatestHotelDeals,
+} from '../../store/actions/HotelDealsAction';
 const { RangePicker } = DatePicker;
-
 const HotelSearchForm = () => {
 	const [form] = Form.useForm();
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const { data, isLoading } = useGetClientIpQuery();
-	if (isLoading) return <Spin />;
+	const { loading, latestDeals, clientIp } = useSelector(
+		(state) => state.HotelDeals
+	);
+
+	useEffect(() => {
+		if (!clientIp) dispatch(getClientIp());
+		if (!latestDeals) dispatch(getLatestHotelDeals());
+	}, [clientIp, dispatch]);
+
 	const onFinish = async (values) => {
 		const { cityName, dates } = values;
 		const checkIn = dates[0].format('YYYYMMDD');
 		const checkOut = dates[1].format('YYYYMMDD');
-		
+
 		const body = {
 			checkIn: checkIn,
 			checkOut: checkOut,
 			cityName: cityName,
-			clientIp: data && data.IPv4 ? data.IPv4 : '',
+			clientIp: clientIp && clientIp.IPv4 ? clientIp.IPv4 : '',
 		};
 		const encrypted = AES.encrypt(
 			JSON.stringify(body),
 			process.env.REACT_APP_SECRET
 		).toString();
 
-		dispatch(setRequestBody(encrypted));
+		dispatch(getHotelDeals(encrypted));
 		history.push(`/results?q=${encrypted}`);
 	};
 	// Can not select days before today
@@ -41,27 +62,27 @@ const HotelSearchForm = () => {
 	};
 
 	return (
-		<div
-			style={{
-				backgroundImage: `url('https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg?auto=compress&cs=tinysrgb&dpr=1&h=1220&w=750)`,
-			}}
-		>
-			<Row
-				type='flex'
-				justify='center'
-				align='middle'
-				style={{ minHeight: '100vh' }}
+		<>
+			<div
+				className='profile-nav-bg'
+				style={{ backgroundImage: 'url(' + logo + ')' }}
+			></div>
+			<Card
+				className='card-profile-head'
+				title={
+					<Row justify='center'>
+						<h2>Find a room</h2>
+					</Row>
+				}
 			>
-				<Card size='large'>
-					<div
-						style={{
-							textAlign: 'center',
-							paddingBottom: '10px',
-						}}
+				<Row justify={'center'}>
+					<Form
+						form={form}
+						onFinish={onFinish}
+						layout='vertical'
+						requiredMark={false}
+						style={{ justifyContent: 'center' }}
 					>
-						<h2>Find a room </h2>
-					</div>
-					<Form form={form} name='control-hooks' onFinish={onFinish}>
 						<Form.Item
 							name='cityName'
 							label='City Name'
@@ -77,23 +98,67 @@ const HotelSearchForm = () => {
 								}
 							/>
 						</Form.Item>
+
 						<Form.Item
 							name={['dates']}
-							label='Check in - Check out'
+							label='Dates'
 							rules={[{ required: true }]}
 						>
-							<RangePicker disabledDate={disabledDate} />
+							<RangePicker
+								disabledDate={disabledDate}
+								style={{ width: '100%' }}
+							/>
 						</Form.Item>
 
 						<Form.Item>
-							<Button type='primary' htmlType='submit' block>
-								Submit
-							</Button>
+							<Col sm={24}>
+								<Button type='primary' htmlType='submit' block>
+									Submit
+								</Button>
+							</Col>
 						</Form.Item>
 					</Form>
-				</Card>
-			</Row>
-		</div>
+				</Row>
+			</Card>
+			<div justify='center'>
+				<Skeleton active loading={loading}>
+					<Card
+						bordered={false}
+						className='header-solid mb-24'
+						title={
+							<Row justify="center">
+
+								<h6 className='font-semibold'>Recent Searches</h6>
+								
+							</Row>
+						}
+					>
+						<Row gutter={[24, 24]}>
+							{latestDeals &&
+								latestDeals.map((deal, index) => (
+									<Col span={24} md={12} xl={6} key={index}>
+										<Card
+											bordered={false}
+											className='card-project'
+											cover={<img alt='example' src={deal.data.[0].thumbnailUrl} />}
+										>
+											<div className='card-tag'>{deal.data.[0].hotelName}</div>
+											<h5>{deal.data.[0].title}</h5>
+											<p>{deal.data.[0].address.cityName}, {deal.data.[0].address.provinceCode }</p>
+											{/* <Row gutter={[6, 0]} className='card-footer'>
+												<Col span={12}>
+													 <Button type='button'>VIEW PROJECT</Button> 
+												</Col>
+												<Col span={12} className='text-right'>{deal.data.[0].address.cityName}, {deal.data.[0].address.provinceCode }</Col>
+											</Row> */}
+										</Card>
+									</Col>
+								))}
+						</Row>
+					</Card>
+				</Skeleton>
+			</div>
+		</>
 	);
 };
 

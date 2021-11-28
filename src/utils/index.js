@@ -1,6 +1,7 @@
 import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
-import { Menu } from 'antd';
-import SubMenu from 'antd/lib/menu/SubMenu';
+import { Menu, List, Avatar } from 'antd';
+
+import { clockicon, credit } from './icons';
 
 export const PopoverContent = (
 	<div>
@@ -39,3 +40,29 @@ export const menuItems = (handleClick) => {
 		</>
 	);
 };
+
+export const notificationData = [
+	{
+		title: 'Payment completed',
+		description: <>{clockicon} 2 days ago</>,
+		avatar: <Avatar shape='square'>{credit}</Avatar>,
+	},
+];
+
+export const notificationMenu = (
+	<List
+		min-width='100%'
+		className='header-notifications-dropdown '
+		itemLayout='horizontal'
+		dataSource={notificationData}
+		renderItem={(item) => (
+			<List.Item>
+				<List.Item.Meta
+					avatar={<Avatar shape='square' src={item.avatar} />}
+					title={item.title}
+					description={item.description}
+				/>
+			</List.Item>
+		)}
+	/>
+);

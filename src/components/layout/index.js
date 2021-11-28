@@ -9,53 +9,35 @@ const { Header: AntHeader, Content, Sider } = Layout;
 
 const Main = ({ children }) => {
 	const [visible, setVisible] = useState(false);
-	const [placement, setPlacement] = useState('right');
 	const [sidebarColor, setSidebarColor] = useState('#1890ff');
 	const [sidebarType, setSidebarType] = useState('transparent');
 	const [fixed, setFixed] = useState(false);
 
 	const openDrawer = () => setVisible(!visible);
-	const handleSidbarType = (type) => setSidebarType(type);
-	const handleSidebarColor = (color) => setSidebarColor(color);
 	const handleFixedNavbar = (type) => setFixed(type);
 
 	let { pathname } = useLocation();
 	pathname = pathname.replace('/', '');
 
-	useEffect(() => {
-		if (pathname === 'rtl') {
-			setPlacement('left');
-		} else {
-			setPlacement('right');
-		}
-	}, [pathname]);
-
 	return (
 		<Layout
 			className={`layout-dashboard ${
-				pathname === 'profile' ? 'layout-profile' : ''
-			} ${pathname === 'rtl' ? 'layout-dashboard-rtl' : ''}`}
+				pathname === 'dashboard' ? 'layout-profile' : ''
+			}`}
 		>
 			<Drawer
 				title={false}
-				placement={placement === 'right' ? 'left' : 'right'}
+				placement='left'
 				closable={false}
 				onClose={() => setVisible(false)}
 				visible={visible}
-				key={placement === 'right' ? 'left' : 'right'}
-				width={250}
-				className={`drawer-sidebar ${
-					pathname === 'rtl' ? 'drawer-sidebar-rtl' : ''
-				} `}
+				key='left'
+				width={200}
 			>
-				<Layout
-					className={`layout-dashboard ${
-						pathname === 'rtl' ? 'layout-dashboard-rtl' : ''
-					}`}
-				>
+				<Layout className='layout-dashboard'>
 					<Sider
 						trigger={null}
-						width={250}
+						width={200}
 						theme='light'
 						className={`sider-primary ant-layout-sider-primary ${
 							sidebarType === '#fff' ? 'active-route' : ''
@@ -73,7 +55,7 @@ const Main = ({ children }) => {
 					console.log(collapsed, type);
 				}}
 				trigger={null}
-				width={250}
+				width={200}
 				theme='light'
 				className={`sider-primary ant-layout-sider-primary ${
 					sidebarType === '#fff' ? 'active-route' : ''
@@ -83,31 +65,14 @@ const Main = ({ children }) => {
 				<Sidebar color={sidebarColor} />
 			</Sider>
 			<Layout>
-				{fixed ? (
-					<Affix>
-						<AntHeader className={`${fixed ? 'ant-header-fixed' : ''}`}>
-							<Header
-								onPress={openDrawer}
-								name={pathname}
-								subName={pathname}
-								handleSidenavColor={handleSidebarColor}
-								handleSidenavType={handleSidbarType}
-								handleFixedNavbar={handleFixedNavbar}
-							/>
-						</AntHeader>
-					</Affix>
-				) : (
-					<AntHeader className={`${fixed ? 'ant-header-fixed' : ''}`}>
-						<Header
-							onPress={openDrawer}
-							name={pathname}
-							subName={pathname}
-							handleSidenavColor={handleSidebarColor}
-							handleSidenavType={handleSidbarType}
-							handleFixedNavbar={handleFixedNavbar}
-						/>
-					</AntHeader>
-				)}
+				<AntHeader className={`${fixed ? 'ant-header-fixed' : ''}`}>
+					<Header
+						onPress={openDrawer}
+						name={pathname}
+						subName={pathname}
+						handleFixedNavbar={handleFixedNavbar}
+					/>
+				</AntHeader>
 				<Content className='content-ant'>{children}</Content>
 				<Footer />
 			</Layout>

@@ -1,13 +1,19 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { pricelineApi } from '../services/pricelineApi';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+import HotelDealsReducer from './HotelDealsReducer';
 
-import pricelineBodyReducer from '../services/reducer';
-export default configureStore({
-	reducer: {
-		[pricelineApi.reducerPath]: pricelineApi.reducer,
-		pricelineBodyReducer: pricelineBodyReducer,
-	},
-	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware().concat([pricelineApi.middleware]),
-	devTools: true,
+const middleware = [thunk];
+
+const reducer = combineReducers({
+	HotelDeals: HotelDealsReducer,
 });
+
+const initialState = {};
+
+const store = createStore(
+	reducer,
+	initialState,
+	composeWithDevTools(applyMiddleware(...middleware))
+);
+export default store;

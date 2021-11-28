@@ -8,21 +8,20 @@ import Main from './components/layout';
 
 const App = () => {
 	return (
-		<div className='App'>
+		<div>
 			<Switch>
 				<Main>
+					<Route exact path='/dashboard'>
+						<HotelSearchForm />
+					</Route>
 
-				<Route exact path='/dashboard'>
-					<HotelSearchForm />
-				</Route>
-
-				<Route path='/results'>
-					<Results />
-				</Route>
-				<Route exact path='/deal/:dealData'>
-					<hotelDetails />
-				</Route>
-				<Redirect from='*' to='/dashboard' />
+					<Route path='/results'>
+						<Results />
+					</Route>
+					<Route exact path='/deal/:dealData'>
+						<hotelDetails />
+					</Route>
+					<Redirect from='*' to='/dashboard' />
 				</Main>
 			</Switch>
 			{/* <Footer style={{ textAlign: 'center' }}>hotel revealer ©2020-2021</Footer> */}

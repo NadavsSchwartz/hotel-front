@@ -34,30 +34,23 @@ const HotelCard = ({
 				hoverable
 				cover={<img alt='hotel thumbnail ' src={`${thumbnailUrl}`} />}
 			>
-				<Meta
-					title={<Text strong>{name}</Text>}
-					description={
-						<Row>
-							<Col span={22}>
-								<Text type='secondary' ellipsis={true}>
-									{neighborhoodName.split(' -')[0]}
-								</Text>{' '}
-							</Col>
-							<Col span={2}>
-								<Popover
-									title='How do we match hotels?'
-									content={PopoverContent}
-								>
-									<InfoCircleOutlined />
-								</Popover>
-							</Col>
-						</Row>
-					}
-				/>
+				<Meta title={<Text strong>{name}</Text>} />
+				<div style={{ paddingTop: '10px' }}>
+					<Col span={20} style={{ display: 'inline-block' }}>
+						<Text type='secondary' ellipsis={true}>
+							{neighborhoodName.split(' -')[0]}
+						</Text>{' '}
+					</Col>
+					<Col span={4} style={{ float: 'right' }}>
+						<Popover title='How do we match hotels?' content={PopoverContent}>
+							<InfoCircleOutlined />
+						</Popover>
+					</Col>
+				</div>
 				<div style={{ paddingTop: '10px' }}>
 					<Row
 						style={{
-							marginTop: '5px',
+							margin: '5px',
 							display: 'inline-block',
 						}}
 					>
@@ -91,30 +84,21 @@ const HotelCard = ({
 						</span>
 					</div>
 				</div>
-			</Card>
-			<Row>
-				<Col span={24}>
+
+				<div style={{ paddingTop: '10px' }}>
 					<Button block type='primary'>
-						<h5 style={{ color: '#fff', marginTop: '2px' }}>MORE DETAILS</h5>
-					</Button>{' '}
-				</Col>
-				<Col span={24}>
-					<Button block type='primary' style={{ backgroundColor: '#0068ef' }}>
 						<a
 							target='_blank'
 							href={`https://www.priceline.com/relax/at/express/${cityId}/${pclnId}/from/${checkIn}/to/${checkOut}/rooms/1?cjevent=fcfda7644b3611ec811b250b0a1c0e0d&refid=CO8733109&refclickid=11554367SID&vrid=c9cef1a61be73ee0974a88e1c8437fc5}`}
 							rel='noreferrer'
 						>
-							<h5 style={{ color: '#fff', marginTop: '2px' }}>
-								HEAD TO PRICELINE
-							</h5>
+							<h5 style={{ color: '#fff' }}>HEAD TO PRICELINE</h5>
 						</a>
 					</Button>
-				</Col>
-			</Row>
+				</div>
+			</Card>
 		</Badge.Ribbon>
 	);
 };
 
 export default HotelCard;
- 

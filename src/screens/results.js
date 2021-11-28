@@ -1,9 +1,9 @@
-import { PageHeader, Row, Menu, Alert, List } from 'antd';
-import { Content } from 'antd/lib/layout/layout';
+import { Row, Menu, Alert, List } from 'antd';
+
 import React, { useEffect, useState } from 'react';
 import HotelCard from '../components/cards/HotelCard';
-import { useGetPricelineDealsQuery } from '../services/pricelineApi';
 
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 
 import { SettingOutlined } from '@ant-design/icons';
@@ -11,18 +11,21 @@ import SubMenu from 'antd/lib/menu/SubMenu';
 import { menuItems } from '../utils';
 
 const Results = () => {
-	const [pageSize, setPageSize] = useState(10);
+	const [pageSize, setPageSize] = useState(12);
 	const history = useHistory();
 	const hash = history.location.search.split('=')[1];
 	const [sortedDeals, setSortedDeals] = useState([]);
-	const { data, isLoading, error } = useGetPricelineDealsQuery(hash);
-	useEffect(() => {
-		if (!hash) {
-			return history.push('/');
-		}
-	}, [hash, history]);
+	const { foundDeals, loading, error } = useSelector(
+		(state) => state.HotelDeals
+	);
 
-	const copiedData = data;
+	// useEffect(() => {
+	// 	if (!hash) {
+	// 		return history.push('/');
+	// 	}
+	// }, [hash, history]);
+
+	const copiedData = foundDeals;
 
 	const handleClick = async (e) => {
 		//avoiding the error of manipulating the original data
@@ -53,7 +56,7 @@ const Results = () => {
 		setSortedDeals(res);
 	};
 	return (
-		<Content style={{ marginTop: '10px', overflow: 'scroll' }}>
+		<>
 			<Menu mode='horizontal'>
 				<SubMenu key='Price' icon={<SettingOutlined />} title={'Sort By'}>
 					{menuItems(handleClick)}
@@ -62,14 +65,15 @@ const Results = () => {
 			<Row justify='center'>
 				<List
 					grid={{
-						gutter: 12,
+						gutter: 16,
 						xs: 1,
 						sm: 2,
 						md: 2,
 						lg: 3,
-						xl: 4,
-						xxl: 5,
+						xl: 3,
+						xxl: 4,
 					}}
+					style={{ width: '90%' }}
 					pagination={{
 						responsive: true,
 						pageSizeOptions: ['12', '24', '36'],
@@ -81,11 +85,11 @@ const Results = () => {
 							`${range[0]}-${range[1]} of ${total} items`,
 					}}
 					dataSource={
-						sortedDeals && sortedDeals.length > 0 ? sortedDeals : data
+						sortedDeals && sortedDeals.length > 0 ? sortedDeals : foundDeals
 					}
-					loading={isLoading}
+					loading={loading}
 					renderItem={(hotel) => (
-						<List.Item style={{ marginTop: '10px' }}>
+						<List.Item style={{ marginTop: '10px' }} bordered={false}>
 							<HotelCard
 								totalStayPrice={hotel.expressDealPricePerStay}
 								neighborhoodName={hotel.location.neighborhoodName}
@@ -115,7 +119,7 @@ const Results = () => {
 					)}
 				</List>{' '}
 			</Row>
-		</Content>
+		</>
 	);
 };
 
