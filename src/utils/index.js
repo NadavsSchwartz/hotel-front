@@ -1,8 +1,8 @@
 import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
-import { Menu, List, Avatar } from 'antd';
+import { Menu, List, Avatar, Alert } from 'antd';
 
 import { clockicon, credit } from './icons';
-
+import CryptoJS from 'crypto-js';
 export const PopoverContent = (
 	<div>
 		<p>...</p>
@@ -66,3 +66,16 @@ export const notificationMenu = (
 		)}
 	/>
 );
+
+export const isValidated = async (hash) => {
+	try {
+		const decrypted = CryptoJS.AES.decrypt(hash, process.env.REACT_APP_SECRET);
+		const { checkIn, checkOut, cityName } = await JSON.parse(
+			decrypted.toString(CryptoJS.enc.Utf8)
+		);
+		if ((checkIn, checkOut, cityName)) return true;
+	} catch (error) {
+		return false;
+	}
+	return false;
+};

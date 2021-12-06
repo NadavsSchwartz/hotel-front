@@ -3,27 +3,27 @@ import { Row, Menu, Alert, List } from 'antd';
 import React, { useEffect, useState } from 'react';
 import HotelCard from '../components/cards/HotelCard';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 
 import { SettingOutlined } from '@ant-design/icons';
 import SubMenu from 'antd/lib/menu/SubMenu';
-import { menuItems } from '../utils';
+import { isValidated, menuItems } from '../utils';
+import { getHotelDeals } from '../store/actions/HotelDealsAction';
 
 const Results = () => {
 	const [pageSize, setPageSize] = useState(12);
 	const history = useHistory();
+	const dispatch = useDispatch();
 	const hash = history.location.search.split('=')[1];
 	const [sortedDeals, setSortedDeals] = useState([]);
 	const { foundDeals, loading, error } = useSelector(
 		(state) => state.HotelDeals
 	);
 
-	// useEffect(() => {
-	// 	if (!hash) {
-	// 		return history.push('/');
-	// 	}
-	// }, [hash, history]);
+	useEffect(() => {
+		if (hash && isValidated(hash)) dispatch(getHotelDeals(hash));
+	}, [dispatch]);
 
 	const copiedData = foundDeals;
 
@@ -55,6 +55,7 @@ const Results = () => {
 		}
 		setSortedDeals(res);
 	};
+
 	return (
 		<>
 			<Menu mode='horizontal'>
@@ -85,7 +86,11 @@ const Results = () => {
 							`${range[0]}-${range[1]} of ${total} items`,
 					}}
 					dataSource={
-						sortedDeals && sortedDeals.length > 0 ? sortedDeals : foundDeals
+						sortedDeals && sortedDeals.length > 0
+							? sortedDeals
+							: foundDeals.length === 1 && !!foundDeals[0].data
+							? foundDeals[0].data
+							: foundDeals
 					}
 					loading={loading}
 					renderItem={(hotel) => (
@@ -111,7 +116,7 @@ const Results = () => {
 					{error && (
 						<Alert
 							style={{ width: '100%' }}
-							message={error?.data?.message}
+							message={error.data?.message || error}
 							description={'if the error persists, please contact us'}
 							type='error'
 							closable
