@@ -319,12 +319,12 @@ body {
     transition: 0.2s;
 }
 
-.layout-dashboard .ant-breadcrumb>span .ant-breadcrumb-link a {
-    color: #8c8c8c;
+.layout-dashboard .Breadcrumb>span .ant-breadcrumb-link a {
+    color: #fff;
 }
 
 .layout-dashboard .ant-breadcrumb>span:last-child .ant-breadcrumb-link {
-    color: #141414;
+    color: #fff;
 }
 
 .layout-dashboard .ant-page-header-heading {
@@ -452,7 +452,7 @@ h4 {
 }
 
 .layout-dashboard .header-control svg path {
-    fill: #141414;
+    fill: #fff;
 }
 
 .layout-dashboard .header-control .btn-sign-in {
@@ -473,7 +473,7 @@ h4 {
 
 .layout-dashboard .header-control .header-search {
     width: 213px;
-    margin: 0 7px 0 0;
+    margin: 0 11px 0 0;
     border-radius: 6px;
     height: 40px;
     border: 1px solid #d9d9d9;
@@ -2258,7 +2258,6 @@ section.ant-layout.layout-content .ant-layout-content.content-ant {
 }
 
 .card-credit {
-    background-image: url('../images/info-card-3.jpg');
     background-position: 50%;
     background-size: cover;
     border: none;
@@ -2619,6 +2618,10 @@ section.ant-layout.layout-content .ant-layout-content.content-ant {
     background-position: 50%;
 }
 
+.ant-breadcrumb-separator {
+    color: #fff;
+}
+
 section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile span.ant-page-header-heading-title {
     color: #fff;
 }
@@ -2650,6 +2653,8 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile .btn-sig
 
 .card-profile-head {
     margin: -113px 0 24px;
+    width: 60%;
+    /* background: rgb(250, 250, 250); */
 }
 
 .card-profile-head .ant-card-head .ant-avatar {

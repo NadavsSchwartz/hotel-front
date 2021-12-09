@@ -1,13 +1,16 @@
 import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
-import { Menu, List, Avatar, Alert } from 'antd';
+import { Menu, List, Avatar } from 'antd';
 
 import { clockicon, credit } from './icons';
-import CryptoJS from 'crypto-js';
+import CryptoJS, { AES } from 'crypto-js';
+import { Content } from 'antd/lib/layout/layout';
 export const PopoverContent = (
-	<div>
-		<p>...</p>
-		<p>....</p>
-	</div>
+	<Content>
+		<p>HR submits your requested</p>
+		<p>city name, check-in and check-out dates,</p>
+		<p>To Priceline, and matches multiple fields,</p>
+		<p>between regular and express deals.</p>
+	</Content>
 );
 export const menuItems = (handleClick) => {
 	return (
@@ -68,14 +71,64 @@ export const notificationMenu = (
 );
 
 export const isValidated = async (hash) => {
+	const decrypted = CryptoJS.AES.decrypt(hash, process.env.REACT_APP_SECRET);
 	try {
-		const decrypted = CryptoJS.AES.decrypt(hash, process.env.REACT_APP_SECRET);
-		const { checkIn, checkOut, cityName } = await JSON.parse(
-			decrypted.toString(CryptoJS.enc.Utf8)
-		);
-		if ((checkIn, checkOut, cityName)) return true;
+		const res = await JSON.parse(decrypted.toString(CryptoJS.enc.Utf8));
+
+		if (res) return true;
 	} catch (error) {
 		return false;
 	}
 	return false;
 };
+
+export const dateConverter = (str, fulldate) => {
+	if (fulldate) {
+		let year = str.substr(0, 4);
+		let month = str.substr(4, 2) - 1;
+		let day = str.substr(6, 2);
+		return `${year}/${month}/${day}`;
+	}
+
+	let month = str.substr(4, 2) - 1;
+	let day = str.substr(6, 2);
+	return `${month}/${day}`;
+};
+
+export const dateConverterSpecificDeal = (str) => {
+	let year = str.substr(0, 4);
+	let month = str.substr(4, 2) - 1;
+	let day = str.substr(6, 2);
+	return `${year}-${month}-${day}`;
+};
+
+const epochs = [
+	['year', 31536000],
+	['month', 2592000],
+	['day', 86400],
+	['hour', 3600],
+	['minute', 60],
+	['second', 1],
+];
+
+const getDuration = (timeAgoInSeconds) => {
+	for (let [name, seconds] of epochs) {
+		const interval = Math.floor(timeAgoInSeconds / seconds);
+		if (interval >= 1) {
+			return {
+				interval: interval,
+				epoch: name,
+			};
+		}
+	}
+};
+
+export const timeAgo = (date) => {
+	const timeAgoInSeconds = Math.floor((new Date() - new Date(date)) / 1000);
+	const { interval, epoch } = getDuration(timeAgoInSeconds);
+	const suffix = interval === 1 ? '' : 's';
+	return `${interval} ${epoch}${suffix} ago`;
+};
+
+export const encrypt = (body) =>
+	AES.encrypt(JSON.stringify(body), process.env.REACT_APP_SECRET).toString();

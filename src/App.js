@@ -19,11 +19,9 @@ const App = () => {
 					<Route path='/results'>
 						<Results />
 					</Route>
-					{/* <Route path='/testing'>
+
+					<Route exact path='/deal'>
 						<HotelDetails />
-					</Route> */}
-					<Route exact path='/deal/:dealData'>
-						<hotelDetails />
 					</Route>
 					{/* <Redirect exact from='/' to='/dashboard' /> */}
 				</Main>

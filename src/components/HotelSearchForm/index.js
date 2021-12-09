@@ -11,29 +11,26 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import { autoCities } from '../constants/cities';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
-import { AES } from 'crypto-js';
+
 import logo from '../../assets/images/bg-image.jpeg';
 import {
-	getClientIp,
-	getHotelDeals,
 	getLatestHotelDeals,
 } from '../../store/actions/HotelDealsAction';
 import Text from 'antd/lib/typography/Text';
+import { dateConverter, encrypt, timeAgo } from '../../utils';
 const { RangePicker } = DatePicker;
 const HotelSearchForm = () => {
 	const [form] = Form.useForm();
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const { loading, latestDeals, clientIp } = useSelector(
+	const { loading, latestDeals } = useSelector(
 		(state) => state.HotelDeals
 	);
-
-	useEffect(() => {
-		if (!clientIp) dispatch(getClientIp());
+		useEffect(() => {
 		dispatch(getLatestHotelDeals());
-	}, [clientIp, dispatch]);
+	}, [dispatch]);
 
 	const onFinish = async (values) => {
 		const { cityName, dates } = values;
@@ -44,14 +41,9 @@ const HotelSearchForm = () => {
 			checkIn: checkIn,
 			checkOut: checkOut,
 			cityName: cityName,
-			clientIp: clientIp && clientIp.IPv4 ? clientIp.IPv4 : '',
 		};
-		const encrypted = AES.encrypt(
-			JSON.stringify(body),
-			process.env.REACT_APP_SECRET
-		).toString();
-
-		dispatch(getHotelDeals(encrypted));
+		const encrypted = await encrypt(body)
+ 
 		history.push(`/results?q=${encrypted}`);
 	};
 	// Can not select days before today
@@ -68,6 +60,7 @@ const HotelSearchForm = () => {
 				className='profile-nav-bg'
 				style={{ backgroundImage: 'url(' + logo + ')' }}
 			></div>
+				<Row justify={'center'}>
 			<Card
 				className='card-profile-head'
 				title={
@@ -75,8 +68,8 @@ const HotelSearchForm = () => {
 						<h2>Find a room</h2>
 					</Row>
 				}
-			>
-				<Row justify={'center'}>
+				>
+					<Row justify={'center'}>
 					<Form
 						form={form}
 						onFinish={onFinish}
@@ -121,6 +114,7 @@ const HotelSearchForm = () => {
 					</Form>
 				</Row>
 			</Card>
+				</Row>
 			<div justify='center'>
 				<Skeleton active loading={loading}>
 					<Card
@@ -134,7 +128,7 @@ const HotelSearchForm = () => {
 							</Row>
 						}
 					>
-						<Row gutter={[24, 24]}>
+						<Row gutter={[24, 24]} >
 							{latestDeals &&
 								latestDeals.map((deal, index) => (
 									<Col span={24} md={12} xl={6} key={index}>
@@ -145,13 +139,18 @@ const HotelSearchForm = () => {
 										>
 											<div className='card-tag'><Text ellipsis={true}>{deal.data.[0].hotelName}</Text></div>
 											<p>{deal.data.[0].title && deal.data.[0].title}</p>
-											<p>{deal.data.[0].address.cityName}, {deal.data.[0].address.provinceCode }</p>
-											{/* <Row gutter={[6, 0]} className='card-footer'>
-												<Col span={12}>
-													 <Button type='button'>VIEW PROJECT</Button> 
+											<Row gutter={[6, 0]} justify="middle">
+												<Col span={12}><p>{deal.data.[0].address.cityName}, {deal.data.[0].address.provinceCode}</p></Col>
+											<Col span={12}><p style={{float:'right'}}>{timeAgo(deal.createdAt)}</p></Col>
+											</Row>
+											<Row gutter={[6, 0]} className='card-footer' justify="middle">
+												<Col span={8}>
+													<Link to={`/results?q=${deal.queryId}`}>
+														<Button type='primary'  >VIEW ALL RESULTS</Button>
+													</Link>
 												</Col>
-												<Col span={12} className='text-right'>{deal.data.[0].address.cityName}, {deal.data.[0].address.provinceCode }</Col>
-											</Row> */}
+												<Col span={16} className='text-right' > <p style={{color: '#131D43'}}>From: {dateConverter(deal.queryData.checkIn)}</p>  <p  style={{color: '#131D43'}}> To:{dateConverter(deal.queryData.checkOut)}</p> </Col>
+											</Row>
 										</Card>
 									</Col>
 								))}

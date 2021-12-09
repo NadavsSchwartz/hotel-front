@@ -79,4 +79,8 @@
     .layout-dashboard.layout-dashboard-rtl .header-control {
         justify-content: flex-end;
     }
+    .card-profile-head {
+        width: 90%;
+        margin: -113px 24px 24px;
+    }
 }

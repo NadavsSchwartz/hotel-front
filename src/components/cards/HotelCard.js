@@ -3,7 +3,8 @@ import { Badge, Card, Col, Popover, Row, Typography, Button } from 'antd';
 
 import { InfoCircleOutlined, StarFilled } from '@ant-design/icons';
 import { PopoverContent } from '../../utils';
-
+import { Link } from 'react-router-dom';
+import { encrypt } from '../../utils';
 const { Meta } = Card;
 const { Text } = Typography;
 const HotelCard = ({
@@ -19,7 +20,9 @@ const HotelCard = ({
 	dailyPrice,
 	reviewCount,
 	thumbnailUrl,
+	hotelId,
 }) => {
+	const body = { checkIn, checkOut, pclnId, hotelId, name };
 	return (
 		<Badge.Ribbon
 			text={
@@ -38,7 +41,7 @@ const HotelCard = ({
 				<div style={{ paddingTop: '10px' }}>
 					<Col span={20} style={{ display: 'inline-block' }}>
 						<Text type='secondary' ellipsis={true}>
-							{neighborhoodName.split(' -')[0]}
+							{neighborhoodName && neighborhoodName.split(' -')[0]}
 						</Text>{' '}
 					</Col>
 					<Col span={4} style={{ float: 'right' }}>
@@ -64,7 +67,7 @@ const HotelCard = ({
 											? 'red'
 											: guestRating <= 8
 											? 'orange'
-											: '#52c41a',
+											: '#1DA57A',
 								}}
 							/>
 						</Col>
@@ -75,12 +78,20 @@ const HotelCard = ({
 
 					<div style={{ float: 'right' }}>
 						<h2
-							style={{ color: '#0da834', height: '20px', fontWeight: 'bolder' }}
+							style={{ color: '#1DA57A', height: '20px', fontWeight: 'bolder' }}
 						>
-							${`${dailyPrice.split('.')[0]}`}
+							${`${dailyPrice && dailyPrice.split('.')[0]}`}
 						</h2>
 						<span>
-							<h5 style={{ float: 'right' }}>${totalStayPrice} total</h5>
+							<h5
+								style={{
+									float: 'right',
+									paddingRight: '5px',
+									fontWeight: 'bold',
+								}}
+							>
+								${totalStayPrice} total
+							</h5>
 						</span>
 					</div>
 				</div>
@@ -92,8 +103,15 @@ const HotelCard = ({
 							href={`https://www.priceline.com/relax/at/express/${cityId}/${pclnId}/from/${checkIn}/to/${checkOut}/rooms/1?cjevent=fcfda7644b3611ec811b250b0a1c0e0d&refid=CO8733109&refclickid=11554367SID&vrid=c9cef1a61be73ee0974a88e1c8437fc5}`}
 							rel='noreferrer'
 						>
-							<h5 style={{ color: '#fff' }}>HEAD TO PRICELINE</h5>
+							<p style={{ color: '#fff' }}>HEAD TO PRICELINE</p>
 						</a>
+					</Button>
+				</div>
+				<div style={{ paddingTop: '1px' }}>
+					<Button block type='default' style={{ backgroundColor: '#1DA57A' }}>
+						<Link to={`/deal?q=${encrypt(body)}`} rel='noreferrer'>
+							<p style={{ color: '#fff' }}>MORE DETAILS</p>
+						</Link>
 					</Button>
 				</div>
 			</Card>

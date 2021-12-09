@@ -12,39 +12,19 @@ const Header = ({ name, subName, onPress }) => {
 	return (
 		<>
 			<Row gutter={[24, 0]}>
-				<Col span={12} md={6}>
-					<Breadcrumb>
+				<Col span={12} md={6} justify='center'>
+					<Breadcrumb style={{ marginLeft: '5px', marginRight: '5px' }}>
 						<Breadcrumb.Item>
-							<NavLink to='/dashboard'>Home</NavLink>
+							<NavLink to='/dashboard' style={{ color: 'white' }}>
+								Dashboard
+							</NavLink>
 						</Breadcrumb.Item>
 						<Breadcrumb.Item style={{ textTransform: 'capitalize' }}>
 							{name.replace('/', '')}
 						</Breadcrumb.Item>
 					</Breadcrumb>
-					<div className='ant-page-header-heading'>
-						<span
-							className='ant-page-header-heading-title'
-							style={{ textTransform: 'capitalize' }}
-						>
-							{subName.replace('/', '')}
-						</span>
-					</div>
 				</Col>
 				<Col span={12} md={18} className='header-control'>
-					<Badge size='small' count={1}>
-						<Dropdown overlay={notificationMenu} trigger={['click']}>
-							<a
-								href='#notification'
-								className='ant-dropdown-link'
-								onClick={(e) => {
-									e.preventDefault();
-								}}
-							>
-								{bell}
-							</a>
-						</Dropdown>
-					</Badge>
-
 					<Button
 						type='link'
 						className='sidebar-toggler'

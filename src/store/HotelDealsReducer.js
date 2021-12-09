@@ -6,9 +6,6 @@ import {
 	GET_HOTEL_DEALS_SUCCESS,
 	GET_HOTEL_DEALS_FAILURE,
 	RESET_DEALS_ERRORS,
-	GET_CLIENT_IP_REQUEST,
-	GET_CLIENT_IP_SUCCESS,
-	GET_CLIENT_IP_FAILURE,
 } from './actions/HotelDealsAction';
 
 const HotelDealsReducer = (
@@ -17,7 +14,6 @@ const HotelDealsReducer = (
 		loading: false,
 		error: null,
 		latestDeals: null,
-		clientIp: '',
 	},
 	action
 ) => {
@@ -33,12 +29,6 @@ const HotelDealsReducer = (
 		case GET_HOTEL_DEALS_SUCCESS:
 			return { ...state, loading: false, foundDeals: action.payload };
 		case GET_HOTEL_DEALS_FAILURE:
-			return { ...state, loading: false, error: action.payload };
-		case GET_CLIENT_IP_REQUEST:
-			return { ...state, loading: true };
-		case GET_CLIENT_IP_SUCCESS:
-			return { ...state, loading: false, clientIp: action.payload };
-		case GET_CLIENT_IP_FAILURE:
 			return { ...state, loading: false, error: action.payload };
 		case RESET_DEALS_ERRORS:
 			return { ...state, loading: false, error: null };

@@ -1,4 +1,4 @@
-import { Row, Menu, Alert, List } from 'antd';
+import { Row, Menu, Alert, List, Card, Skeleton } from 'antd';
 
 import React, { useEffect, useState } from 'react';
 import HotelCard from '../components/cards/HotelCard';
@@ -6,13 +6,15 @@ import HotelCard from '../components/cards/HotelCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 
+import logo from '../assets/images/resultsbg.jpg';
 import { SettingOutlined } from '@ant-design/icons';
 import SubMenu from 'antd/lib/menu/SubMenu';
-import { isValidated, menuItems } from '../utils';
+import { dateConverter, isValidated, menuItems } from '../utils';
 import { getHotelDeals } from '../store/actions/HotelDealsAction';
 
 const Results = () => {
 	const [pageSize, setPageSize] = useState(12);
+
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const hash = history.location.search.split('=')[1];
@@ -53,11 +55,44 @@ const Results = () => {
 			default:
 				break;
 		}
+
 		setSortedDeals(res);
 	};
 
 	return (
 		<>
+			<div>
+				{!error && (
+					<Skeleton active='true' loading={loading}>
+						<div
+							className='profile-nav-bg'
+							style={{ backgroundImage: 'url(' + logo + ')' }}
+						></div>
+						<Row justify='center'>
+							<Card
+								className='card-profile-head'
+								title={
+									<>
+										<Row justify='center'>
+											<h2>Your search results for</h2>
+										</Row>
+										<br />
+										<Row justify='center'>
+											<h2>
+												{foundDeals[0]?.address?.cityName},{' '}
+												{foundDeals[0]?.address?.provinceCode} on{' '}
+												{foundDeals[0]?.checkIn
+													? dateConverter(foundDeals[0]?.checkIn)
+													: ''}
+											</h2>
+										</Row>
+									</>
+								}
+							></Card>
+						</Row>
+					</Skeleton>
+				)}
+			</div>
 			<Menu mode='horizontal'>
 				<SubMenu key='Price' icon={<SettingOutlined />} title={'Sort By'}>
 					{menuItems(handleClick)}
@@ -71,10 +106,10 @@ const Results = () => {
 						sm: 2,
 						md: 2,
 						lg: 3,
-						xl: 3,
-						xxl: 4,
+						xl: 4,
+						xxl: 5,
 					}}
-					style={{ width: '90%' }}
+					style={{ width: '95%' }}
 					pagination={{
 						responsive: true,
 						pageSizeOptions: ['12', '24', '36'],
@@ -86,18 +121,14 @@ const Results = () => {
 							`${range[0]}-${range[1]} of ${total} items`,
 					}}
 					dataSource={
-						sortedDeals && sortedDeals.length > 0
-							? sortedDeals
-							: foundDeals.length === 1 && !!foundDeals[0].data
-							? foundDeals[0].data
-							: foundDeals
+						sortedDeals && sortedDeals.length > 0 ? sortedDeals : foundDeals
 					}
 					loading={loading}
 					renderItem={(hotel) => (
-						<List.Item style={{ marginTop: '10px' }} bordered={false}>
+						<List.Item style={{ marginTop: '10px' }} bordered='false'>
 							<HotelCard
 								totalStayPrice={hotel.expressDealPricePerStay}
-								neighborhoodName={hotel.location.neighborhoodName}
+								neighborhoodName={hotel.location?.neighborhoodName}
 								guestRating={hotel.overallGuestRating}
 								hotelStars={hotel.starRating}
 								dailyPrice={hotel.expressDealDailyPrice}
@@ -105,10 +136,11 @@ const Results = () => {
 								key={hotel.retailPclnId}
 								name={hotel.hotelName}
 								thumbnailUrl={hotel.thumbnailUrl}
-								cityId={hotel.location.cityId}
+								cityId={hotel.location?.cityId}
 								pclnId={hotel.pclnId}
 								checkIn={hotel.checkIn}
 								checkOut={hotel.checkOut}
+								hotelId={hotel.hotelId}
 							/>
 						</List.Item>
 					)}
