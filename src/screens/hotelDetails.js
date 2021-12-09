@@ -225,4 +225,3 @@ const HotelDetails = () => {
 
 export default HotelDetails;
 
-//https://www.priceline.com/cart/checkout/retail/2021-12-16/2021-12-17/1/50570/7D84B0933A73D40F437F22E291AB965908ABB453FB68DD66513CC530D6942795DF8E85E82E5F75FE1BE47490855736930660DBFD6A2FFACF/single?adultocc=2&country-code=US&currency-code=USD&tax-display-mode=false&vrid=328c36de506ff576bc137e4b30b8817a
