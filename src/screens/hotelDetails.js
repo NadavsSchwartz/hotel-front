@@ -12,7 +12,7 @@ import {
 } from 'antd';
 import React, { useEffect, useState } from 'react';
 
-import { useHistory } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import {
 	dateConverter,
@@ -23,13 +23,15 @@ import { getSpecificDeal } from '../store/actions/SpecificDealActions';
 
 const { Panel } = Collapse;
 const HotelDetails = () => {
-	const history = useHistory();
+	const navigate = useNavigate();
+	const location = useLocation();
 	const dispatch = useDispatch();
-	const hash = history.location.search.split('=')[1];
+	const hash = location.search.split('=')[1];
 
 	const { Deal, loading, error } = useSelector((state) => state.SpecificDeal);
 	useEffect(() => {
-		if (hash && isValidated(hash)) dispatch(getSpecificDeal(hash));
+		if (!hash || !isValidated(hash)) navigate('/dashboard');
+		dispatch(getSpecificDeal(hash));
 	}, [dispatch]);
 
 	const hotelAmenities =
@@ -224,4 +226,3 @@ const HotelDetails = () => {
 };
 
 export default HotelDetails;
-

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import HotelCard from '../components/cards/HotelCard';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 
 import logo from '../assets/images/resultsbg.jpg';
 import { SettingOutlined } from '@ant-design/icons';
@@ -14,17 +14,20 @@ import { getHotelDeals } from '../store/actions/HotelDealsAction';
 
 const Results = () => {
 	const [pageSize, setPageSize] = useState(12);
-
-	const history = useHistory();
+	const location = useLocation();
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const hash = history.location.search.split('=')[1];
+	const hash = location.search.split('=')[1];
+
 	const [sortedDeals, setSortedDeals] = useState([]);
 	const { foundDeals, loading, error } = useSelector(
 		(state) => state.HotelDeals
 	);
 
 	useEffect(() => {
-		if (hash && isValidated(hash)) dispatch(getHotelDeals(hash));
+		if (!hash || !isValidated(hash)) navigate('/dashboard');
+
+		dispatch(getHotelDeals(hash));
 	}, [dispatch]);
 
 	const copiedData = foundDeals;
