@@ -1,19 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import { ThemeProvider } from 'styled-components';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { ConfigProvider } from 'antd';
-import en_US from 'antd/lib/locale-provider/en_US';
 import { Provider } from 'react-redux';
 import store from './store/index';
+import defaultTheme from './themes/default.theme';
+import 'antd/dist/antd.css';
+import GlobalStyles from './themes/global.style';
 ReactDOM.render(
-	<ConfigProvider locale={en_US}>
-		<Provider store={store}>
-			<BrowserRouter>
-				<App />
-			</BrowserRouter>
-		</Provider>
-	</ConfigProvider>,
-	document.getElementById('root')
+  <ThemeProvider theme={defaultTheme}>
+    <Provider store={store}>
+      <GlobalStyles />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </ThemeProvider>,
+  document.getElementById('root')
 );
