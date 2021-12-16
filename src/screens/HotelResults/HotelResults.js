@@ -1,4 +1,4 @@
-import { Button, Checkbox, Menu, Slider } from 'antd';
+import { Alert, Button, Checkbox, Menu, Slider } from 'antd';
 import Sticky from 'react-stickynode';
 import React, { useEffect, useState, Fragment } from 'react';
 import Toolbar from '../../components/UI/Toolbar/Toolbar';
@@ -159,6 +159,18 @@ const Results = () => {
             {showMap && <ListingMap foundDeals={foundDeals} />}
           </Fragment>{' '}
         </>
+      )}
+      {error && (
+        <PostsWrapper>
+          <Alert
+            type="error"
+            message={error}
+            showIcon
+            description={
+              'Please try again, if the error persist, please contact us.'
+            }
+          />
+        </PostsWrapper>
       )}
     </HotelResultsListingWrapper>
   );
