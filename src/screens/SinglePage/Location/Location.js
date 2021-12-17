@@ -1,40 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Heading from 'components/UI/Heading/Heading';
-import Text from 'components/UI/Text/Text';
+import Heading from '../../../components/UI/Heading/Heading';
+import Text from '../../../components/UI/Text/Text';
 import LocationWrapper from './Location.style';
-import Map from 'components/Map/Map';
 import { Element } from 'react-scroll';
 
 const Location = ({
   titleStyle,
-  locationMetaStyle,
   contentStyle,
   boldContentStyle,
-  linkStyle,
-  location,
+  policies,
+  neighborhoodDescription,
 }) => {
-  const formattedAddress = location.formattedAddress;
   return (
     <Element name="location" className="location">
       <LocationWrapper>
         <Heading as="h2" content="Location" {...titleStyle} />
-        <Text content={formattedAddress} {...locationMetaStyle} />
+        {/* <Text content={formattedAddress} {...locationMetaStyle} /> */}
+        <Text content={neighborhoodDescription} {...contentStyle} />
+        <Text content="Policies" {...contentStyle} {...boldContentStyle} />
         <Text
-          content="Take an easy walk to the main historic sites of the city. The
-          neighborhood is perfect for an authentic taste of Roman life, with
-          shops, art galleries, restaurants, bars, and clubs all nearby and
-          ready to be discovered."
+          content={`CHECK IN-OUT: ${policies.checkInTime} - ${policies.checkOutTime}`}
           {...contentStyle}
         />
+        <Text content={`-${policies.petDescription}`} {...contentStyle} />{' '}
+        <Text content={`-${policies.childrenDescription}`} {...contentStyle} />
         <Text
-          content="Distance from Leonardo da Vinci International Airport"
+          content={`IMPORTANT: ${policies.importantInfo[0]}`}
           {...contentStyle}
-          {...boldContentStyle}
         />
-        <Text content="26 mins by car without traffic" {...contentStyle} />
-
-        <Map location={location} multiple={false} />
+        {/* <Map location={location} multiple={false} /> */}
       </LocationWrapper>
     </Element>
   );
