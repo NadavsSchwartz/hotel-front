@@ -5,10 +5,9 @@ import {
   TwitterShare,
   LinkedInShare,
   PinterestShare,
-} from 'components/SocialShare/SocialShare';
+} from '../../../components/SocialShare/SocialShare';
 import { Button, Menu, Dropdown } from 'antd';
-import Favorite from 'components/UI/Favorite/Favorite';
-import ScrollBar from 'components/UI/ScrollBar/ScrollBar';
+import ScrollBar from '../../../components/UI/ScrollBar/ScrollBar';
 import { TobBarWrapper, ButtonGroup } from '../SinglePageView.style';
 
 const topBarMenu = [
@@ -52,7 +51,6 @@ const SocialShareMenu = (props) => {
 const SideButtons = (props) => {
   return (
     <ButtonGroup>
-      <Favorite className="ant-btn" content="Save" />
       <Dropdown
         placement="bottomRight"
         overlay={() => <SocialShareMenu {...props} />}
