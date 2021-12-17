@@ -21,7 +21,7 @@ const App = () => {
         />
         <Route exact path="/dashboard" element={<HotelSearchForm />} />
         <Route path="/results" element={<Results />} />
-        <Route exact path="/deal" element={<HotelDetails />} />
+        <Route path="/deal" element={<HotelDetails />} />
         {/* <Redirect exact from='/' to='/dashboard' /> */}
         <Route
           path="*"
