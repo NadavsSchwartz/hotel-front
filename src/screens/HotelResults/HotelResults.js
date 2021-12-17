@@ -1,4 +1,4 @@
-import { Alert, Button, Checkbox, Menu, Slider } from 'antd';
+import { Alert, Checkbox, Menu } from 'antd';
 import Sticky from 'react-stickynode';
 import React, { useEffect, useState, Fragment } from 'react';
 import Toolbar from '../../components/UI/Toolbar/Toolbar';
@@ -7,20 +7,23 @@ import { useNavigate, useLocation } from 'react-router';
 import SectionGrid from '../../components/SectionGrid/SectionGrid';
 import ListingMap from '../Listing/ListingMap';
 import SubMenu from 'antd/lib/menu/SubMenu';
-import { dateConverter, isValidated, menuItems } from '../../utils';
-import { getHotelDeals } from '../../store/actions/HotelDealsAction';
+import { isValidated, menuItems } from '../../utils';
+import {
+  getHotelDeals,
+  GET_HOTEL_DEALS_REQUEST,
+  START_LOADING,
+  STOP_LOADING,
+} from '../../store/actions/HotelDealsAction';
 import HotelResultsListingWrapper, {
   PostsWrapper,
   ShowMapCheckbox,
 } from './HotelResults.style';
 import useWindowSize from '../../library/hooks/useWindowSize';
 import { PostPlaceholder } from '../../components/UI/ContentLoader/ContentLoader';
-import CategorySearch from '../Listing/Search/CategorySearch/CategorySearch';
-import FilterDrawer from '../Listing/Search/MobileSearchView';
 import CategorySearchWrapper from '../Listing/Search/CategorySearch/CategorySearch.style';
-import ViewWithPopup from '../../components/UI/ViewWithPopup/ViewWithPopup';
-import Box from '../../components/UI/Box/Box';
-import { priceInit } from '../Listing/Search/SearchParams';
+import { isEmpty } from 'lodash';
+import Loader from '../../components/Loader/Loader';
+import { SettingOutlined } from '@ant-design/icons';
 const Results = () => {
   const { width } = useWindowSize();
   const [showMap, setShowMap] = useState(false);
@@ -33,29 +36,23 @@ const Results = () => {
   const { foundDeals, loading, error } = useSelector(
     (state) => state.HotelDeals
   );
-  const state = {
-    price: {
-      min: 0,
-      max: 100,
-      defaultMin: 0,
-      defaultMax: 100,
-    },
-  };
 
-  const { price } = state;
-
-  if (showMap) {
-    columnWidth = [1 / 1, 1 / 2, 1 / 2, 1 / 2, 1 / 3];
-  }
   useEffect(() => {
     if (!hash || !isValidated(hash)) navigate('/dashboard');
 
     dispatch(getHotelDeals(hash));
   }, [dispatch]);
+  if (isEmpty(foundDeals) || loading) return <Loader />;
+  if (showMap) {
+    columnWidth = [1 / 1, 1 / 2, 1 / 2, 1 / 2, 1 / 3];
+  }
 
   const copiedData = foundDeals;
 
   const handleClick = async (e) => {
+    dispatch({
+      type: START_LOADING,
+    });
     //avoiding the error of manipulating the original data
     const res = copiedData.slice();
     switch (e.key) {
@@ -83,6 +80,9 @@ const Results = () => {
     }
 
     setSortedDeals(res);
+    dispatch({
+      type: STOP_LOADING,
+    });
   };
 
   const handleMapToggle = () => {
@@ -98,33 +98,15 @@ const Results = () => {
             <Toolbar
               left={
                 <CategorySearchWrapper>
-                  <ViewWithPopup
-                    className={
-                      price.min === price.defaultMin &&
-                      price.max === price.defaultMax
-                        ? ''
-                        : 'activated'
-                    }
-                    key={300}
-                    noView={true}
-                    view={
-                      <Button type="default">
-                        {price.min > 0 || price.max < 100
-                          ? `Price: ${price.min}, ${price.max}`
-                          : `Price per night`}
-                      </Button>
-                    }
-                    popup={
-                      <Slider
-                        range
-                        marks={priceInit}
-                        min={price.defaultMin}
-                        max={price.defaultMax}
-                        defaultValue={[price.min, price.max]}
-                        // onAfterChange={(value) => onChange(value, 'price')}
-                      />
-                    }
-                  />
+                  <Menu>
+                    <SubMenu
+                      key="SubMenu"
+                      icon={<SettingOutlined />}
+                      title="Sort Results"
+                    >
+                      {menuItems(handleClick)}
+                    </SubMenu>
+                  </Menu>
                 </CategorySearchWrapper>
               }
               right={
@@ -152,7 +134,6 @@ const Results = () => {
                 totalItem={50}
                 loading={loading}
                 limit={12}
-                // handleLoadMore={loadMoreData}
                 placeholder={<PostPlaceholder />}
               />
             </PostsWrapper>
