@@ -1,18 +1,18 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Card from 'components/UI/Card/Card';
-import Heading from 'components/UI/Heading/Heading';
-import Text from 'components/UI/Text/Text';
-import TextLink from 'components/UI/TextLink/TextLink';
+import Card from '../../../components/UI/Card/Card';
+import Heading from '../../../components/UI/Heading/Heading';
+import Text from '../../../components/UI/Text/Text';
+import TextLink from '../../../components/UI/TextLink/TextLink';
 import RenderReservationForm from './RenderReservationForm';
 
-const CardHeader = ({ priceStyle, pricePeriodStyle, linkStyle }) => {
+const CardHeader = ({ priceStyle, pricePeriodStyle, linkStyle, price }) => {
   return (
     <Fragment>
       <Heading
         content={
           <Fragment>
-            $162 <Text as="span" content="/ night" {...pricePeriodStyle} />
+            ${price} <Text as="span" content="/ night" {...pricePeriodStyle} />
           </Fragment>
         }
         {...priceStyle}
@@ -22,17 +22,12 @@ const CardHeader = ({ priceStyle, pricePeriodStyle, linkStyle }) => {
   );
 };
 
-export default function Reservation() {
+export default function Reservation({ price }) {
   return (
     <Card
       className="reservation_sidebar"
-      header={<CardHeader />}
+      header={<CardHeader price={price} />}
       content={<RenderReservationForm />}
-      footer={
-        <p>
-          Special offers available. <TextLink to="/#1" content="See details" />
-        </p>
-      }
     />
   );
 }
