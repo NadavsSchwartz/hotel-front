@@ -1,53 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'antd';
 import Box from '../UI/Box/Box';
-import Text from '../UI/Text/Text';
 import ProductCard from '../ProductCard/ProductCard';
-const LoadMore = ({
-  handleLoadMore,
-  showButton,
-  buttonText,
-  loading,
-  loadMoreComponent,
-  loadMoreStyle,
-}) => {
-  return (
-    !!showButton && (
-      <Box className="loadmore_wrapper" {...loadMoreStyle}>
-        {loadMoreComponent ? (
-          loadMoreComponent
-        ) : (
-          <Button loading={loading} onClick={handleLoadMore}>
-            {buttonText || 'Load More'}
-          </Button>
-        )}
-      </Box>
-    )
-  );
-};
-
 export default function SectionGrid({
   data = [],
-  totalItem,
-  limit,
   columnWidth,
   paginationComponent,
-  handleLoadMore,
-  loadMoreComponent,
-  placeholder,
-  loading,
-  buttonText,
   rowStyle,
   columnStyle,
-  loadMoreStyle,
   link,
 }) {
-  const n = limit ? Number(limit) : 1;
-  const limits = Array(n).fill(0);
-
-  let showButton = data.length < totalItem;
-
   return (
     <>
       <Box className="grid_wrapper" {...rowStyle}>
@@ -57,7 +19,7 @@ export default function SectionGrid({
                 <Box
                   className="grid_column"
                   width={columnWidth}
-                  key={item.id}
+                  key={item.pclnId}
                   {...columnStyle}
                 >
                   <ProductCard link={link} {...item} />
@@ -65,30 +27,8 @@ export default function SectionGrid({
               );
             })
           : null}
-
-        {loading &&
-          limits.map((_, index) => (
-            <Box
-              className="grid_column"
-              width={columnWidth}
-              key={index}
-              {...columnStyle}
-            >
-              {placeholder ? placeholder : <Text content="Loading ..." />}
-            </Box>
-          ))}
       </Box>
 
-      {showButton && (
-        <LoadMore
-          showButton={showButton}
-          handleLoadMore={handleLoadMore}
-          loading={loading}
-          buttonText={buttonText}
-          loadMoreComponent={loadMoreComponent}
-          loadMoreStyle={loadMoreStyle}
-        />
-      )}
       {paginationComponent && (
         <Box className="pagination_wrapper">{paginationComponent}</Box>
       )}
