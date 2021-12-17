@@ -92,8 +92,6 @@ const HotelSearchForm = ({ searchTitleStyle, searchDescriptionStyle }) => {
     const checkIn = dates[0].format('YYYYMMDD');
     const checkOut = dates[1].format('YYYYMMDD');
 
-    debugger;
-
     const body = {
       checkIn: checkIn,
       checkOut: checkOut,
