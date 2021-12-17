@@ -14,11 +14,17 @@ const images = [
   },
 ];
 
-const PostImageGallery = () => {
+const PostImageGallery = ({ data }) => {
+  const images =
+    data &&
+    data.map((item) => ({
+      original: item.imageHDURL,
+      thumbnail: item.imageURL,
+    }));
   return (
     <ImageGalleryWrapper>
       <ImageGallery
-        items={images}
+        items={images && images}
         showPlayButton={false}
         showFullscreenButton={false}
         showIndex={true}
