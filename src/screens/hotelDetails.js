@@ -1,5 +1,5 @@
 import { Row, Col, Card, Button, List, Collapse, Skeleton } from 'antd';
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 
 import { useNavigate, useLocation } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,6 +9,23 @@ import {
   isValidated,
 } from '../utils';
 import { getSpecificDeal } from '../store/actions/SpecificDealActions';
+import SinglePageWrapper, {
+  PostImage,
+} from './SinglePage/SinglePageView.style';
+import { isEmpty } from 'lodash';
+import Loader from '../components/Loader/Loader';
+import PostImageGallery from './SinglePage/ImageGallery/ImageGallery';
+import Modal from 'antd/lib/modal/Modal';
+import TopBar from './SinglePage/TopBar/TopBar';
+import useWindowSize from '../library/hooks/useWindowSize';
+import Container from '../components/UI/Container/Container';
+import Description from './SinglePage/Description/Description';
+import Amenities from './SinglePage/Amenities/Amenities';
+import Location from './SinglePage/Location/Location';
+import Sticky from 'react-stickynode';
+import Reservation from './SinglePage/Reservation/Reservation';
+import BottomReservation from './SinglePage/Reservation/BottomReservation';
+import Review from './SinglePage/Review/Review';
 
 const { Panel } = Collapse;
 const HotelDetails = () => {
@@ -16,201 +33,120 @@ const HotelDetails = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const hash = location.search.split('=')[1];
+  const [isModalShowing, setIsModalShowing] = useState(false);
 
   const { Deal, loading, error } = useSelector((state) => state.SpecificDeal);
   useEffect(() => {
     if (!hash || !isValidated(hash)) navigate('/dashboard');
     dispatch(getSpecificDeal(hash));
   }, [dispatch]);
-
+  const { href } = useLocation();
+  const { width } = useWindowSize();
+  if (isEmpty(Deal) || loading) return <Loader />;
   const hotelAmenities =
     Deal && Deal.hotel
       ? Array.from(Deal.hotel.hotelFeatures.hotelAmenities).slice(0, 15)
       : [];
 
-  const policies = Deal && Deal.hotel ? Deal.hotel.policies : [];
-  const hotelFeatures =
-    Deal && Deal.hotel
-      ? Array.from(Deal.hotel.hotelFeatures.features).slice(0, 15)
-      : [];
-  const availableRooms = Deal && Deal.hotel ? Deal.hotel.transformedRooms : [];
+  const reasonsToBookContent =
+    Deal && Deal.hotel ? Deal.hotel.reasonsToBook : [];
+
   const logo = Deal && Deal.hotel ? Deal.hotel.images[0].imageHDURL : null;
   const queryData = Deal && Deal.queryData ? Deal.queryData : null;
   return (
-    <>
-      <Skeleton active loading={loading}>
-        <div
-          className="profile-nav-bg"
-          style={{
-            backgroundImage: 'url(' + logo + ')',
-
-            height: '300px',
+    <SinglePageWrapper>
+      <PostImage>
+        <img
+          className="absolute"
+          src={logo}
+          alt="Listing details page banner"
+        />
+        <Button
+          type="primary"
+          onClick={() => setIsModalShowing(true)}
+          className="image_gallery_button"
+        >
+          View Photos
+        </Button>
+        <Modal
+          visible={isModalShowing}
+          onCancel={() => setIsModalShowing(false)}
+          footer={null}
+          width="100%"
+          maskStyle={{
+            backgroundColor: 'rgba(255, 255, 255, 0.95)',
           }}
-        ></div>
-        <Row>
-          <Col xs={24} className="mb-24">
-            <Row justify="center">
-              <Card
-                className="card-profile-head"
-                style={{ margin: '-40px 0 14px' }}
-                title={
-                  <>
-                    <Row>
-                      <Col xs={24} style={{ textAlign: 'center' }}>
-                        <h6 className="font-semibold m-0">
-                          {queryData && queryData.name}
-                        </h6>
-                      </Col>
-                      <Col xs={24} style={{ textAlign: 'center' }}>
-                        <h6>
-                          {queryData && dateConverter(queryData.checkIn, true)}{' '}
-                          -{' '}
-                          {queryData && dateConverter(queryData.checkOut, true)}
-                        </h6>
-                      </Col>
-                    </Row>
-                  </>
-                }
-              />{' '}
-            </Row>
-          </Col>
-        </Row>
-        <Row gutter={[24, 0]}>
-          <Col span={24} md={16}>
-            <Card
-              className="header-solid h-full"
-              bordered="false"
-              title="Available Rooms"
+          wrapClassName="image_gallery_modal"
+          closable={false}
+        >
+          <Fragment>
+            <PostImageGallery data={Deal.hotel.images} />
+            <Button
+              onClick={() => setIsModalShowing(false)}
+              className="image_gallery_close"
             >
-              <List
-                itemLayout="vertical"
-                size="large"
-                loading={loading}
-                dataSource={availableRooms}
-                renderItem={(room, index) => (
-                  <>
-                    <List.Item
-                      key={index}
-                      extra={
-                        <img
-                          width={200}
-                          height={180}
-                          alt="logo"
-                          src={availableRooms[0].imageUrls[0].mediumUrl}
-                        />
-                      }
-                    >
-                      <List.Item.Meta
-                        title={
-                          <>
-                            <div>
-                              Total Price: {room.roomRates[0].currencySymbol}
-                              {room.roomRates[0].grandTotal}, (
-                              {room.roomRates[0].currencySymbol}
-                              {room.roomRates[0].price}/night)
-                              <div style={{ fontSize: '10px' }}>
-                                all taxes & fees inc. price is for the entire
-                                vacation duration.
-                              </div>
-                            </div>
-                          </>
-                        }
-                        description={
-                          <>
-                            <p>Accepted Payment Methods:</p>
-                            {room.roomRates[0].paymentOptionsText}
-                          </>
-                        }
-                      />
-                      {queryData && (
-                        <Button type="primary" block>
-                          <a
-                            target="_blank"
-                            href={`https://www.priceline.com/cart/checkout/retail/${dateConverterSpecificDeal(
-                              queryData.checkIn
-                            )}/${dateConverterSpecificDeal(
-                              queryData.checkOut
-                            )}/1/${queryData.hotelId}/${
-                              room.roomRates[0].rateIdentifier
-                            }/single?adultocc=2&country-code=US&currency-code=USD&tax-display-mode=false`}
-                            rel="noreferrer"
-                          >
-                            <p style={{ color: '#fff' }}>HEAD TO PRICELINE</p>
-                          </a>
-                        </Button>
-                      )}
-                    </List.Item>
-                  </>
-                )}
-              />
-              <Collapse accordion>
-                <Panel header="Hotel Location" key="1">
-                  <p>
-                    {Deal && Deal.hotel
-                      ? Deal.hotel.location.neighborhoodDescription
-                      : ''}
-                  </p>
-                </Panel>
-                <Panel header="Hotel Policies" key="2">
-                  {policies && (
-                    <>
-                      <div>
-                        <p>IMPORTANT: {policies?.importantInfo}</p>
-                        <p> check in time: {policies?.checkInTime}</p>
-                        <p> check out time: {policies?.checkOutTime}</p>
-                        <p> Children Policy: {policies?.childrenDescription}</p>
-                        <p> Pet Policy: {policies?.petDescription}</p>
-                      </div>
-                    </>
-                  )}
-                </Panel>
-              </Collapse>
-            </Card>
-          </Col>
-          <Col span={24} md={8} className="mb-24">
-            <Card
-              bordered="false"
-              bodyStyle={{ paddingTop: 0 }}
-              className="header-solid h-full  ant-list-yes"
-              title={
-                <h6
-                  className="font-semibold m-0"
-                  style={{ textAlign: 'center' }}
-                >
-                  Hotel Features
-                </h6>
+              <svg width="16.004" height="16" viewBox="0 0 16.004 16">
+                <path
+                  id="_ionicons_svg_ios-close_2_"
+                  d="M170.4,168.55l5.716-5.716a1.339,1.339,0,1,0-1.894-1.894l-5.716,5.716-5.716-5.716a1.339,1.339,0,1,0-1.894,1.894l5.716,5.716-5.716,5.716a1.339,1.339,0,0,0,1.894,1.894l5.716-5.716,5.716,5.716a1.339,1.339,0,0,0,1.894-1.894Z"
+                  transform="translate(-160.5 -160.55)"
+                  fill="#909090"
+                />
+              </svg>
+            </Button>
+          </Fragment>
+        </Modal>
+      </PostImage>
+      <TopBar title={queryData.name} shareURL={href} />
+      <Container>
+        <Row gutter={30} id="reviewSection" style={{ marginTop: 30 }}>
+          <Col xl={16}>
+            <Description
+              content={reasonsToBookContent}
+              title={queryData.hotelName}
+              guestRating={Deal.hotel.overallGuestRating}
+              rating={Deal.hotel.overallGuestRating}
+              ratingCount={Deal.hotel.totalReviewCount}
+            />
+            <Amenities amenities={hotelAmenities} />
+            <Location
+              neighborhoodDescription={
+                Deal.hotel.location.neighborhoodDescription
               }
-            >
-              <List
-                header={
-                  <h6 style={{ textAlign: 'center' }}>
-                    AMENITIES
-                    <hr />
-                  </h6>
-                }
-                className="transactions-list ant-newest"
-                itemLayout="horizontal"
-                dataSource={hotelAmenities}
-                renderItem={(item) => <Col xs={24}> {item.name} </Col>}
+              policies={Deal.hotel.policies}
+            />
+          </Col>
+          <Col xl={8}>
+            {width > 1200 ? (
+              <Sticky
+                innerZ={999}
+                activeClass="isSticky"
+                top={202}
+                bottomBoundary="#reviewSection"
+              >
+                <Reservation price={Deal.hotel.ratesSummary.minPrice} />
+              </Sticky>
+            ) : (
+              <BottomReservation
+                title={queryData.hotelName}
+                price={Deal.hotel.ratesSummary.minPrice}
+                rating={Deal.hotel.overallGuestRating}
+                ratingCount={Deal.hotel.totalReviewCount}
               />
-
-              <List
-                className="yestday transactions-list"
-                header={
-                  <h6 style={{ textAlign: 'center' }}>
-                    FEATURES
-                    <hr />
-                  </h6>
-                }
-                itemLayout="horizontal"
-                dataSource={hotelFeatures}
-                renderItem={(item) => <Col xs={24}> {item} </Col>}
-              />
-            </Card>
+            )}
           </Col>
         </Row>
-      </Skeleton>
-    </>
+        <Row gutter={30}>
+          <Col xl={16}>
+            <Review
+              ratingCount={Deal.hotel.totalReviewCount}
+              reviews={Deal.hotel.guestReviews}
+            />
+          </Col>
+          <Col xl={8} />
+        </Row>
+      </Container>
+    </SinglePageWrapper>
   );
 };
 
