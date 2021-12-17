@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Route, Redirect, Routes } from 'react-router-dom';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import HotelSearchForm from './components/HotelSearchForm';
 import Results from './screens/HotelResults/HotelResults';
 import HotelDetails from './screens/hotelDetails';
@@ -19,7 +19,7 @@ const App = () => {
             </React.Suspense>
           }
         />
-        <Route exact path="/dashboard" element={<HotelSearchForm />} />
+        <Route path="/dashboard" element={<HotelSearchForm />} />
         <Route path="/results" element={<Results />} />
         <Route path="/deal" element={<HotelDetails />} />
         {/* <Redirect exact from='/' to='/dashboard' /> */}

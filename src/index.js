@@ -10,12 +10,12 @@ import 'antd/dist/antd.css';
 import GlobalStyles from './themes/global.style';
 ReactDOM.render(
   <ThemeProvider theme={defaultTheme}>
-    <Provider store={store}>
-      <GlobalStyles />
-      <BrowserRouter>
+    <BrowserRouter>
+      <Provider store={store}>
+        <GlobalStyles />
         <App />
-      </BrowserRouter>
-    </Provider>
+      </Provider>
+    </BrowserRouter>
   </ThemeProvider>,
   document.getElementById('root')
 );

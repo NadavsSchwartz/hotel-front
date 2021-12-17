@@ -1,13 +1,9 @@
-import { Row, Col, Card, Button, List, Collapse, Skeleton } from 'antd';
+import { Row, Col, Button } from 'antd';
 import React, { Fragment, useEffect, useState } from 'react';
-
-import { useNavigate, useLocation } from 'react-router';
+import { useLocation } from '../library/hooks/useLocation';
+import { useNavigate } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  dateConverter,
-  dateConverterSpecificDeal,
-  isValidated,
-} from '../utils';
+import { isValidated } from '../utils';
 import { getSpecificDeal } from '../store/actions/SpecificDealActions';
 import SinglePageWrapper, {
   PostImage,
@@ -27,7 +23,6 @@ import Reservation from './SinglePage/Reservation/Reservation';
 import BottomReservation from './SinglePage/Reservation/BottomReservation';
 import Review from './SinglePage/Review/Review';
 
-const { Panel } = Collapse;
 const HotelDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -40,7 +35,7 @@ const HotelDetails = () => {
     if (!hash || !isValidated(hash)) navigate('/dashboard');
     dispatch(getSpecificDeal(hash));
   }, [dispatch]);
-  const { href } = useLocation();
+  const { href } = location;
   const { width } = useWindowSize();
   if (isEmpty(Deal) || loading) return <Loader />;
   const hotelAmenities =
@@ -50,15 +45,17 @@ const HotelDetails = () => {
 
   const reasonsToBookContent =
     Deal && Deal.hotel ? Deal.hotel.reasonsToBook : [];
-
-  const logo = Deal && Deal.hotel ? Deal.hotel.images[0].imageHDURL : null;
+  const images = Deal.hotel.images;
+  const logo = images.find((image) => image.imageHDURL !== null);
+  const image = logo ? logo.imageHDURL : images[0].imageURL;
   const queryData = Deal && Deal.queryData ? Deal.queryData : null;
+
   return (
     <SinglePageWrapper>
       <PostImage>
         <img
           className="absolute"
-          src={logo}
+          src={image}
           alt="Listing details page banner"
         />
         <Button
@@ -97,7 +94,11 @@ const HotelDetails = () => {
           </Fragment>
         </Modal>
       </PostImage>
-      <TopBar title={queryData.name} shareURL={href} />
+      <TopBar
+        title={queryData.hotelName}
+        shareURL={href}
+        media={Deal.hotel.images}
+      />
       <Container>
         <Row gutter={30} id="reviewSection" style={{ marginTop: 30 }}>
           <Col xl={16}>

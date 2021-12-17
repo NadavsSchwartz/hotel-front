@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Heading from '../../../components/UI/Heading/Heading';
 import { FaWifi, FaSwimmer, FaSmokingBan, FaParking } from 'react-icons/fa';
-import { BiHandicap } from 'react-icons/bi';
+import { BiHandicap, BiRestaurant } from 'react-icons/bi';
 import {
   MdOutlineHealthAndSafety,
   MdPets,
   MdLocalAirport,
+  MdKitchen,
+  MdOutlineFoodBank,
 } from 'react-icons/md';
 import { IoIosFitness } from 'react-icons/io';
 import IconCard from '../../../components/IconCard/IconCard';
@@ -92,6 +94,30 @@ const Amenities = ({ titleStyle, linkStyle, amenities }) => {
                   <IconCard
                     key={index}
                     icon={<FaSmokingBan />}
+                    title={amenity.name}
+                  />
+                );
+              case 'RESTRNT':
+                return (
+                  <IconCard
+                    icon={<BiRestaurant />}
+                    key={index}
+                    title={amenity.name}
+                  />
+                );
+              case 'KITCHEN':
+                return (
+                  <IconCard
+                    key={index}
+                    icon={<MdKitchen />}
+                    title={amenity.name}
+                  />
+                );
+              case 'FBRKFST':
+                return (
+                  <IconCard
+                    key={index}
+                    icon={<MdOutlineFoodBank />}
                     title={amenity.name}
                   />
                 );

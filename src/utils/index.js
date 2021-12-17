@@ -1,4 +1,3 @@
-import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import { Menu, List, Avatar } from 'antd';
 
 import { clockicon, credit } from './icons';
