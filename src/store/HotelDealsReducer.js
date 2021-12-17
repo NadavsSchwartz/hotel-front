@@ -9,6 +9,8 @@ import {
   GET_USER_LOCATION_SUCCESS,
   GET_USER_LOCATION_FAILURE,
   RESET_DEALS_ERRORS,
+  START_LOADING,
+  STOP_LOADING,
 } from './actions/HotelDealsAction';
 
 const HotelDealsReducer = (
@@ -22,6 +24,10 @@ const HotelDealsReducer = (
   action
 ) => {
   switch (action.type) {
+    case START_LOADING:
+      return { ...state, loading: true };
+    case STOP_LOADING:
+      return { ...state, loading: false };
     case GET_LATEST_HOTEL_DEALS_REQUEST:
       return { ...state, loading: true, error: null };
     case GET_LATEST_HOTEL_DEALS_SUCCESS:
