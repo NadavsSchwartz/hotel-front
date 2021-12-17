@@ -11,7 +11,7 @@ const { Content } = LayoutWrapper;
 export default function Layout() {
   let location = useLocation();
   const { width } = useWindowSize();
-  console.log(location.pathname);
+
   return (
     <LayoutProvider>
       <Fragment>
