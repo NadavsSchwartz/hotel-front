@@ -2,12 +2,10 @@ import React from 'react';
 import { FiExternalLink } from 'react-icons/fi';
 import TextLink from '../UI/TextLink/TextLink';
 import Rating from '../UI/Rating/Rating';
-import Favourite from '../UI/Favorite/Favorite';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import GridCard from '../GridCard/GridCard';
 import { encrypt } from '../../utils';
-import { Badge } from 'antd';
 
 const responsive = {
   desktop: {
@@ -77,7 +75,7 @@ const PostGrid = ({
         <TextLink
           link={`/deal?q=${link}}`}
           icon={<FiExternalLink />}
-          content="View Priceline"
+          content="Book"
         />
       }
     >
