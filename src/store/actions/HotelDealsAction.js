@@ -14,6 +14,8 @@ export const GET_USER_LOCATION_SUCCESS = 'GET_USER_LOCATION_SUCCESS';
 export const GET_USER_LOCATION_FAILURE = 'GET_USER_LOCATION_FAILURE';
 
 export const RESET_DEALS_ERRORS = 'RESET_DEALS_ERRORS';
+export const START_LOADING = 'START_LOADING';
+export const STOP_LOADING = 'STOP_LOADING';
 
 const config = {
   headers: {
