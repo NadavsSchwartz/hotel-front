@@ -1,27 +1,105 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Heading from 'components/UI/Heading/Heading';
-import TextLink from 'components/UI/TextLink/TextLink';
-import { FaWifi, FaCarAlt, FaSwimmer, FaAirFreshener } from 'react-icons/fa';
-import IconCard from 'components/IconCard/IconCard';
+import Heading from '../../../components/UI/Heading/Heading';
+import { FaWifi, FaSwimmer, FaSmokingBan, FaParking } from 'react-icons/fa';
+import { BiHandicap } from 'react-icons/bi';
+import {
+  MdOutlineHealthAndSafety,
+  MdPets,
+  MdLocalAirport,
+} from 'react-icons/md';
+import { IoIosFitness } from 'react-icons/io';
+import IconCard from '../../../components/IconCard/IconCard';
 import AmenitiesWrapper, { AmenitiesArea } from './Amenities.style';
-import { TextButton } from '../SinglePageView.style';
+
 import { Element } from 'react-scroll';
 
-const Amenities = ({ titleStyle, linkStyle }) => {
+const Amenities = ({ titleStyle, linkStyle, amenities }) => {
+  const amenitiesCodes = amenities.map((amenity) => amenity.code);
   return (
     <Element name="amenities" className="Amenities">
       <AmenitiesWrapper>
         <Heading as="h2" content="Amenities" {...titleStyle} />
         <AmenitiesArea>
-          <IconCard icon={<FaWifi />} title="Free wifi" />
-          <IconCard icon={<FaCarAlt />} title="Free parking" />
-          <IconCard icon={<FaSwimmer />} title="Free pool" />
-          <IconCard icon={<FaAirFreshener />} title="Air Freshener" />
+          {amenitiesCodes.map((amenity, index) => {
+            switch (amenity) {
+              case 'FINTRNT' || 'FINTRPUB':
+                return (
+                  <IconCard
+                    key={index}
+                    icon={<FaWifi />}
+                    title={amenity.name}
+                  />
+                );
+              case 'FPRKING':
+                return (
+                  <IconCard
+                    key={index}
+                    icon={<FaParking />}
+                    title={amenity.name}
+                  />
+                );
+              case 'HEALTHSVCS':
+                return (
+                  <IconCard
+                    key={index}
+                    icon={<MdOutlineHealthAndSafety />}
+                    title={amenity.name}
+                  />
+                );
+              case 'SPOOL':
+                return (
+                  <IconCard
+                    key={index}
+                    icon={<FaSwimmer />}
+                    title={amenity.name}
+                  />
+                );
+              case 'AIRSHUTTL':
+                return (
+                  <IconCard
+                    key={index}
+                    icon={<MdLocalAirport />}
+                    title={amenity.name}
+                  />
+                );
+              case 'FITSPA':
+                return (
+                  <IconCard
+                    key={index}
+                    icon={<IoIosFitness />}
+                    title={amenity.name}
+                  />
+                );
+              case 'PETALLOW':
+                return (
+                  <IconCard
+                    key={index}
+                    icon={<MdPets />}
+                    title={amenity.name}
+                  />
+                );
+              case 'HANDFAC':
+                return (
+                  <IconCard
+                    key={index}
+                    icon={<BiHandicap />}
+                    title={amenity.name}
+                  />
+                );
+              case 'NSMKFAC':
+                return (
+                  <IconCard
+                    key={index}
+                    icon={<FaSmokingBan />}
+                    title={amenity.name}
+                  />
+                );
+              default:
+                return null;
+            }
+          })}
         </AmenitiesArea>
-        <TextButton>
-          <TextLink link="#1" content="Show all amenities" {...linkStyle} />
-        </TextButton>
       </AmenitiesWrapper>
     </Element>
   );
