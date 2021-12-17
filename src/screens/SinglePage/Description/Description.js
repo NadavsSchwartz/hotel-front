@@ -1,35 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Element } from 'react-scroll';
-import Rating from 'components/UI/Rating/Rating';
-import Heading from 'components/UI/Heading/Heading';
-import Text from 'components/UI/Text/Text';
-import { Button } from 'antd';
+import Heading from '../../../components/UI/Heading/Heading';
+import { Button, Card } from 'antd';
 import DescriptionWrapper from './Description.style';
-import { RatingMeta, TextButton } from '../SinglePageView.style';
+import { TextButton } from '../SinglePageView.style';
 
-const Description = ({
-  title,
-  location,
-  content,
-  rating,
-  ratingCount,
-  titleStyle,
-  locationMetaStyle,
-  contentStyle,
-}) => {
+const Description = ({ title, content, titleStyle, contentStyle }) => {
   return (
     <Element name="overview" className="overview">
       <DescriptionWrapper>
-        <Text content={location.formattedAddress} {...locationMetaStyle} />
         <Heading as="h2" content={title} {...titleStyle} />
-        <RatingMeta>
-          <Rating rating={rating} ratingCount={ratingCount} type="bulk" />
-        </RatingMeta>
-        <Text content={content} {...contentStyle} />
-        <TextButton>
-          <Button>Read more about the hotel</Button>
-        </TextButton>
+
+        <h3>Reasons To Book</h3>
+        {content.map((item, index) => (
+          <Card
+            title={item.header}
+            size="small"
+            key={index}
+            color="green"
+            {...contentStyle}
+          >
+            {item.substring}
+          </Card>
+        ))}
       </DescriptionWrapper>
     </Element>
   );
@@ -45,7 +39,7 @@ Description.defaultProps = {
   titleStyle: {
     color: '#2C2C2C',
     fontSize: ['17px', '20px', '25px'],
-    lineHeight: ['1.15', '1.2', '1.36'],
+    lineheight: ['1.15', '1.2', '1.36'],
     mb: '4px',
   },
   locationMetaStyle: {
@@ -57,7 +51,7 @@ Description.defaultProps = {
     fontSize: '15px',
     fontWeight: '400',
     color: '#2C2C2C',
-    lineHeight: '1.6',
+    lineheight: '1.6',
   },
 };
 
