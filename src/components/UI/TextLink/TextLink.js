@@ -21,11 +21,19 @@ const LinkWrapper = styled(Link)(
   themed('TextLink')
 );
 
-const TextLink = ({ link, icon, content, ...props }) => {
+const TextLink = ({ link, icon, content, target, ...props }) => {
   return (
-    <LinkWrapper to={link} {...props}>
-      {icon} {content}
-    </LinkWrapper>
+    <>
+      {target !== undefined ? (
+        <a href={link} target={target} {...props}>
+          {icon} {content}{' '}
+        </a>
+      ) : (
+        <LinkWrapper to={link} {...props}>
+          {icon} {content}
+        </LinkWrapper>
+      )}
+    </>
   );
 };
 

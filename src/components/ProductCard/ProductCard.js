@@ -46,14 +46,18 @@ const PostGrid = ({
   checkIn,
   overallGuestRating,
   checkOut,
+  cityId,
   pclnId,
 }) => {
   const body = { checkIn, checkOut, pclnId, hotelId, hotelName };
   let link = encrypt(body);
+
   return (
     <GridCard
       isCarousel={true}
-      location={location.neighborhoodName}
+      location={
+        location && location.neighborhoodName ? location.neighborhoodName : ''
+      }
       title={<TextLink link={`/deal?q=${link}`} content={hotelName} />}
       price={`$${expressDealDailyPrice}/Night - $${expressDealPricePerStay}Total`}
       rating={
@@ -72,11 +76,14 @@ const PostGrid = ({
         />
       }
       goToPricelineBtn={
-        <TextLink
-          link={`/deal?q=${link}}`}
-          icon={<FiExternalLink />}
-          content="Book"
-        />
+        cityId && (
+          <TextLink
+            link={`https://www.priceline.com/relax/at/express/${cityId}/${pclnId}/from/${checkIn}/to/${checkOut}/rooms/1?cjevent=fcfda7644b3611ec811b250b0a1c0e0d&refid=CO8733109&refclickid=11554367SID&vrid=c9cef1a61be73ee0974a88e1c8437fc5}`}
+            icon={<FiExternalLink />}
+            content="Book"
+            target="_blank"
+          />
+        )
       }
     >
       <Carousel

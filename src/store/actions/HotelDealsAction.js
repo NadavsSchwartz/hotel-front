@@ -1,9 +1,9 @@
 import axios from 'axios';
 import CONFIG from '../../config';
 
-export const GET_LATEST_HOTEL_DEALS_REQUEST = 'GET_LATEST_HOTEL_DEALS_REQUEST';
-export const GET_LATEST_HOTEL_DEALS_SUCCESS = 'GET_LATEST_HOTEL_DEALS_SUCCESS';
-export const GET_LATEST_HOTEL_DEALS_FAILUTE = 'GET_LATEST_HOTEL_DEALS_FAILURE';
+export const GET_RECENT_QUERIES_REQUEST = 'GET_RECENT_QUERIES_REQUEST';
+export const GET_RECENT_QUERIES_SUCCESS = 'GET_RECENT_QUERIES_SUCCESS';
+export const GET_RECENT_QUERIES_FAILUTE = 'GET_RECENT_QUERIES_FAILURE';
 
 export const GET_HOTEL_DEALS_REQUEST = 'GET_HOTEL_DEALS_REQUEST';
 export const GET_HOTEL_DEALS_SUCCESS = 'GET_HOTEL_DEALS_SUCCESS';
@@ -16,22 +16,23 @@ export const GET_USER_LOCATION_FAILURE = 'GET_USER_LOCATION_FAILURE';
 export const RESET_DEALS_ERRORS = 'RESET_DEALS_ERRORS';
 export const START_LOADING = 'START_LOADING';
 export const STOP_LOADING = 'STOP_LOADING';
+export const RESET_HOTEL_DEALS = 'RESET_HOTEL_DEALS';
 
 const config = {
   headers: {
     'Content-Type': 'application/json',
   },
 };
-export const getLatestHotelDeals = () => async (dispatch) => {
+export const getRecentQueries = () => async (dispatch) => {
   try {
     dispatch({
-      type: GET_LATEST_HOTEL_DEALS_REQUEST,
+      type: GET_RECENT_QUERIES_REQUEST,
     });
 
-    const { data } = await axios.get(`${CONFIG.baseURL}latest`, config);
+    const { data } = await axios.get(`${CONFIG.baseURL}recent-queries`, config);
 
     dispatch({
-      type: GET_LATEST_HOTEL_DEALS_SUCCESS,
+      type: GET_RECENT_QUERIES_SUCCESS,
       payload: data,
     });
   } catch (error) {
@@ -41,7 +42,7 @@ export const getLatestHotelDeals = () => async (dispatch) => {
         : error.message;
 
     dispatch({
-      type: GET_LATEST_HOTEL_DEALS_FAILUTE,
+      type: GET_RECENT_QUERIES_FAILUTE,
       payload: message,
     });
   }

@@ -2,15 +2,12 @@ import { Form, Button, AutoComplete, DatePicker, Alert } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useState } from 'react';
 import { autoCities } from '../constants/cities';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-import {
-  getLatestHotelDeals,
-  getUserLocation,
-} from '../../store/actions/HotelDealsAction';
+import { getUserLocation } from '../../store/actions/HotelDealsAction';
 
-import { dateConverter, encrypt, timeAgo } from '../../utils';
+import { encrypt } from '../../utils';
 import BannerWrapper, {
   ComponentWrapper,
   FormWrapper,
@@ -22,10 +19,9 @@ import Heading from '../UI/Heading/Heading';
 import Container from '../UI/Container/Container';
 import GlideCarousel, { GlideSlide } from '../UI/GlideCarousel/GlideCarousel';
 import { FaMapMarkerAlt, FaRegCalendar, FaUserFriends } from 'react-icons/fa';
-import DateRangePickerBox from '../UI/DatePicker/ReactDates';
 import InputIncDec from '../UI/InputIncDec/InputIncDec';
 import ViewWithPopup from '../UI/ViewWithPopup/ViewWithPopup';
-import { StandaloneSearchBox } from '@react-google-maps/api';
+
 import Text from '../UI/Text/Text';
 import Loader from '../Loader/Loader';
 import moment from 'moment';
@@ -41,7 +37,7 @@ const HotelSearchForm = ({ searchTitleStyle, searchDescriptionStyle }) => {
     cityName: '',
   };
   useEffect(() => {
-    dispatch(getLatestHotelDeals());
+    // dispatch(getLatestHotelDeals());
 
     if (!userLocation || userLocation.city === undefined) {
       dispatch(getUserLocation());

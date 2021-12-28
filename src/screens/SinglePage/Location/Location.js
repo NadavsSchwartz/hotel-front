@@ -4,12 +4,14 @@ import Heading from '../../../components/UI/Heading/Heading';
 import Text from '../../../components/UI/Text/Text';
 import LocationWrapper from './Location.style';
 import { Element } from 'react-scroll';
+import Map from 'components/Map/Map';
 
 const Location = ({
   titleStyle,
   contentStyle,
   boldContentStyle,
   policies,
+  location,
   neighborhoodDescription,
 }) => {
   return (
@@ -29,7 +31,7 @@ const Location = ({
           content={`IMPORTANT: ${policies.importantInfo[0]}`}
           {...contentStyle}
         />
-        {/* <Map location={location} multiple={false} /> */}
+        <Map location={location} multiple={false} />
       </LocationWrapper>
     </Element>
   );

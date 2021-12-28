@@ -272,6 +272,8 @@ export const RatingArea = styled.div`
 
 export const MetaWrapper = styled.div`
   position: relative;
+  flex-direction: row;
+  justify-content: space-between;
   transition: all 0.3s ease-out;
 `;
 
@@ -284,10 +286,8 @@ export const ButtonGroup = styled.div`
   }
 
   > a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
+    display: inline-block;
+    font-size: 16px; 
     font-weight: 700;
     color: ${themeGet('primary.0', '#008489')};
     transition: all 0.3s ease;
@@ -299,7 +299,8 @@ export const ButtonGroup = styled.div`
     }
 
     svg {
-      margin-right: 5px;
+      margin-right: 1px;
+
       width: 18px;
       height: 18px;
     }

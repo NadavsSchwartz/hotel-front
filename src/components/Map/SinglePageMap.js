@@ -3,7 +3,7 @@ import { Marker } from '@react-google-maps/api';
 import HotelInfoWindow from './MapInfoWindow';
 import MakerImage from './hotelMapMarker.png';
 
-const SingleMapDisplay = ({ foundDeals }) => {
+const SingleMapDisplay = ({ foundDeals, location }) => {
   let hotelData = [];
   const [isOpen, setIsOpen] = useState(false);
   const [markerIndex, setMarkerIndex] = useState(0);
@@ -15,8 +15,8 @@ const SingleMapDisplay = ({ foundDeals }) => {
 
   hotelData.push({
     id: foundDeals?.pclnId,
-    lat: parseFloat(foundDeals?.location.latitude),
-    lng: parseFloat(foundDeals?.location.longitude),
+    lat: parseFloat(location.latitude),
+    lng: parseFloat(location.longitude),
     title: foundDeals?.hotelName,
     thumbUrl: foundDeals?.thumbnailUrl,
     formattedAddress: foundDeals?.address.addressLine1,

@@ -5,15 +5,24 @@ import Heading from '../../../components/UI/Heading/Heading';
 import { Button, Card } from 'antd';
 import DescriptionWrapper from './Description.style';
 import { TextButton } from '../SinglePageView.style';
+import Text from 'components/UI/Text/Text';
 
-const Description = ({ title, content, titleStyle, contentStyle }) => {
+const Description = ({
+  title,
+  locationMetaStyle,
+  titleStyle,
+  contentStyle,
+  location,
+}) => {
   return (
     <Element name="overview" className="overview">
       <DescriptionWrapper>
+        <Text content={location.neighborhoodName} {...locationMetaStyle} />
+
         <Heading as="h2" content={title} {...titleStyle} />
 
-        <h3>Reasons To Book</h3>
-        {content.map((item, index) => (
+        {/*<h3>Reasons To Book</h3>
+         {content.map((item, index) => (
           <Card
             title={item.header}
             size="small"
@@ -23,7 +32,8 @@ const Description = ({ title, content, titleStyle, contentStyle }) => {
           >
             {item.substring}
           </Card>
-        ))}
+        ))} */}
+        <Text content={location.neighborhoodDescription} {...contentStyle} />
       </DescriptionWrapper>
     </Element>
   );

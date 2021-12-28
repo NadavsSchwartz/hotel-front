@@ -1,7 +1,7 @@
 import {
-  GET_LATEST_HOTEL_DEALS_REQUEST,
-  GET_LATEST_HOTEL_DEALS_SUCCESS,
-  GET_LATEST_HOTEL_DEALS_FAILUTE,
+  GET_RECENT_QUERIES_REQUEST,
+  GET_RECENT_QUERIES_SUCCESS,
+  GET_RECENT_QUERIES_FAILUTE,
   GET_HOTEL_DEALS_REQUEST,
   GET_HOTEL_DEALS_SUCCESS,
   GET_HOTEL_DEALS_FAILURE,
@@ -11,6 +11,7 @@ import {
   RESET_DEALS_ERRORS,
   START_LOADING,
   STOP_LOADING,
+  RESET_HOTEL_DEALS,
 } from './actions/HotelDealsAction';
 
 const HotelDealsReducer = (
@@ -18,7 +19,7 @@ const HotelDealsReducer = (
     foundDeals: [],
     loading: false,
     error: null,
-    latestDeals: null,
+    recentQueries: [],
     userLocation: [],
   },
   action
@@ -28,11 +29,11 @@ const HotelDealsReducer = (
       return { ...state, loading: true };
     case STOP_LOADING:
       return { ...state, loading: false };
-    case GET_LATEST_HOTEL_DEALS_REQUEST:
+    case GET_RECENT_QUERIES_REQUEST:
       return { ...state, loading: true, error: null };
-    case GET_LATEST_HOTEL_DEALS_SUCCESS:
-      return { ...state, loading: false, latestDeals: action.payload };
-    case GET_LATEST_HOTEL_DEALS_FAILUTE:
+    case GET_RECENT_QUERIES_SUCCESS:
+      return { ...state, loading: false, recentQueries: action.payload };
+    case GET_RECENT_QUERIES_FAILUTE:
       return { ...state, loading: false, error: action.payload };
     case GET_HOTEL_DEALS_REQUEST:
       return { ...state, loading: true, error: null };
@@ -48,6 +49,8 @@ const HotelDealsReducer = (
       return { ...state, loading: false, error: action.payload };
     case RESET_DEALS_ERRORS:
       return { ...state, loading: false, error: null };
+    case RESET_HOTEL_DEALS:
+      return { ...state, foundDeals: [] };
     default:
       return state;
   }

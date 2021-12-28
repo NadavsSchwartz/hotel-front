@@ -103,7 +103,7 @@ const HotelDetails = () => {
         <Row gutter={30} id="reviewSection" style={{ marginTop: 30 }}>
           <Col xl={16}>
             <Description
-              content={reasonsToBookContent}
+              location={Deal.hotel.location}
               title={queryData.hotelName}
               guestRating={Deal.hotel.overallGuestRating}
               rating={Deal.hotel.overallGuestRating}
@@ -115,6 +115,7 @@ const HotelDetails = () => {
                 Deal.hotel.location.neighborhoodDescription
               }
               policies={Deal.hotel.policies}
+              location={Deal.hotel.location}
             />
           </Col>
           <Col xl={8}>

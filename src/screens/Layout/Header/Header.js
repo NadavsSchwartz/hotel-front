@@ -9,7 +9,6 @@ import { LayoutContext } from '../../../context/LayoutProvider';
 import useWindowSize from '../../../library/hooks/useWindowSize';
 import MainMenu from './MainMenu';
 import MobileMenu from './MobileMenu';
-import NavbarSearch from './NavbarSearch';
 import HeaderWrapper, {
   MobileNavbar,
   CloseDrawer,

@@ -5,7 +5,7 @@ import HotelMapMarkerCluster from './ListingPageMap';
 import HotelMapMarkerSingle from './SinglePageMap';
 
 const Map = (props) => {
-  const { multiple, foundDeals } = props;
+  const { multiple, foundDeals, location } = props;
   const handleClustererClick = (data) => {
     const markerClusterer = data.getMarkers();
     console.log(`Current clicked markers length: ${markerClusterer.length}`);
@@ -45,11 +45,11 @@ const Map = (props) => {
           }}
           zoom={8}
           center={{
-            lat: foundDeals[0].location.latitude,
-            lng: foundDeals[0].location.longitude,
+            lat: location.latitude,
+            lng: location.longitude,
           }}
         >
-          <HotelMapMarkerSingle foundDeals={foundDeals} />
+          <HotelMapMarkerSingle foundDeals={foundDeals} location={location} />
         </MapWrapper>
       )}
     </>

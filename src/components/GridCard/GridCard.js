@@ -11,6 +11,7 @@ import GridCardWrapper, {
   MetaWrapper,
   ButtonGroup,
 } from './GridCard.style';
+import { Col, Divider, Row } from 'antd';
 
 const GridCard = ({
   className,
@@ -35,11 +36,21 @@ const GridCard = ({
           {price && <PriceArea className="price">{price}</PriceArea>}
           {rating && <RatingArea className="rating">{rating}</RatingArea>}
           {viewDetailsBtn || goToPricelineBtn ? (
-            <ButtonGroup className="button_group">
-              {viewDetailsBtn}
-              {'  '}
-              {goToPricelineBtn}
-            </ButtonGroup>
+            <>
+              <ButtonGroup className="button_group">
+                {goToPricelineBtn}
+                <Divider type="vertical" />
+                <div
+                  style={{
+                    fontSize: '16px',
+                    fontWeight: '800',
+                    float: 'right',
+                  }}
+                >
+                  {viewDetailsBtn}
+                </div>
+              </ButtonGroup>
+            </>
           ) : null}
         </MetaWrapper>
       </ContentWrapper>

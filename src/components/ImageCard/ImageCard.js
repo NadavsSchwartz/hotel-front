@@ -21,6 +21,7 @@ const ImageCard = ({ className, imageSrc, title, link, meta }) => {
     <ImageCardWrapper className={addAllClasses.join(' ')}>
       <Link to={link}>
         <img src={imageSrc} alt={title} />
+        {title && <Title style={{ backgroundColor: 'black' }}>{title}</Title>}
         <ContentWrapper>
           {title && <Title>{title}</Title>}
           {meta && <Meta>{meta}</Meta>}

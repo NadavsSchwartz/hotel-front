@@ -72,7 +72,7 @@ const SideButtons = (props) => {
 
 const TopBar = (props) => {
   const { title, shareURL, author, media } = props;
-  console.log(shareURL)
+
   return (
     <TobBarWrapper>
       <Sticky innerZ={9999} top={80} activeClass="isSticky">

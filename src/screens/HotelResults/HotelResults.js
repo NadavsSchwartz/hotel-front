@@ -10,9 +10,9 @@ import SubMenu from 'antd/lib/menu/SubMenu';
 import { isValidated, menuItems } from '../../utils';
 import {
   getHotelDeals,
-  GET_HOTEL_DEALS_REQUEST,
   START_LOADING,
   STOP_LOADING,
+  RESET_HOTEL_DEALS,
 } from '../../store/actions/HotelDealsAction';
 import HotelResultsListingWrapper, {
   PostsWrapper,
@@ -21,8 +21,7 @@ import HotelResultsListingWrapper, {
 import useWindowSize from '../../library/hooks/useWindowSize';
 import { PostPlaceholder } from '../../components/UI/ContentLoader/ContentLoader';
 import CategorySearchWrapper from '../Listing/Search/CategorySearch/CategorySearch.style';
-import { isEmpty } from 'lodash';
-import Loader from '../../components/Loader/Loader';
+
 import { SettingOutlined } from '@ant-design/icons';
 const Results = () => {
   const { width } = useWindowSize();
@@ -39,10 +38,10 @@ const Results = () => {
 
   useEffect(() => {
     if (!hash || !isValidated(hash)) navigate('/dashboard');
-
+    dispatch({ type: RESET_HOTEL_DEALS });
     dispatch(getHotelDeals(hash));
   }, [dispatch]);
-  if (isEmpty(foundDeals) || loading) return <Loader />;
+  // if (isEmpty(foundDeals) || loading) return <Loader />;
   if (showMap) {
     columnWidth = [1 / 1, 1 / 2, 1 / 2, 1 / 2, 1 / 3];
   }
@@ -88,7 +87,6 @@ const Results = () => {
   const handleMapToggle = () => {
     setShowMap((showMap) => !showMap);
   };
-
   return (
     <HotelResultsListingWrapper>
       {!error && (
