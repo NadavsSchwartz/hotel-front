@@ -71,9 +71,6 @@
             "last 1 safari version"
         ]
     },
-    "engines": {
-        "node": "16.x"
-    },
     "devDependencies": {
         "@types/node": "^16.11.8"
     }
