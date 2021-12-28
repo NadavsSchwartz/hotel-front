@@ -44,8 +44,8 @@
     },
     "scripts": {
         "start": "react-scripts start",
-        "build": "craco build",
-        "test": "craco test"
+        "build": "react-scripts build",
+        "test": "react-scripts test"
     },
     "eslintConfig": {
         "extends": [
