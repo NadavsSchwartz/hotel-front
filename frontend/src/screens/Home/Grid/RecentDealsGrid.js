@@ -7,7 +7,7 @@ import SectionGrid from '../../../components/SectionGrid/SectionGrid';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import useWindowSize from '../../../library/hooks/useWindowSize';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecentDeals } from 'store/actions/SpecificDealActions';
+import { getRecentDeals } from '../../../store/actions/SpecificDealActions';
 import { useLocation } from 'react-router-dom';
 
 const RecentDealsGrid = () => {

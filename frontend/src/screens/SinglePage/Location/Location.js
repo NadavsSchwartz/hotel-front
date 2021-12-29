@@ -4,7 +4,7 @@ import Heading from '../../../components/UI/Heading/Heading';
 import Text from '../../../components/UI/Text/Text';
 import LocationWrapper from './Location.style';
 import { Element } from 'react-scroll';
-import Map from 'components/Map/Map';
+import Map from '../../../components/Map/Map';
 
 const Location = ({
   titleStyle,

@@ -1,5 +1,7 @@
 .firebase
 # dependencies
+
+node_modules/
 node_modules
 /.pnp
 .pnp.js
@@ -8,7 +10,7 @@ node_modules
 /coverage
 
 # production
-/build
+/front/build
 
 # misc
 .DS_Store

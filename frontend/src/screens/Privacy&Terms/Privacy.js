@@ -1,6 +1,6 @@
 import React from 'react';
-import Container from 'components/UI/Container/Container';
-import Heading from 'components/UI/Heading/Heading';
+import Container from '../../components/UI/Container/Container';
+import Heading from '../../components/UI/Heading/Heading';
 import PageWrapper from './Privacy.style';
 
 export default function Privacy() {

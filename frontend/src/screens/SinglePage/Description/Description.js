@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Element } from 'react-scroll';
 import Heading from '../../../components/UI/Heading/Heading';
-import { Button, Card } from 'antd';
 import DescriptionWrapper from './Description.style';
-import { TextButton } from '../SinglePageView.style';
-import Text from 'components/UI/Text/Text';
+import Text from '../../../components/UI/Text/Text';
 
 const Description = ({
   title,

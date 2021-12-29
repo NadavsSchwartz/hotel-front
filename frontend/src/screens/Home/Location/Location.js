@@ -4,16 +4,14 @@ import { IoIosArrowForward } from 'react-icons/io';
 import Loader from '../../../components/Loader/Loader';
 import Container from '../../../components/UI/Container/Container';
 import Heading from '../../../components/UI/Heading/Heading';
-import TextLink from '../../../components/UI/TextLink/TextLink';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import ImageCard from '../../../components/ImageCard/ImageCard';
 import GlideCarousel, {
   GlideSlide,
 } from '../../../components/UI/GlideCarousel/GlideCarousel';
 import LocationWrapper, { CarouselSection } from './Location.style';
-import { getRecentQueries } from 'store/actions/HotelDealsAction';
+import { getRecentQueries } from '../../../store/actions/HotelDealsAction';
 import { useDispatch, useSelector } from 'react-redux';
-import { PostPlaceholder } from 'components/UI/ContentLoader/ContentLoader';
 const carouselOptions = {
   type: 'carousel',
   perView: 5,

@@ -1,4 +1,3 @@
-import schedule from 'node-schedule';
 
 import Queries from '../models/queries.js';
 import asyncHandler from 'express-async-handler';
