@@ -6,6 +6,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import GridCard from '../GridCard/GridCard';
 import { encrypt } from '../../utils';
+import { PostPlaceholder } from '../UI/ContentLoader/ContentLoader';
 
 const responsive = {
   desktop: {
@@ -103,8 +104,10 @@ const PostGrid = ({
         sliderClass=""
         slidesToSlide={1}
       >
+       
         <img
-          src={thumbnailUrl}
+          src={thumbnailUrl ? thumbnailUrl :  <PostPlaceholder />}
+ 
           alt={'thumbnail'}
           draggable={false}
           key={1}

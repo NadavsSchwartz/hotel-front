@@ -49,7 +49,7 @@ export default function SectionGrid({
                   thumbnailUrl={
                     item && item.thumbnailUrl
                       ? item.thumbnailUrl
-                      : item.hotel.transformedRooms[0].roomThumbnailUrl
+                      : item.hotel.transformedRooms !== null ? item.hotel.transformedRooms[0].roomThumbnailUrl : null
                   }
                   hotelId={
                     item && item.hotelId ? item.hotelId : item.queryData.hotelId
