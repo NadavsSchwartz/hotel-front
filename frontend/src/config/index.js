@@ -4,7 +4,7 @@ const isDevelopment = !isProduction;
 const CONFIG = {
   isProduction,
   isDevelopment,
-  baseURL: 'https://hotelrevealer.org/api/v1/',
+  baseURL: '',
   title: 'Hotel Revealer',
 };
 
