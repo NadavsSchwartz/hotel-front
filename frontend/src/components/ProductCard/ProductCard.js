@@ -61,7 +61,8 @@ const PostGrid = ({
         location && location.neighborhoodName ? location.neighborhoodName : ''
       }
       title={<TextLink link={`/deal?q=${link}`} content={hotelName} />}
-      price={`isAvailable ? $${expressDealDailyPrice}/Night - $${expressDealPricePerStay}Total : 'Hotel Not Available'`}
+      price={isAvailable ? '$' + expressDealDailyPrice  + '/ Night - $' + expressDealPricePerStay + 'Total' : 'Hotel Not Available'
+}
       rating={
         <Rating
           rating={starRating}
