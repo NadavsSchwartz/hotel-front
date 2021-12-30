@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Box from '../UI/Box/Box';
 import ProductCard from '../ProductCard/ProductCard';
-import Loader from '../../components/Loader/Loader';
+import Loader from '../Loader/Loader';
 export default function SectionGrid({
   data = [],
   columnWidth,

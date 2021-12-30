@@ -1,6 +1,6 @@
 import React from 'react';
 import { InfoWindow } from '@react-google-maps/api';
-import Rating from '../../components/UI/Rating/Rating';
+import Rating from '../UI/Rating/Rating';
 import GridCard from '../GridCard/GridCard';
 
 const MapInfoWindow = ({ data, onCloseClick }) => {
