@@ -7,4 +7,5 @@ const CONFIG = {
   baseURL: 'https://hotelrevealer.org/api/v1/',
   title: 'Hotel Revealer',
 };
+
 export default CONFIG;

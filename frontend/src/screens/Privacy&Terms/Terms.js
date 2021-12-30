@@ -1,77 +1,243 @@
 import React from 'react';
-
+import Container from '../../components/UI/Container/Container';
+import Heading from '../../components/UI/Heading/Heading';
+import PageWrapper from './Privacy.style';
 const Privacy = () => {
   return (
-    <div>
-      `Terms & Conditions By downloading or using the app, these terms will
-      automatically apply to you – you should make sure therefore that you read
-      them carefully before using the app. You’re not allowed to copy or modify
-      the app, any part of the app, or our trademarks in any way. You’re not
-      allowed to attempt to extract the source code of the app, and you also
-      shouldn’t try to translate the app into other languages or make derivative
-      versions. The app itself, and all the trademarks, copyright, database
-      rights, and other intellectual property rights related to it, still belong
-      to Nadav Schwartz. Nadav Schwartz is committed to ensuring that the app is
-      as useful and efficient as possible. For that reason, we reserve the right
-      to make changes to the app or to charge for its services, at any time and
-      for any reason. We will never charge you for the app or its services
-      without making it very clear to you exactly what you’re paying for. The
-      HotelFinder app stores and processes personal data that you have provided
-      to us, to provide my Service. It’s your responsibility to keep your phone
-      and access to the app secure. We therefore recommend that you do not
-      jailbreak or root your phone, which is the process of removing software
-      restrictions and limitations imposed by the official operating system of
-      your device. It could make your phone vulnerable to
-      malware/viruses/malicious programs, compromise your phone’s security
-      features and it could mean that the HotelFinder app won’t work properly or
-      at all. You should be aware that there are certain things that Nadav
-      Schwartz will not take responsibility for. Certain functions of the app
-      will require the app to have an active internet connection. The connection
-      can be Wi-Fi or provided by your mobile network provider, but Nadav
-      Schwartz cannot take responsibility for the app not working at full
-      functionality if you don’t have access to Wi-Fi, and you don’t have any of
-      your data allowance left. If you’re using the app outside of an area with
-      Wi-Fi, you should remember that the terms of the agreement with your
-      mobile network provider will still apply. As a result, you may be charged
-      by your mobile provider for the cost of data for the duration of the
-      connection while accessing the app, or other third-party charges. In using
-      the app, you’re accepting responsibility for any such charges, including
-      roaming data charges if you use the app outside of your home territory
-      (i.e. region or country) without turning off data roaming. If you are not
-      the bill payer for the device on which you’re using the app, please be
-      aware that we assume that you have received permission from the bill payer
-      for using the app. Along the same lines, Nadav Schwartz cannot always take
-      responsibility for the way you use the app i.e. You need to make sure that
-      your device stays charged – if it runs out of battery and you can’t turn
-      it on to avail the Service, Nadav Schwartz cannot accept responsibility.
-      With respect to Nadav Schwartz’s responsibility for your use of the app,
-      when you’re using the app, it’s important to bear in mind that although we
-      endeavor to ensure that it is updated and correct at all times, we do rely
-      on third parties to provide information to us so that we can make it
-      available to you. Nadav Schwartz accepts no liability for any loss, direct
-      or indirect, you experience as a result of relying wholly on this
-      functionality of the app. At some point, we may wish to update the app.
-      The app is currently available on – the requirements for the system(and
-      for any additional systems we decide to extend the availability of the app
-      to) may change, and you’ll need to download the updates if you want to
-      keep using the app. Nadav Schwartz does not promise that it will always
-      update the app so that it is relevant to you and/or works with the version
-      that you have installed on your device. However, you promise to always
-      accept updates to the application when offered to you, We may also wish to
-      stop providing the app, and may terminate use of it at any time without
-      giving notice of termination to you. Unless we tell you otherwise, upon
-      any termination, (a) the rights and licenses granted to you in these terms
-      will end; (b) you must stop using the app, and (if needed) delete it from
-      your device. Changes to This Terms and Conditions I may update our Terms
-      and Conditions from time to time. Thus, you are advised to review this
-      page periodically for any changes. I will notify you of any changes by
-      posting the new Terms and Conditions on this page. These terms and
-      conditions are effective as of 2021-12-27 Contact Us If you have any
-      questions or suggestions about my Terms and Conditions, do not hesitate to
-      contact me at Nadavschwartz58@gmail.com. This Terms and Conditions page
-      was generated by App Privacy Policy Generator`
-    </div>
+           <PageWrapper>
+      <Container>
+        <Heading as="h2" content="Welcome to Hotel Revealer" id="tableofcontents"/>
+<p>These terms of service outline the rules and regulations for the use of Hotel Revealer's Website.
+Hotel Revealer is located at:
+    <address>
+     CA , United States
+          </address>
+        </p>
+    <p>By accessing this website we assume you accept these terms of service in full. Do not continue to use 
+          Hotel Revealer's website if you do not accept all of the terms of service stated on this page.
+    </p>
+
+     <p>
+    The following terminology applies to these Terms of Service, Privacy Statement and Disclaimer Notice and 
+    any or all Agreements: "Client", "You" and "Your" refers to you, the person accessing this website
+    and accepting the Company's terms of service. "The Company", "Ourselves", "We", "Our" and "Us", refers
+    to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves, or either the Client
+    or ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake
+    the process of our assistance to the Client in the most appropriate manner, whether by formal meetings
+    of a fixed duration, or any other means, for the express purpose of meeting the Client's needs in respect
+    of provision of the Company's stated services/products, in accordance with and subject to, prevailing law
+    of United States. Any use of the above terminology or other words in the singular, plural,
+          capitalisation and/or he/she or they, are taken as interchangeable and therefore as referring to same.
+      </p>
+        <Heading as="h4" content="This Policy describes:" />
+<ol type="1">
+    <li><a href="#Cookies"><strong>Cookies</strong></a>
+</li>
+    <li><a href="#License"><strong>License</strong></a>
+</li>
+    <li><a href="#ContentLiability"><strong>Content Liability</strong></a>
+</li>
+    <li><a href="#Disclaimer"><strong>Disclaimer</strong></a>
+</li>
+</ol>
+        <Heading as="h2" content="1. Cookies" id="Cookies" />
+        <p>
+     We employ the use of cookies. By using Hotel Revealer's website you consent to the use of cookies in accordance with Hotel Revealer's privacy policy.
+
+Most of the modern day interactive web sites use cookies to enable us to retrieve user details for each visit. Cookies are used in some areas of our site to enable the functionality of this area and ease of use for those people visiting. Some of our affiliate / advertising partners may also use cookies.
+        </p>
+        
+         <Heading as="h2" content="2. License" id="License" />
+        <p>
+        Unless otherwise stated, Hotel Revealer and/or it's licensors own the intellectual property rights for all material on Hotel Revealer. All intellectual property rights are reserved. You may view and/or print pages from hotelrevealer.org for your own personal use subject to restrictions set in these terms of service.
+
+        You must not:
+        Republish material from https://www.hotelrevealer.org
+        Sell, rent or sub-license material from https://www.hotelrevealer.org
+        Reproduce, duplicate or copy material from https://www.hotelrevealer.org
+        Redistribute content from Hotel Revealer (unless content is specifically made for redistribution).
+        </p>
+
+        <Heading as="h2" content="3. Content Liability" id="ContentLiability" />
+        <p>
+       We shall have no responsibility or liability for any content appearing on your Web site. You agree to indemnify and defend us against all claims arising out of or based upon your Website. No link(s) may appear on any page on your Web site or within any context containing content or materials that may be interpreted as libelous, obscene or criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of, any third party rights.
+        </p>
+
+        <Heading as="h2" content="4. Disclaimer" id="Disclaimer" />
+        <p>
+        To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website (including, without limitation, any warranties implied by law in respect of satisfactory quality, fitness for purpose and/or the use of reasonable care and skill). Nothing in this disclaimer will:
+
+        limit or exclude our or your liability for death or personal injury resulting from negligence;
+        limit or exclude our or your liability for fraud or fraudulent misrepresentation;
+        limit any of our or your liabilities in any way that is not permitted under applicable law; or
+        exclude any of our or your liabilities that may not be excluded under applicable law.
+        The limitations and exclusions of liability set out in this Section and elsewhere in this disclaimer: (a) are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer or in relation to the subject matter of this disclaimer, including liabilities arising in contract, in tort (including negligence) and for breach of statutory duty.
+
+        To the extent that the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.
+        </p>
+
+        <p><a href="#tableofcontents">Back to table of contents</a></p> 
+      </Container>
+    </PageWrapper>
   );
 };
 
 export default Privacy
+
+
+
+
+
+
+
+
+<h2>Cookies</h2>
+<p>We employ the use of cookies. By using Hotel Revealer's website you consent to the use of cookies
+    in accordance with Hotel Revealer's privacy policy.</p>
+<p>Most of the modern day interactive web sites
+    use cookies to enable us to retrieve user details for each visit. Cookies are used in some areas of our site
+    to enable the functionality of this area and ease of use for those people visiting. Some of our
+    affiliate / advertising partners may also use cookies.</p>
+
+
+<h2>License</h2>
+<p>Unless otherwise stated, Hotel Revealer and/or it's licensors own the intellectual property rights for
+    all material on Hotel Revealer. All intellectual property rights are reserved. You may view and/or print
+    pages from hotelrevealer.org for your own personal use subject to restrictions set in these terms of service.</p>
+<p>You must not:</p>
+<ol>
+    <li>Republish material from hotelrevealer.org</li>
+    <li>Sell, rent or sub-license material from hotelrevealer.org</li>
+    <li>Reproduce, duplicate or copy material from hotelrevealer.org</li>
+</ol>
+<p>Redistribute content from Hotel Revealer (unless content is specifically made for redistribution).</p>
+
+
+<h2>User Comments</h2>
+<ol>
+    <li>This Agreement shall begin on the date hereof.</li>
+    <li>Certain parts of this website offer the opportunity for users to post and exchange opinions, information,
+        material and data ('Comments') in areas of the website. Hotel Revealer does not screen, edit, publish
+        or review Comments prior to their appearance on the website and Comments do not reflect the views or
+        opinions of Hotel Revealer, its agents or affiliates. Comments reflect the view and opinion of the
+        person who posts such view or opinion. To the extent permitted by applicable laws Hotel Revealer shall
+        not be responsible or liable for the Comments or for any loss cost, liability, damages or expenses caused
+        and or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this
+        website.</li>
+    <li>Hotel Revealer reserves the right to monitor all Comments and to remove any Comments which it considers
+        in its absolute discretion to be inappropriate, offensive or otherwise in breach of these Terms of Service.</li>
+    <li>You warrant and represent that:
+        <ol>
+            <li>You are entitled to post the Comments on our website and have all necessary licenses and consents to
+                do so;</li>
+            <li>The Comments do not infringe any intellectual property right, including without limitation copyright,
+                patent or trademark, or other proprietary right of any third party;</li>
+            <li>The Comments do not contain any defamatory, libelous, offensive, indecent or otherwise unlawful material
+                or material which is an invasion of privacy</li>
+            <li>The Comments will not be used to solicit or promote business or custom or present commercial activities
+                or unlawful activity.</li>
+        </ol>
+    </li>
+    <li>You hereby grant to <strong>Hotel Revealer</strong> a non-exclusive royalty-free license to use, reproduce,
+        edit and authorize others to use, reproduce and edit any of your Comments in any and all forms, formats
+        or media.</li>
+</ol>
+<h2>Hyperlinking to our Content</h2>
+<ol>
+    <li>The following organizations may link to our Web site without prior written approval:
+        <ol>
+            <li>Government agencies;</li>
+            <li>Search engines;</li>
+            <li>News organizations;</li>
+            <li>Online directory distributors when they list us in the directory may link to our Web site in the same
+                manner as they hyperlink to the Web sites of other listed businesses; and</li>
+            <li>Systemwide Accredited Businesses except soliciting non-profit organizations, charity shopping malls,
+                and charity fundraising groups which may not hyperlink to our Web site.</li>
+        </ol>
+    </li>
+</ol>
+<ol start="2">
+    <li>These organizations may link to our home page, to publications or to other Web site information so long
+        as the link: (a) is not in any way misleading; (b) does not falsely imply sponsorship, endorsement or
+        approval of the linking party and its products or services; and (c) fits within the context of the linking
+        party's site.
+    </li>
+    <li>We may consider and approve in our sole discretion other link requests from the following types of organizations:
+        <ol>
+            <li>commonly-known consumer and/or business information sources such as Chambers of Commerce, American
+                Automobile Association, AARP and Consumers Union;</li>
+            <li>dot.com community sites;</li>
+            <li>associations or other groups representing charities, including charity giving sites,</li>
+            <li>online directory distributors;</li>
+            <li>internet portals;</li>
+            <li>accounting, law and consulting firms whose primary clients are businesses; and</li>
+            <li>educational institutions and trade associations.</li>
+        </ol>
+    </li>
+</ol>
+<p>We will approve link requests from these organizations if we determine that: (a) the link would not reflect
+    unfavorably on us or our accredited businesses (for example, trade associations or other organizations
+    representing inherently suspect types of business, such as work-at-home opportunities, shall not be allowed
+    to link); (b)the organization does not have an unsatisfactory record with us; (c) the benefit to us from
+    the visibility associated with the hyperlink outweighs the absence of Hotel Revealer; and (d) where the
+    link is in the context of general resource information or is otherwise consistent with editorial content
+    in a newsletter or similar product furthering the mission of the organization.</p>
+
+<p>These organizations may link to our home page, to publications or to other Web site information so long as
+    the link: (a) is not in any way misleading; (b) does not falsely imply sponsorship, endorsement or approval
+    of the linking party and it products or services; and (c) fits within the context of the linking party's
+    site.</p>
+
+<p>If you are among the organizations listed in paragraph 2 above and are interested in linking to our website,
+    you must notify us by sending an e-mail to <a href="mailto:Nadavschwartz58@gmail.com" title="send an email to Nadavschwartz58@gmail.com">Nadavschwartz58@gmail.com</a>.
+    Please include your name, your organization name, contact information (such as a phone number and/or e-mail
+    address) as well as the URL of your site, a list of any URLs from which you intend to link to our Web site,
+    and a list of the URL(s) on our site to which you would like to link. Allow 2-3 weeks for a response.</p>
+
+<p>Approved organizations may hyperlink to our Web site as follows:</p>
+
+<ol>
+    <li>By use of our corporate name; or</li>
+    <li>By use of the uniform resource locator (Web address) being linked to; or</li>
+    <li>By use of any other description of our Web site or material being linked to that makes sense within the
+        context and format of content on the linking party's site.</li>
+</ol>
+<p>No use of Hotel Revealer's logo or other artwork will be allowed for linking absent a trademark license
+    agreement.</p>
+<h2>Iframes</h2>
+<p>Without prior approval and express written permission, you may not create frames around our Web pages or
+    use other techniques that alter in any way the visual presentation or appearance of our Web site.</p>
+<h2>Content Liability</h2>
+<p>We shall have no responsibility or liability for any content appearing on your Web site. You agree to indemnify
+    and defend us against all claims arising out of or based upon your Website. No link(s) may appear on any
+    page on your Web site or within any context containing content or materials that may be interpreted as
+    libelous, obscene or criminal, or which infringes, otherwise violates, or advocates the infringement or
+    other violation of, any third party rights.</p>
+<h2>Reservation of Rights</h2>
+<p>We reserve the right at any time and in its sole discretion to request that you remove all links or any particular
+    link to our Web site. You agree to immediately remove all links to our Web site upon such request. We also
+    reserve the right to amend these terms of service and its linking policy at any time. By continuing
+    to link to our Web site, you agree to be bound to and abide by these linking terms of service.</p>
+<h2>Removal of links from our website</h2>
+<p>If you find any link on our Web site or any linked web site objectionable for any reason, you may contact
+    us about this. We will consider requests to remove links but will have no obligation to do so or to respond
+    directly to you.</p>
+<p>Whilst we endeavour to ensure that the information on this website is correct, we do not warrant its completeness
+    or accuracy; nor do we commit to ensuring that the website remains available or that the material on the
+    website is kept up to date.</p>
+<h2>Disclaimer</h2>
+<p>To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website (including, without limitation, any warranties implied by law in respect of satisfactory quality, fitness for purpose and/or the use of reasonable care and skill). Nothing in this disclaimer will:</p>
+<ol>
+    <li>limit or exclude our or your liability for death or personal injury resulting from negligence;</li>
+    <li>limit or exclude our or your liability for fraud or fraudulent misrepresentation;</li>
+    <li>limit any of our or your liabilities in any way that is not permitted under applicable law; or</li>
+    <li>exclude any of our or your liabilities that may not be excluded under applicable law.</li>
+</ol>
+<p>The limitations and exclusions of liability set out in this Section and elsewhere in this disclaimer: (a)
+    are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer or
+    in relation to the subject matter of this disclaimer, including liabilities arising in contract, in tort
+    (including negligence) and for breach of statutory duty.</p>
+<p>To the extent that the website and the information and services on the website are provided free of charge,
+    we will not be liable for any loss or damage of any nature.</p><h2>Credit &amp; Contact Information</h2>
+<p>This Terms of service page was created at <a style="color:inherit;text-decoration:none;cursor:text;" href="https://privacyterms.io/terms-conditions-generator/">privacyterms.io terms &amp; conditions generator</a>. If you have
+    any queries regarding any of our terms, please contact us.</p>            
