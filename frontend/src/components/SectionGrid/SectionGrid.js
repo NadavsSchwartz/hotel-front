@@ -24,7 +24,7 @@ export default function SectionGrid({
                 {...columnStyle}
               >
                 <ProductCard
-                  isAvailable={item && item.hotel ? item.hotel.ratesSummary.status === 'UNAVAILABLE' : true}
+                  isAvailable={item && item.hotel.ratesSummary.status === 'UNAVAILABLE' ? false : true}
                   link={link}
                   hotelName={
                     item && item.hotelName
