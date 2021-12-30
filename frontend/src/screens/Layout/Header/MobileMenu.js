@@ -1,9 +1,8 @@
-import React  from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Menu } from 'antd';
- 
+
 const MobileMenu = ({ className }) => {
- 
   return (
     <Menu className={className}>
       <Menu.Item key="0">

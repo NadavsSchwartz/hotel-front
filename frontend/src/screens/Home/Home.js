@@ -3,7 +3,7 @@ import LocationGrid from './Location/Location';
 import { LayoutContext } from '../../context/LayoutProvider';
 import { Waypoint } from 'react-waypoint';
 import HotelSearchForm from '../../components/HotelSearchForm';
-import RecentDealsGrid from './Grid/RecentDealsGrid'
+import RecentDealsGrid from './Grid/RecentDealsGrid';
 import Loader from '../../components/Loader/Loader';
 
 const Home = () => {

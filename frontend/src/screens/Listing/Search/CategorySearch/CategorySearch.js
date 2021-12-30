@@ -27,7 +27,7 @@ const CategorySearch = ({ location }) => {
       max: 100,
       defaultMin: 0,
       defaultMax: 100,
-    }, 
+    },
   };
   const { amenities, property, date_range, price, room, guest } = state;
   const [countRoom, setRoom] = useState(room);
@@ -97,7 +97,6 @@ const CategorySearch = ({ location }) => {
         }
         popup={
           <Checkbox.Group
-            
             options={getAmenities.options}
             defaultValue={amenities}
             onChange={(value) => onChange(value, 'amenities')}

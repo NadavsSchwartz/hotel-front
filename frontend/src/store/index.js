@@ -7,15 +7,15 @@ import SpecificDealReducer from './SpecificDealReducer';
 const middleware = [thunk];
 
 const reducer = combineReducers({
-	HotelDeals: HotelDealsReducer,
-	SpecificDeal: SpecificDealReducer,
+  HotelDeals: HotelDealsReducer,
+  SpecificDeal: SpecificDealReducer,
 });
 
 const initialState = {};
 
 const store = createStore(
-	reducer,
-	initialState,
-	composeWithDevTools(applyMiddleware(...middleware))
+  reducer,
+  initialState,
+  composeWithDevTools(applyMiddleware(...middleware))
 );
 export default store;

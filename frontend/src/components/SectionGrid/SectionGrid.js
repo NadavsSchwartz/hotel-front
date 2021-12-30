@@ -24,7 +24,11 @@ export default function SectionGrid({
                 {...columnStyle}
               >
                 <ProductCard
-                  isAvailable={item && item.hotel.ratesSummary.status === 'UNAVAILABLE' ? false : true}
+                  isAvailable={
+                    item && item.hotel.ratesSummary.status === 'UNAVAILABLE'
+                      ? false
+                      : true
+                  }
                   link={link}
                   hotelName={
                     item && item.hotelName
@@ -44,12 +48,16 @@ export default function SectionGrid({
                   expressDealPricePerStay={
                     item && item.expressDealPricePerStay >= 0
                       ? item.expressDealPricePerStay
-                      : item.hotel.transformedRooms !== null ? item.hotel.transformedRooms[0].roomRates[0].grandTotal : null
+                      : item.hotel.transformedRooms !== null
+                      ? item.hotel.transformedRooms[0].roomRates[0].grandTotal
+                      : null
                   }
                   thumbnailUrl={
                     item && item.thumbnailUrl
                       ? item.thumbnailUrl
-                      : item.hotel.transformedRooms !== null ? item.hotel.transformedRooms[0].roomThumbnailUrl : null
+                      : item.hotel.transformedRooms !== null
+                      ? item.hotel.transformedRooms[0].roomThumbnailUrl
+                      : null
                   }
                   hotelId={
                     item && item.hotelId ? item.hotelId : item.queryData.hotelId
@@ -70,7 +78,11 @@ export default function SectionGrid({
                   pclnId={
                     item && item.hotelName ? item.pclnId : item.queryData.pclnId
                   }
-                  cityId={item && item.location ? item.location.cityId : item.hotel.location.cityId}
+                  cityId={
+                    item && item.location
+                      ? item.location.cityId
+                      : item.hotel.location.cityId
+                  }
                   {...item}
                 />
               </Box>

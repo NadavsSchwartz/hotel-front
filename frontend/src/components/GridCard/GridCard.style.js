@@ -287,7 +287,7 @@ export const ButtonGroup = styled.div`
 
   > a {
     display: inline-block;
-    font-size: 16px; 
+    font-size: 16px;
     font-weight: 700;
     color: ${themeGet('primary.0', '#008489')};
     transition: all 0.3s ease;

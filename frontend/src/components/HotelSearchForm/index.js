@@ -259,20 +259,14 @@ const HotelSearchForm = ({ searchTitleStyle, searchDescriptionStyle }) => {
                   }
                 />
               </ComponentWrapper>
-              <Button
-                type="primary"
-                htmlType="submit"
-                size="large" 
-              >
+              <Button type="primary" htmlType="submit" size="large">
                 Find Hotels
               </Button>
             </FormWrapper>
           </Form>
         </SearchWrapper>
       </Container>
- 
     </BannerWrapper>
-    
   );
 };
 

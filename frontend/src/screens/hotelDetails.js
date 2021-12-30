@@ -42,17 +42,18 @@ const HotelDetails = () => {
     Deal && Deal.hotel
       ? Array.from(Deal.hotel.hotelFeatures.hotelAmenities).slice(0, 15)
       : [];
-  
+
   const cityId = Deal && Deal.hotel ? Deal.hotel.cityId : '';
   const pclnId = Deal && Deal.queryData ? Deal.queryData.pclnId : '';
   const checkIn = Deal && Deal.queryData ? Deal.queryData.checkIn : '';
   const checkOut = Deal && Deal.queryData ? Deal.queryData.checkOut : '';
-  const link = `https://www.priceline.com/relax/at/express/${cityId}/${pclnId}/from/${checkIn}/to/${checkOut}/rooms/1`
+  const link = `https://www.priceline.com/relax/at/express/${cityId}/${pclnId}/from/${checkIn}/to/${checkOut}/rooms/1`;
   const images = Deal.hotel.images;
   const logo = images.find((image) => image.imageHDURL !== null);
   const image = logo ? logo.imageHDURL : images[0].imageURL;
   const queryData = Deal && Deal.queryData ? Deal.queryData : null;
-  const isRoomAvailable = Deal && Deal.hotel.ratesSummary.status === 'UNAVAILABLE' ? true : false;
+  const isRoomAvailable =
+    Deal && Deal.hotel.ratesSummary.status === 'UNAVAILABLE' ? true : false;
 
   return (
     <SinglePageWrapper>
@@ -130,16 +131,20 @@ const HotelDetails = () => {
                 top={202}
                 bottomBoundary="#reviewSection"
               >
-                <Reservation price={Deal.hotel.ratesSummary.minPrice} linkToBook={link} isRoomAvailable={isRoomAvailable}/>
+                <Reservation
+                  price={Deal.hotel.ratesSummary.minPrice}
+                  linkToBook={link}
+                  isRoomAvailable={isRoomAvailable}
+                />
               </Sticky>
             ) : (
               <BottomReservation
                 title={queryData.hotelName}
                 price={Deal.hotel.ratesSummary.minPrice}
                 rating={Deal.hotel.overallGuestRating}
-                  ratingCount={Deal.hotel.totalReviewCount}
-                  linkToBook={link}
-                  isRoomAvailable={isRoomAvailable}
+                ratingCount={Deal.hotel.totalReviewCount}
+                linkToBook={link}
+                isRoomAvailable={isRoomAvailable}
               />
             )}
           </Col>

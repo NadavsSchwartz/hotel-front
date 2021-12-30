@@ -5,7 +5,14 @@ import { Button, Modal } from 'antd';
 import StickyBooking from '../../../components/StickyBooking/StickyBooking';
 import Reservation from './Reservation';
 
-const BottomReservation = ({ title, price, rating, ratingCount,linkToBook,isRoomAvailable }) => {
+const BottomReservation = ({
+  title,
+  price,
+  rating,
+  ratingCount,
+  linkToBook,
+  isRoomAvailable,
+}) => {
   const [visible, setVisible] = useState(false);
 
   return (
@@ -18,7 +25,11 @@ const BottomReservation = ({ title, price, rating, ratingCount,linkToBook,isRoom
           <Rating guestRating={rating} ratingCount={ratingCount} type="bulk" />
         }
         action={
-          <Button type="primary" onClick={() => setVisible(true)} disabled={isRoomAvailable}>
+          <Button
+            type="primary"
+            onClick={() => setVisible(true)}
+            disabled={isRoomAvailable}
+          >
             {isRoomAvailable ? 'Not Avaialble' : 'Book'}
           </Button>
         }
@@ -34,7 +45,11 @@ const BottomReservation = ({ title, price, rating, ratingCount,linkToBook,isRoom
         wrapClassName="reservation_modal"
         closable={false}
       >
-        <Reservation price={price} linkToBook={linkToBook} isRoomAvailable={isRoomAvailable}/>
+        <Reservation
+          price={price}
+          linkToBook={linkToBook}
+          isRoomAvailable={isRoomAvailable}
+        />
         <Button onClick={() => setVisible(false)} className="close">
           <IoIosClose />
         </Button>

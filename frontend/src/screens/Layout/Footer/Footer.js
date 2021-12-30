@@ -4,20 +4,20 @@ import Footers from '../../../components/Footer/Footer';
 import FooterMenu from './FooterMenu';
 
 const Footer = () => {
-	return (
-		<Footers
-			logo={
-				<Logo
-					withLink
-					linkTo='/'
-					src='/images/logo-alt.svg'
-					title='HotelRevealer.'
-				/>
-			}
-			menu={<FooterMenu />}
-			copyright={`Copyright @ ${new Date().getFullYear()} HotelRevealer.`}
-		/>
-	);
+  return (
+    <Footers
+      logo={
+        <Logo
+          withLink
+          linkTo="/"
+          src="/images/logo-alt.svg"
+          title="HotelRevealer."
+        />
+      }
+      menu={<FooterMenu />}
+      copyright={`Copyright @ ${new Date().getFullYear()} HotelRevealer.`}
+    />
+  );
 };
 
 export default Footer;
