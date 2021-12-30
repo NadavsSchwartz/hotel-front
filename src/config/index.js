@@ -4,7 +4,7 @@ const isDevelopment = !isProduction;
 const CONFIG = {
   isProduction,
   isDevelopment,
-  baseURL: '',
+  baseURL: 'https://hotelrevealer-back.herokuapp.com/api/v1/',
   title: 'Hotel Revealer',
 };
 
