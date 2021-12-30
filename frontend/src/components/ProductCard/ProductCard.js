@@ -48,6 +48,7 @@ const PostGrid = ({
   checkOut,
   cityId,
   pclnId,
+  isAvailable,
 }) => {
   const body = { checkIn, checkOut, pclnId, hotelId, hotelName };
   let link = encrypt(body);
@@ -59,7 +60,7 @@ const PostGrid = ({
         location && location.neighborhoodName ? location.neighborhoodName : ''
       }
       title={<TextLink link={`/deal?q=${link}`} content={hotelName} />}
-      price={`$${expressDealDailyPrice}/Night - $${expressDealPricePerStay}Total`}
+      price={`isAvailable ? $${expressDealDailyPrice}/Night - $${expressDealPricePerStay}Total : 'Hotel Not Available'`}
       rating={
         <Rating
           rating={starRating}

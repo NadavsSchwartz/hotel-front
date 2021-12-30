@@ -24,6 +24,7 @@ export default function SectionGrid({
                 {...columnStyle}
               >
                 <ProductCard
+                  isAvailable={item && item.ratesSummary ? item.ratesSummary.status !== 'UNAVAILABLE' : item.hotel.ratesSummary ? item.hotel.ratesSummary.status !== 'UNAVAILABLE' : false}
                   link={link}
                   hotelName={
                     item && item.hotelName
@@ -41,9 +42,9 @@ export default function SectionGrid({
                       : item.hotel.ratesSummary.minPrice
                   }
                   expressDealPricePerStay={
-                    item && item.expressDealPricePerStay  >= 0
+                    item && item.expressDealPricePerStay >= 0
                       ? item.expressDealPricePerStay
-                      : item.hotel.transformedRooms !== null ? item.hotel.transformedRooms[0].roomRates[0].grandTotal : 0
+                      : item.hotel.transformedRooms !== null ? item.hotel.transformedRooms[0].roomRates[0].grandTotal : null
                   }
                   thumbnailUrl={
                     item && item.thumbnailUrl
