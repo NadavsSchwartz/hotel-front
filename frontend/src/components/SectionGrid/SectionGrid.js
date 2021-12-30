@@ -41,9 +41,9 @@ export default function SectionGrid({
                       : item.hotel.ratesSummary.minPrice
                   }
                   expressDealPricePerStay={
-                    item && item.expressDealPricePerStay
+                    item && item.expressDealPricePerStay  >= 0
                       ? item.expressDealPricePerStay
-                      : item.hotel.transformedRooms[0].roomRates[0].grandTotal
+                      : item.hotel.transformedRooms[0].roomRates[0] ? item.hotel.transformedRooms[0].roomRates[0].grandTotal : 0
                   }
                   thumbnailUrl={
                     item && item.thumbnailUrl
