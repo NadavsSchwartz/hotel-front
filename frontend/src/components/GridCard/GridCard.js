@@ -23,6 +23,7 @@ const GridCard = ({
   viewDetailsBtn,
   goToPricelineBtn,
   children,
+  isAvailable,
 }) => {
   let classes =
     viewDetailsBtn || goToPricelineBtn ? `has_btn ${className}` : className;
