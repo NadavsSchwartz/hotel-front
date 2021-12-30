@@ -1,6 +1,7 @@
 {
     "name": "hotel-revealer",
     "version": "0.1.0",
+    "homepage": "https://hotelrevealer.org",
     "engines": {
         "node": "16.13.1"
     },
