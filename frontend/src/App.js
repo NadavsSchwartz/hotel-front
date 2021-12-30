@@ -54,14 +54,14 @@ const App = () => {
             </React.Suspense>
           }
         />
-        <Route
+        {/* <Route
           path="*"
           element={
             <React.Suspense fallback={<Loader />}>
               <NotFound />
             </React.Suspense>
           }
-        />
+        />*/}
       </Route>
     </Routes>
   );
