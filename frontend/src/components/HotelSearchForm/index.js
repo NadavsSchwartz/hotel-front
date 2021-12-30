@@ -52,7 +52,7 @@ const HotelSearchForm = ({ searchTitleStyle, searchDescriptionStyle }) => {
   const handleIncrement = (type) => {
     if (roomGuest[type] > 2) {
       SetRoomGuestError(
-        "Room and Guest can't be smaller than 1 or higher than 3"
+        "Room and Guests can't be smaller than 1 or higher than 3"
       );
       return false;
     }
@@ -65,7 +65,7 @@ const HotelSearchForm = ({ searchTitleStyle, searchDescriptionStyle }) => {
   const handleDecrement = (type) => {
     if (roomGuest[type] <= 1) {
       SetRoomGuestError(
-        "Room and Guest can't be lower than 1 or higher than 3"
+        "Room and Guests can't be lower than 1 or higher than 3"
       );
       return false;
     }
@@ -223,7 +223,7 @@ const HotelSearchForm = ({ searchTitleStyle, searchDescriptionStyle }) => {
                       </span>
                       <span>-</span>
                       <span>
-                        Guest{roomGuest.guest > 0 && `: ${roomGuest.guest}`}
+                        Guests{roomGuest.guest > 0 && `: ${roomGuest.guest}`}
                       </span>
                     </Button>
                   }
@@ -240,7 +240,7 @@ const HotelSearchForm = ({ searchTitleStyle, searchDescriptionStyle }) => {
                         />
                       </ItemWrapper>
                       <ItemWrapper>
-                        <strong>Guest</strong>
+                        <strong>Guests</strong>
                         <InputIncDec
                           id="guest"
                           increment={() => handleIncrement('guest')}
@@ -262,8 +262,7 @@ const HotelSearchForm = ({ searchTitleStyle, searchDescriptionStyle }) => {
               <Button
                 type="primary"
                 htmlType="submit"
-                size="large"
-                // onClick={goToSearchPage}
+                size="large" 
               >
                 Find Hotels
               </Button>
@@ -271,85 +270,9 @@ const HotelSearchForm = ({ searchTitleStyle, searchDescriptionStyle }) => {
           </Form>
         </SearchWrapper>
       </Container>
-      {/* <Form.Item
-                name="cityName"
-                label="City Name"
-                rules={[{ required: true }]}
-              >
-              </Form.Item> */}
+ 
     </BannerWrapper>
-    // <div justify="center">
-    //   <Skeleton active loading={loading}>
-    //     <Card
-    //       bordered={false}
-    //       className="header-solid mb-24"
-    //       title={
-    //         <Row justify="center">
-    //           <h6 className="font-semibold">Recent Searches</h6>
-    //         </Row>
-    //       }
-    //     >
-    //       <Row gutter={[24, 24]}>
-    //         {latestDeals && latestDeals.length > 0
-    //           ? latestDeals.map((deal, index) => (
-    //               <Col span={24} md={12} xl={6} key={index}>
-    //                 <Card
-    //                   bordered={false}
-    //                   className="card-project"
-    //                   cover={
-    //                     <img
-    //                       alt="example"
-    //                       src={deal.data[0].thumbnailUrl}
-    //                       style={{ objectFit: 'cover' }}
-    //                     />
-    //                   }
-    //                 >
-    //                   <div className="card-tag">
-    //                     <Text ellipsis={true}>{deal.data[0].hotelName}</Text>
-    //                   </div>
-    //                   <p>{deal.data[0].title && deal.data[0].title}</p>
-    //                   <Row gutter={[6, 0]} justify="middle">
-    //                     <Col span={12}>
-    //                       <p>
-    //                         {deal.data[0].address.cityName},{' '}
-    //                         {deal.data[0].address.provinceCode}
-    //                       </p>
-    //                     </Col>
-    //                     <Col span={12}>
-    //                       <p style={{ float: 'right' }}>
-    //                         {timeAgo(deal.createdAt)}
-    //                       </p>
-    //                     </Col>
-    //                   </Row>
-    //                   <Row
-    //                     gutter={[6, 0]}
-    //                     className="card-footer"
-    //                     justify="middle"
-    //                   >
-    //                     <Col span={8}>
-    //                       <Link to={`/results?q=${deal.queryId}`}>
-    //                         <Button type="primary">VIEW ALL RESULTS</Button>
-    //                       </Link>
-    //                     </Col>
-    //                     <Col span={16} className="text-right">
-    //                       {' '}
-    //                       <p style={{ color: '#131D43' }}>
-    //                         From: {dateConverter(deal.queryData.checkIn)}
-    //                       </p>{' '}
-    //                       <p style={{ color: '#131D43' }}>
-    //                         {' '}
-    //                         To:{dateConverter(deal.queryData.checkOut)}
-    //                       </p>{' '}
-    //                     </Col>
-    //                   </Row>
-    //                 </Card>
-    //               </Col>
-    //             ))
-    //           : ''}
-    //       </Row>
-    //     </Card>
-    //   </Skeleton>
-    // </div>
+    
   );
 };
 
