@@ -43,7 +43,7 @@ export default function SectionGrid({
                   expressDealPricePerStay={
                     item && item.expressDealPricePerStay  >= 0
                       ? item.expressDealPricePerStay
-                      : item.hotel.transformedRooms[0].roomRates[0] ? item.hotel.transformedRooms[0].roomRates[0].grandTotal : 0
+                      : item.hotel.transformedRooms !== null ? item.hotel.transformedRooms[0].roomRates[0].grandTotal : 0
                   }
                   thumbnailUrl={
                     item && item.thumbnailUrl
