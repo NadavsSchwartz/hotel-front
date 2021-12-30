@@ -30,10 +30,4 @@ export default function Layout() {
   );
 }
 
-{
-  /* {singlePageUrlFormLocation[1] === singlePageUrlFromConst[1] && (
-  <Fragment>
-    {width < 1200 && <div style={{ height: '74px' }} />}
-  </Fragment>
-)} */
-}
+ 
