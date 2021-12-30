@@ -4,29 +4,31 @@ import Card from '../../../components/UI/Card/Card';
 import Heading from '../../../components/UI/Heading/Heading';
 import Text from '../../../components/UI/Text/Text';
 import TextLink from '../../../components/UI/TextLink/TextLink';
-import RenderReservationForm from './RenderReservationForm';
+import RenderReservationForm from './RenderReservationForm'; 
 
-const CardHeader = ({ priceStyle, pricePeriodStyle, linkStyle, price }) => {
+const CardHeader = ({ priceStyle, pricePeriodStyle, linkStyle, price, linkToBook,isRoomAvailable }) => {
+ 
+														 
   return (
     <Fragment>
       <Heading
         content={
           <Fragment>
-            ${price} <Text as="span" content="/ night" {...pricePeriodStyle} />
+           {isRoomAvailable ? 'Hotel Is No Longer Available' : `$${price} ${<Text as="span" content="/ night" {...pricePeriodStyle} />}`}
           </Fragment>
         }
         {...priceStyle}
       />
-      <TextLink link="/#1" content="Contact Hotel" {...linkStyle} />
+      <TextLink link={linkToBook} content="Contact Hotel" {...linkStyle} />
     </Fragment>
   );
 };
 
-export default function Reservation({ price }) {
+export default function Reservation({ price, linkToBook,isRoomAvailable }) {
   return (
     <Card
       className="reservation_sidebar"
-      header={<CardHeader price={price} />}
+      header={<CardHeader price={price} linkToBook={linkToBook} isRoomAvailable={isRoomAvailable}/>}
       content={<RenderReservationForm />}
     />
   );
