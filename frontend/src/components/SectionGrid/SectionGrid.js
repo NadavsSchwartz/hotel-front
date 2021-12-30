@@ -69,7 +69,7 @@ export default function SectionGrid({
                   pclnId={
                     item && item.hotelName ? item.pclnId : item.queryData.pclnId
                   }
-                  cityId={item && item.location ? item.location.cityId : ''}
+                  cityId={item && item.location ? item.location.cityId : item.hotel.location.cityId}
                   {...item}
                 />
               </Box>

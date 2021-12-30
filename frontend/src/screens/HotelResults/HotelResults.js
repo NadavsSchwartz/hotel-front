@@ -41,7 +41,6 @@ const Results = () => {
     dispatch({ type: RESET_HOTEL_DEALS });
     dispatch(getHotelDeals(hash));
   }, [dispatch]);
-  // if (isEmpty(foundDeals) || loading) return <Loader />;
   if (showMap) {
     columnWidth = [1 / 1, 1 / 2, 1 / 2, 1 / 2, 1 / 3];
   }
