@@ -88,10 +88,11 @@ const PostGrid = ({
       goToPricelineBtn={
         cityId && (
           <TextLink
-            link={`https://www.priceline.com/relax/at/express/${cityId}/${pclnId}/from/${checkIn}/to/${checkOut}/rooms/1?cjevent=fcfda7644b3611ec811b250b0a1c0e0d&refid=CO8733109&refclickid=11554367SID&vrid=c9cef1a61be73ee0974a88e1c8437fc5}`}
+            link={`https://www.priceline.com/relax/at/express/${cityId}/${pclnId}/from/${checkIn}/to/${checkOut}/rooms/1}`}
             icon={<FiExternalLink />}
-            content="Book"
+            content={isAvailable ? 'Not Available' : 'Book'}
             target="_blank"
+            isAvailable={isAvailable}
           />
         )
       }

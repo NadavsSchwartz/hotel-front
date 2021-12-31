@@ -21,11 +21,16 @@ const LinkWrapper = styled(Link)(
   themed('TextLink')
 );
 
-const TextLink = ({ link, icon, content, target, ...props }) => {
+const TextLink = ({ link, icon, content, target, isAvailable, ...props }) => {
   return (
     <>
       {target !== undefined ? (
-        <a href={link} target={target} {...props}>
+        <a
+          href={link}
+          target={target}
+          className={isAvailable ? 'disabled' : ''}
+          {...props}
+        >
           {icon} {content}{' '}
         </a>
       ) : (
