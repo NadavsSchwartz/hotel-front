@@ -53,7 +53,7 @@ const HotelDetails = () => {
   const image = logo ? logo.imageHDURL : images[0].imageURL;
   const queryData = Deal && Deal.queryData ? Deal.queryData : null;
   const isRoomAvailable =
-    Deal && Deal.hotel.ratesSummary.status === 'UNAVAILABLE' ? true : false;
+    Deal && Deal.hotel.ratesSummary.status === 'UNAVAILABLE' ? false : true;
 
   return (
     <SinglePageWrapper>

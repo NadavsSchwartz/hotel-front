@@ -27,14 +27,18 @@ const BottomReservation = ({
         action={
           <Button
             type="primary"
-            onClick={() => setVisible(true)}
+            // onClick={() => setVisible(true)}
             disabled={isRoomAvailable}
           >
-            {isRoomAvailable ? 'Not Avaialble' : 'Book'}
+            {isRoomAvailable ? (
+              <a href={linkToBook}>'Book'</a>
+            ) : (
+              'No Longer Avaialble'
+            )}
           </Button>
         }
       />
-
+      {/* 
       <Modal
         visible={visible}
         onCancel={() => setVisible(false)}
@@ -53,7 +57,7 @@ const BottomReservation = ({
         <Button onClick={() => setVisible(false)} className="close">
           <IoIosClose />
         </Button>
-      </Modal>
+      </Modal> */}
     </>
   );
 };
