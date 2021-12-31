@@ -18,13 +18,13 @@ const CardHeader = ({
     <Fragment>
       <Heading
         content={
-          <Fragment>
-            {isRoomAvailable
-              ? 'Hotel Is No Longer Available'
-              : `$${price} ${(
-                  <Text as="span" content="/ night" {...pricePeriodStyle} />
-                )}`}
-          </Fragment>
+          isRoomAvailable ? (
+            <Fragment>
+              {price} <Text as="span" content="/ night" {...pricePeriodStyle} />
+            </Fragment>
+          ) : (
+            <Fragment>This room is no longer available.</Fragment>
+          )
         }
         {...priceStyle}
       />

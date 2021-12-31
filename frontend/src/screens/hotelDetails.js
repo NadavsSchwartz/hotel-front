@@ -43,7 +43,10 @@ const HotelDetails = () => {
       ? Array.from(Deal.hotel.hotelFeatures.hotelAmenities).slice(0, 15)
       : [];
 
-  const cityId = Deal && Deal.hotel ? Deal.hotel.cityId : '';
+  const cityId =
+    Deal && Deal.hotel
+      ? Deal.hotel.location.cityId
+      : Deal.hotel.location.neighborhoodID;
   const pclnId = Deal && Deal.queryData ? Deal.queryData.pclnId : '';
   const checkIn = Deal && Deal.queryData ? Deal.queryData.checkIn : '';
   const checkOut = Deal && Deal.queryData ? Deal.queryData.checkOut : '';
