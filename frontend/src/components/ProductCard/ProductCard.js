@@ -88,9 +88,13 @@ const PostGrid = ({
       goToPricelineBtn={
         cityId && (
           <TextLink
-            link={`https://www.priceline.com/relax/at/express/${cityId}/${pclnId}/from/${checkIn}/to/${checkOut}/rooms/1}`}
+            link={
+              isAvailable
+                ? `https://www.priceline.com/relax/at/express/${cityId}/${pclnId}/from/${checkIn}/to/${checkOut}/rooms/1}`
+                : ''
+            }
             icon={<FiExternalLink />}
-            content={isAvailable ? 'Not Available' : 'Book'}
+            content={isAvailable ? 'Book' : 'Not Available'}
             target="_blank"
             isAvailable={isAvailable}
           />

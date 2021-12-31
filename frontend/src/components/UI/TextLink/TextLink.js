@@ -28,7 +28,6 @@ const TextLink = ({ link, icon, content, target, isAvailable, ...props }) => {
         <a
           href={link}
           target={target}
-          className={isAvailable ? 'disabled' : ''}
           {...props}
         >
           {icon} {content}{' '}
