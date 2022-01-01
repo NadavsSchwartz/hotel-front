@@ -28,7 +28,7 @@ const CardHeader = ({
         }
         {...priceStyle}
       />
-      <TextLink link={linkToBook} content="Contact Hotel" {...linkStyle} />
+      {/* <TextLink link={linkToBook} content="Contact Hotel" {...linkStyle} /> */}
     </Fragment>
   );
 };
@@ -44,7 +44,12 @@ export default function Reservation({ price, linkToBook, isRoomAvailable }) {
           isRoomAvailable={isRoomAvailable}
         />
       }
-      content={<RenderReservationForm />}
+      content={
+        <RenderReservationForm
+          linkToBook={linkToBook}
+          isRoomAvailable={isRoomAvailable}
+        />
+      }
     />
   );
 }

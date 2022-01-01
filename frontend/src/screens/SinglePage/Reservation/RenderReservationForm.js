@@ -3,7 +3,7 @@ import { Button } from 'antd';
 
 import ReservationFormWrapper, { FormActionArea } from './Reservation.style.js';
 
-const RenderReservationForm = () => {
+const RenderReservationForm = ({ linkToBook, isRoomAvailable }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -16,7 +16,13 @@ const RenderReservationForm = () => {
           type="primary"
           style={{ marginBottom: '30px' }}
         >
-          Book Hotel
+          {isRoomAvailable ? (
+            <a href={linkToBook} target="_blank" rel="noreferrer">
+              Book Hotel
+            </a>
+          ) : (
+            'Not Available'
+          )}
         </Button>
       </FormActionArea>
     </ReservationFormWrapper>
