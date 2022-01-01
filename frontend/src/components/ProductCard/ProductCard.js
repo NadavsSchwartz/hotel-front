@@ -90,7 +90,7 @@ const PostGrid = ({
           <TextLink
             link={
               isAvailable
-                ? `https://www.priceline.com/relax/at/express/${cityId}/${pclnId}/from/${checkIn}/to/${checkOut}/rooms/1}`
+                ? `https://www.priceline.com/relax/at/express/${cityId}/${pclnId}/from/${checkIn}/to/${checkOut}/rooms/1?cur=USD}`
                 : ''
             }
             icon={<FiExternalLink />}
