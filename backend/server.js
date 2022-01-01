@@ -21,6 +21,8 @@ if (process.env.NODE_ENV === 'development') {
 }
 const __dirname = path.resolve();
 console.log('dirname', __dirname);
+app.use('/api/v1/', hotelDealsRoutes);
+
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static(path.join(__dirname, '/frontend/build')));
 
@@ -32,7 +34,6 @@ if (process.env.NODE_ENV === 'production') {
 		res.send('API is running....');
 	});
 }
-app.use('/api/v1/', hotelDealsRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
