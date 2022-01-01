@@ -82,7 +82,7 @@ const PostGrid = ({
         <TextLink
           link={`/deal?q=${link}}`}
           icon={<FiExternalLink />}
-          content="View Details"
+          content="Details"
         />
       }
       goToPricelineBtn={
@@ -94,7 +94,7 @@ const PostGrid = ({
                 : ''
             }
             icon={<FiExternalLink />}
-            content={isAvailable ? 'Book' : 'Not Available'}
+            content={isAvailable ? 'Book' : 'Unavailable'}
             target="_blank"
             isAvailable={isAvailable}
           />
