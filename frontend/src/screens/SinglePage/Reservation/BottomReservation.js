@@ -13,7 +13,7 @@ const BottomReservation = ({
   linkToBook,
   isRoomAvailable,
 }) => {
-  const [visible, setVisible] = useState(false);
+  // const [visible, setVisible] = useState(false);
 
   return (
     <>
@@ -28,10 +28,10 @@ const BottomReservation = ({
           <Button
             type="primary"
             // onClick={() => setVisible(true)}
-            disabled={isRoomAvailable}
+            disabled={!isRoomAvailable}
           >
             {isRoomAvailable ? (
-              <a href={linkToBook}>'Book'</a>
+              <a href={linkToBook}>Book</a>
             ) : (
               'No Longer Avaialble'
             )}
