@@ -11,7 +11,7 @@ import GridCardWrapper, {
   MetaWrapper,
   ButtonGroup,
 } from './GridCard.style';
-import { Col, Divider, Row } from 'antd';
+import { Divider } from 'antd';
 
 const GridCard = ({
   className,
@@ -23,7 +23,6 @@ const GridCard = ({
   viewDetailsBtn,
   goToPricelineBtn,
   children,
-  isAvailable,
 }) => {
   let classes =
     viewDetailsBtn || goToPricelineBtn ? `has_btn ${className}` : className;
