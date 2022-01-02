@@ -41,10 +41,10 @@ export const persistSpecificDealIfDoesntExist = async (
 
 	console.log('persist check~~~~~~');
 	try {
-		const isSpecificDealExist = await SpecificDeal.find({
-			hotel: hotel,
-		});
-		if (isSpecificDealExist.length !== 0) return;
+		// const isSpecificDealExist = await SpecificDeal.find({
+		// 	hotel: hotel,
+		// });
+		// if (isSpecificDealExist.length !== 0) return;
 		console.log('persisting new hotel');
 		const hotelDataFromPriceline = new SpecificDeal();
 		hotelDataFromPriceline.hotel = await hotel;
