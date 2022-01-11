@@ -23,6 +23,8 @@ import Reservation from './SinglePage/Reservation/Reservation';
 import BottomReservation from './SinglePage/Reservation/BottomReservation';
 import Review from './SinglePage/Review/Review';
 import { PostsWrapper } from './Listing/Listing.style';
+import { CloseCircleTwoTone } from '@ant-design/icons';
+import { SET_SHOW_HOTEL_MODAL } from '../store/StaticDataReducer';
 
 const HotelDetails = () => {
   const navigate = useNavigate();
@@ -32,9 +34,17 @@ const HotelDetails = () => {
   const [isModalShowing, setIsModalShowing] = useState(false);
 
   const { Deal, loading, error } = useSelector((state) => state.SpecificDeal);
+  const { showHotelModal } = useSelector((state) => state.StaticData);
+  const [isShowModal, SetIsShowModal] = useState(false);
+
   useEffect(() => {
     if (!hash || !isValidated(hash)) navigate('/dashboard');
     dispatch(getSpecificDeal(hash));
+    if (showHotelModal !== 'false') {
+      setTimeout(() => {
+        SetIsShowModal(true);
+      }, 3000);
+    }
   }, [dispatch]);
   const { href } = location;
   const { width } = useWindowSize();
@@ -76,6 +86,50 @@ const HotelDetails = () => {
       {!error && (
         <>
           <PostImage>
+            <Modal
+              centered={true}
+              forceRender={true}
+              style={{
+                borderRadius: '10px',
+                backgroundColor: '#ffff',
+                boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.16)',
+                width: '100% !important',
+              }}
+              visible={isShowModal}
+              footer={null}
+              onCancel={() => {
+                return (
+                  localStorage.setItem('showHotelModal', false),
+                  dispatch({ type: SET_SHOW_HOTEL_MODAL, payload: false }),
+                  SetIsShowModal(false)
+                );
+              }}
+              closeIcon={
+                <CloseCircleTwoTone
+                  style={{ fontSize: '20px' }}
+                  twoToneColor="#ec1b1b"
+                />
+              }
+              destroyOnClose={true}
+            >
+              <div style={{ margin: '5px' }}>
+                <h3>
+                  <strong>
+                    Please be aware that the data for hotel details, is pulled
+                    live from priceline.com
+                  </strong>
+                </h3>
+                <h3>
+                  for most up do date amenities, and reviews. because it's
+                  pulled directly from priceline.com,
+                </h3>
+                <h3>
+                  the price and availability is towards regular deals, and not
+                  express deals. altough, once you click on "book", you'll be
+                  transferred to the latest available express deal.
+                </h3>
+              </div>
+            </Modal>
             <img
               className="absolute"
               src={image}

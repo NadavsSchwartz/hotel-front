@@ -9,7 +9,6 @@ export default function SectionGrid({
   paginationComponent,
   rowStyle,
   columnStyle,
-  link,
 }) {
   return (
     <>
@@ -31,7 +30,6 @@ export default function SectionGrid({
                         : true
                       : true
                   }
-                  link={link}
                   hotelName={
                     item && item.hotelName
                       ? item.hotelName

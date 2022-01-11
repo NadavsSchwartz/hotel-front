@@ -81,7 +81,7 @@ export const autoCities = [
     value: 'Oklahoma City, Oklahoma',
   },
   {
-    value: 'Louisville/Jefferson County, Kentucky',
+    value: 'Louisville, Kentucky',
   },
   {
     value: 'Portland, Oregon',

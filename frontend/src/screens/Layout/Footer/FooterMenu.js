@@ -14,7 +14,7 @@ const FooterMenu = () => {
       <Menu.Item key="2">
         <NavLink to="/privacy">Privacy</NavLink>
       </Menu.Item>
-      <Menu.Item key="2">
+      <Menu.Item key="3">
         <NavLink to="/terms">Terms</NavLink>
       </Menu.Item>
     </Menu>

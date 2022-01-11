@@ -1,4 +1,4 @@
-import { Alert, Checkbox, Menu } from 'antd';
+import { Alert, Checkbox, Menu, message } from 'antd';
 import Sticky from 'react-stickynode';
 import React, { useEffect, useState, Fragment } from 'react';
 import Toolbar from '../../components/UI/Toolbar/Toolbar';
@@ -29,6 +29,7 @@ const Results = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const hash = location.search.split('=')[1];
   let columnWidth = [1 / 1, 1 / 2, 1 / 3, 1 / 4, 1 / 5];
   const [sortedDeals, setSortedDeals] = useState([]);
@@ -121,16 +122,15 @@ const Results = () => {
               className={width > 767 && showMap ? 'col-12' : 'col-24'}
             >
               <SectionGrid
-                link="/"
+                link={'/'}
                 columnWidth={columnWidth}
                 data={
                   sortedDeals && sortedDeals.length > 0
                     ? sortedDeals
                     : foundDeals
                 }
-                totalItem={50}
+                totalItem={1000}
                 loading={loading}
-                limit={12}
                 placeholder={<PostPlaceholder />}
               />
             </PostsWrapper>
