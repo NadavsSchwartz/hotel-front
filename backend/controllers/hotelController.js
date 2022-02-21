@@ -176,78 +176,79 @@ const getSpecificDeal = asyncHandler(async (req, res) => {
 	// desctructre hash to get needed info for request body
 	const { checkIn, checkOut, pclnId, hotelId } = output;
 
-	// Check if hash or similar query already exists recently
-	const isSpecificDealExist = await SpecificDeal.find({
-		queryData: output,
-	});
+	// // Check if hash or similar query already exists recently
+	// const isSpecificDealExist = await SpecificDeal.find({
+	// 	queryData: output,
+	// });
 
-	//if document exists, return hotel and query data
-	if (isSpecificDealExist.length !== 0) {
-		const { queryData, hotel } = isSpecificDealExist[0];
+	// //if document exists, return hotel and query data
+	// if (isSpecificDealExist.length !== 0) {
+	// 	const { queryData, hotel } = isSpecificDealExist[0];
 
-		return res.status(200).json({
-			hotel: hotel,
-			queryData: queryData,
-		});
-	}
+	// 	return res.status(200).json({
+	// 		hotel: hotel,
+	// 		queryData: queryData,
+	// 	});
+	// }
 
-	//if document doesn't exists..
-	else {
-		try {
-			// generate Config header for request
-			const config = generateConfig();
+	// //if document doesn't exists..
+	// else {
+	try {
+		// generate Config header for request
+		const config = generateConfig();
 
-			// make a request to priceline's server to get hotel price data and images
-			console.log('MAKING REQUESTT!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-			const specificDealDataResponse = await axios.post(
-				url,
-				JSON.stringify(
-					specificDealQueryData(checkIn, checkOut, pclnId, hotelId)
-				),
-				config
-			);
-			const {
-				data: {
-					data: { details },
-				},
-			} = specificDealDataResponse;
+		// make a request to priceline's server to get hotel price data and images
+		console.log('MAKING REQUESTT!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+		const specificDealDataResponse = await axios.post(
+			url,
+			JSON.stringify(specificDealQueryData(checkIn, checkOut, pclnId, hotelId)),
+			config
+		);
+		const {
+			data: {
+				data: { details },
+			},
+		} = specificDealDataResponse;
 
-			// if there's any errors or no results, return 400 && error message
-			if (details.errorMessage !== null)
-				return res.status(400).json({ message: details.errorMessage });
+		// if there's any errors or no results, return 400 && error message
+		if (details.errorMessage !== null)
+			return res.status(400).json({ message: details.errorMessage });
 
-			//double check if specific deal exists, if not, persist the hotel data, query data, and the query id (hash)
-			persistSpecificDealIfDoesntExist(details, hash, output);
+		//double check if specific deal exists, if not, persist the hotel data, query data, and the query id (hash)
+		persistSpecificDealIfDoesntExist(details, hash, output);
 
-			//locate cookies from response, and set them for future requests
-			const pxhdCookie = JSON.stringify(
-				specificDealDataResponse.headers['set-cookie'][0].split(';')[0]
-			);
-			generateConfig(pxhdCookie);
+		//locate cookies from response, and set them for future requests
+		const pxhdCookie = JSON.stringify(
+			specificDealDataResponse.headers['set-cookie'][0].split(';')[0]
+		);
+		generateConfig(pxhdCookie);
 
-			//return hotel and query data
-			res.status(200).json({ hotel: details.hotel, queryData: output });
-		} catch (error) {
-			console.log(error);
-			if (
-				(error.response.status >= 500 && error.response.status < 600) ||
-				error.response.status === 0
-			) {
-				return res.status(500).json({
-					message:
-						'Internal server error or Priceline server is down. please try again in 30 seconds',
-				});
-			}
-			res.status(400).json({ message: 'Invalid Request. please try again.' });
+		//return hotel and query data
+		res.status(200).json({ hotel: details.hotel, queryData: output });
+	} catch (error) {
+		console.log(error);
+		if (
+			(error.response.status >= 500 && error.response.status < 600) ||
+			error.response.status === 0
+		) {
+			return res.status(500).json({
+				message:
+					'Internal server error or Priceline server is down. please try again in 30 seconds',
+			});
 		}
+		res.status(400).json({ message: 'Invalid Request. please try again.' });
 	}
+	// }
 });
 
 // @desc    Fetch latest deals
 // @route   GET /api/v1/recent-deals
 const getRecentDeals = asyncHandler(async (req, res) => {
 	try {
-		const recentDeals = await SpecificDeal.find({})
+		const recentDeals = await SpecificDeal.find({
+			'hotel.ratesSummary.status': 'AVAILABLE',
+			'queryData.checkIn': { $gt: '20220101' },
+		})
 			.sort({ createdAt: -1 })
 			.limit(12);
 		res.status(200).json(recentDeals);

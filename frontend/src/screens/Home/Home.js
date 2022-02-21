@@ -15,12 +15,12 @@ const Home = () => {
         onEnter={() => dispatch({ type: 'HIDE_TOP_SEARCHBAR' })}
         onLeave={() => dispatch({ type: 'SHOW_TOP_SEARCHBAR' })}
       />
-      <Suspense fallback={<Loader />}>
+      {/* <Suspense fallback={<Loader />}>
         <LocationGrid />
       </Suspense>
       <Suspense fallback={<Loader />}>
         <RecentDealsGrid />
-      </Suspense>
+      </Suspense> */}
     </>
   );
 };
