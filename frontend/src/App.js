@@ -1,12 +1,13 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Results from './screens/HotelResults/HotelResults';
-import HotelDetails from './screens/hotelDetails';
 import Layout from './screens/Layout/Layout';
 import Loader from './components/Loader/Loader';
 import { RecentDealsGrid } from './screens/Home/Grid';
 import Privacy from './screens/Privacy&Terms/Privacy';
 import Terms from './screens/Privacy&Terms/Terms';
+import HotelDetails from './screens/HotelDetails/HotelDetails';
+
 const NotFound = React.lazy(() => import('./screens/404/404'));
 const HomePage = React.lazy(() => import('./screens/Home/Home'));
 const App = () => {

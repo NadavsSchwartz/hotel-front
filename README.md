@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# HotelRevealer
+> Find hidden Priceline Hotel deals with a click of a button.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Table of Contents
 
-## Available Scripts
+- [Description](#description)
+- [Dependencies](#dependencies)
+- [Run](#Run)
+- [Resources](#Resources)
+    - [Home Page Component](#HomePage)
+    - [Search Results](#SearchResults)
+    - [Recent Deals](#RecentDeals)
+    - [Hotel Details](#HotelDetails)
+- [License](#license)
 
-In the project directory, you can run:
 
-### `yarn start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Description
+HotelRevealer was created to help people conveniently attempt to find the hidden hotel behind Priceline's express deals,
+helping you save up to 70% of the regular hotel price.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Dependencies
+The following requirements are necessary to run this application:
 
-### `yarn test`
+### Front End:
+- Node.js
+- React.js
+- Redux
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Back End
+- Node.js
+- Express
+- MongoDB
 
-### `yarn build`
+and other libraries. you can see them all within the Package.json file.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Back End REPO with instructions
+[HotelRevealer Back end](https://github.com/NadavsSchwartz/hotel-revealer/tree/main/backend)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Setup
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone this repository
+2. Create an `.env` file and fill it properly ([see below](#configuration)).
+3. Install dependencies: `npm install` or `yarn` if you're using yarn.
+4. Run for development: `npm run dev` or `yarn dev` if you're using yarn.
 
-### `yarn eject`
+### Configuration
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+For the configuration the following settings have to be added in your `.env`-file:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **MONGO_URI**: The connection string
+- **REACT_APP_GOOGLE_MAP_API_KEY**: Your google map api key
+- **REACT_APP_SECRET**: secure secret used for crypto-js
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Resources
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### HomePage
+| route | method | description | Docs |
+|---|---|---|---|
+|  '/' | GET | Show homepage|  [code](./src/screens/Home/Home.js) |
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### SearchResults
+| route | methods | description | Docs |
+|---|---|---|---|
+|  '/results?q=hashed-form-data' | GET | Show search results for hotel deals | [code](./src/screens/HotelResults/HotelResults.js) |
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
+### RecentDeals
+| route | methods | description | Docs |
+|---|---|---|---|
+|  '/recent-deals' | GET | Show recent searches made by users |  [code](./src/screens/Home/Grid/RecentDealsGrid.js) |
 
-### Code Splitting
+---
+### HotelDetails
+|  route | Methods | description  |  Docs |
+|---|---|---|---|
+|  '/deal?q=hashed-deal-data' | GET | Show hotel details by deal| [code](./src/screens/HotelDetails/HotelDetails.js) |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+## Contributing
+Bug reports and pull requests are welcome on GitHub at https://github.com/NadavsSchwartz/hotel-revealer.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+The app is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+---

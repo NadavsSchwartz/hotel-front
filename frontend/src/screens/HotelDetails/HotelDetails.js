@@ -1,30 +1,28 @@
 import { Row, Col, Button, Alert } from 'antd';
 import React, { Fragment, useEffect, useState } from 'react';
-import { useLocation } from '../library/hooks/useLocation';
+import { useLocation } from '../../library/hooks/useLocation';
 import { useNavigate } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
-import { isValidated } from '../utils';
-import { getSpecificDeal } from '../store/actions/SpecificDealActions';
-import SinglePageWrapper, {
-  PostImage,
-} from './SinglePage/SinglePageView.style';
+import { isValidated } from '../../utils';
+import { getSpecificDeal } from '../../store/actions/SpecificDealActions';
+import HotelDetailsWrapper, { PostImage } from './HotelDetails.style';
 import { isEmpty } from 'lodash';
-import Loader from '../components/Loader/Loader';
-import PostImageGallery from './SinglePage/ImageGallery/ImageGallery';
+import Loader from '../../components/Loader/Loader';
+import PostImageGallery from './ImageGallery/ImageGallery';
 import Modal from 'antd/lib/modal/Modal';
-import TopBar from './SinglePage/TopBar/TopBar';
-import useWindowSize from '../library/hooks/useWindowSize';
-import Container from '../components/UI/Container/Container';
-import Description from './SinglePage/Description/Description';
-import Amenities from './SinglePage/Amenities/Amenities';
-import Location from './SinglePage/Location/Location';
+import TopBar from './TopBar/TopBar';
+import useWindowSize from '../../library/hooks/useWindowSize';
+import Container from '../../components/UI/Container/Container';
+import Description from './Description/Description';
+import Amenities from './Amenities/Amenities';
+import Location from './Location/Location';
 import Sticky from 'react-stickynode';
-import Reservation from './SinglePage/Reservation/Reservation';
-import BottomReservation from './SinglePage/Reservation/BottomReservation';
-import Review from './SinglePage/Review/Review';
-import { PostsWrapper } from './Listing/Listing.style';
+import Reservation from './Reservation/Reservation';
+import BottomReservation from './Reservation/BottomReservation';
+import Review from './Review/Review';
+import { PostsWrapper } from '../Listing/Listing.style';
 import { CloseCircleTwoTone } from '@ant-design/icons';
-import { SET_SHOW_HOTEL_MODAL } from '../store/StaticDataReducer';
+import { SET_SHOW_HOTEL_MODAL } from '../../store/StaticDataReducer';
 
 const HotelDetails = () => {
   const navigate = useNavigate();
@@ -70,7 +68,7 @@ const HotelDetails = () => {
     Deal && Deal.hotel.ratesSummary.status === 'UNAVAILABLE' ? false : true;
 
   return (
-    <SinglePageWrapper>
+    <HotelDetailsWrapper>
       {error && (
         <PostsWrapper>
           <Alert
@@ -233,7 +231,7 @@ const HotelDetails = () => {
           </Container>
         </>
       )}
-    </SinglePageWrapper>
+    </HotelDetailsWrapper>
   );
 };
 

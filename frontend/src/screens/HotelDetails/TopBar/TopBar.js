@@ -8,7 +8,7 @@ import {
 } from '../../../components/SocialShare/SocialShare';
 import { Button, Menu, Dropdown } from 'antd';
 import ScrollBar from '../../../components/UI/ScrollBar/ScrollBar';
-import { TobBarWrapper, ButtonGroup } from '../SinglePageView.style';
+import { TobBarWrapper, ButtonGroup } from '../HotelDetails.style';
 
 const topBarMenu = [
   {

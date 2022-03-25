@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
-const SinglePageWrapper = styled.div`
+const HotelDetailsWrapper = styled.div`
   padding-bottom: 56px;
   @media (max-width: 480px) {
     margin-bottom: 30px;
@@ -237,4 +237,4 @@ export const PostImage = styled.div`
   }
 `;
 
-export default SinglePageWrapper;
+export default HotelDetailsWrapper;
