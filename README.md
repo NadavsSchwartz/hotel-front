@@ -58,26 +58,26 @@ For the configuration the following settings have to be added in your `.env`-fil
 ### HomePage
 | route | method | description | Docs |
 |---|---|---|---|
-|  '/' | GET | Show homepage|  [code](./src/screens/Home/Home.js) |
+|  '/' | GET | Show homepage|  [code](./frontend/src/screens/Home/Home.js) |
 
 ---
 
 ### SearchResults
 | route | methods | description | Docs |
 |---|---|---|---|
-|  '/results?q=hashed-form-data' | GET | Show search results for hotel deals | [code](./src/screens/HotelResults/HotelResults.js) |
+|  '/results?q=hashed-form-data' | GET | Show search results for hotel deals | [code](./frontend/src/screens/HotelResults/HotelResults.js) |
 
 ---
 ### RecentDeals
 | route | methods | description | Docs |
 |---|---|---|---|
-|  '/recent-deals' | GET | Show recent searches made by users |  [code](./src/screens/Home/Grid/RecentDealsGrid.js) |
+|  '/recent-deals' | GET | Show recent searches made by users |  [code](./frontend/src/screens/Home/Grid/RecentDealsGrid.js) |
 
 ---
 ### HotelDetails
 |  route | Methods | description  |  Docs |
 |---|---|---|---|
-|  '/deal?q=hashed-deal-data' | GET | Show hotel details by deal| [code](./src/screens/HotelDetails/HotelDetails.js) |
+|  '/deal?q=hashed-deal-data' | GET | Show hotel details by deal| [code](./frontend/src/screens/HotelDetails/HotelDetails.js) |
 
 
 ## Contributing
