@@ -1,18 +1,23 @@
+![Heroku](https://pyheroku-badge.herokuapp.com/?app=hotel-revealer&style=flat)
+
 # HotelRevealer
 > Find hidden Priceline Hotel deals with a click of a button.
+
+https://hotelrevealer.org
 
 ### Table of Contents
 
 - [Description](#description)
-- [Dependencies](#dependencies)
-- [Run](#Run)
+- [Key Features](#key-features)
+- [Stack](#Stack)
+- [Setup](#Setup)
 - [Resources](#Resources)
     - [Home Page Component](#HomePage)
     - [Search Results](#SearchResults)
     - [Recent Deals](#RecentDeals)
     - [Hotel Details](#HotelDetails)
+- [Contributing](#contributing)
 - [License](#license)
-
 
 ---
 
@@ -20,23 +25,22 @@
 HotelRevealer was created to help people conveniently attempt to find the hidden hotel behind Priceline's express deals,
 helping you save up to 70% of the regular hotel price.
 
-## Dependencies
-The following requirements are necessary to run this application:
 
-### Front End:
-- Node.js
-- React.js
-- Redux
+## Key Features
+- Free forever.
+- Modern design.
+- Live data extraction from Priceline's servers.
+- Dedicated Hotel details page to view reviews, amenities and, important information on the hotel.
+- Google Maps integration to see the surrounding area of the hotel.
 
-### Back End
-- Node.js
-- Express
-- MongoDB
-
-and other libraries. you can see them all within the Package.json file.
-
-### Back End REPO with instructions
-[HotelRevealer Back end](https://github.com/NadavsSchwartz/hotel-revealer/tree/main/backend)
+## Stack:
+- Node (Web server)
+- Express (Web server framework)
+- React (UI library)
+- Redux (State management)
+- MongoDB (database)
+- styled-components (CSS styling solution library)
+- crypto-js (secure cryptographic algorithms)
 
 ## Setup
 
@@ -47,10 +51,10 @@ and other libraries. you can see them all within the Package.json file.
 
 ### Configuration
 
-For the configuration the following settings have to be added in your `.env`-file:
+For the configuration, the following settings have to be added in your `.env`-file:
 
 - **MONGO_URI**: The connection string
-- **REACT_APP_GOOGLE_MAP_API_KEY**: Your google map api key
+- [**REACT_APP_GOOGLE_MAP_API_KEY**: Your google map api key](https://developers.google.com/maps/documentation/javascript/get-api-key)
 - **REACT_APP_SECRET**: secure secret used for crypto-js
 
 ## Resources
@@ -81,9 +85,12 @@ For the configuration the following settings have to be added in your `.env`-fil
 
 
 ## Contributing
-Bug reports and pull requests are welcome on GitHub at https://github.com/NadavsSchwartz/hotel-revealer.
 
+Pull requests are welcome. You'll probably find lots of improvements to be made.
+
+Open issues for feedback, requesting features, reporting bugs, or discuss ideas.
 
 ## License
+
 The app is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
----
+
