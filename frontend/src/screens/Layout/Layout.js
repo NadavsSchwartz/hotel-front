@@ -59,8 +59,15 @@ export default function Layout() {
             <h2>What is Hotel Revealer?</h2>
 
             <h3>
-              We help you find a cheaper rate for your future hotel reservation
-              by finding the hidden hotels from priceline.com.
+              We help you find a cheaper rate for your hotel by revealing the
+              hidden hotel's name from{' '}
+              <a
+                href="https://www.priceline.com/elmo/pl/hotel/express-deals/list"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Priceline's Express Deals.
+              </a>{' '}
             </h3>
           </Modal>
         </Content>
