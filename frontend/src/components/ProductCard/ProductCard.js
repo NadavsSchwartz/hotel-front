@@ -67,6 +67,7 @@ const PostGrid = ({
             expressDealDailyPrice +
             '/ Night - $' +
             expressDealPricePerStay +
+            ' ' +
             'Total'
           : 'Hotel Not Available'
       }

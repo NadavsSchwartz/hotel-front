@@ -112,19 +112,17 @@ const HotelDetails = () => {
             >
               <div style={{ margin: '5px' }}>
                 <h3>
-                  <strong>
-                    Please be aware that the data for hotel details, is pulled
-                    live from priceline.com
-                  </strong>
+                  <strong>Important!</strong>
                 </h3>
                 <h3>
-                  for most up do date amenities, and reviews. because it's
-                  pulled directly from priceline.com,
+                  Please be aware that the data for hotel details are pulled
+                  live from priceline.com For the most up-to-date amenities and
+                  reviews. Because it's pulled directly from priceline.
                 </h3>
                 <h3>
-                  the price and availability is towards regular deals, and not
-                  express deals. altough, once you click on "book", you'll be
-                  transferred to the latest available express deal.
+                  The price and availability are towards regular deals and not
+                  express deals. Although, once you click on "book", you'll be
+                  redirected to the latest available express deal.
                 </h3>
               </div>
             </Modal>

@@ -32,20 +32,10 @@ const getDealFromPriceline = asyncHandler(async (req, res) => {
 
 	// Check if hash or similar query already exists recently
 	const isQueryHashExist = await Queries.exists({ queryId: hash });
-	const isQueryDataExist = await Queries.exists({
-		queryData: { cityName, checkIn, checkOut },
-	});
 
 	if (isQueryHashExist === true) {
 		let QueryFromPreviousHash = await Queries.find({ queryId: hash });
 		const { data } = QueryFromPreviousHash[0];
-
-		return res.status(200).json(data);
-	} else if (isQueryDataExist === true) {
-		let QueryFromPreviousQueryData = await Queries.find({
-			queryData: { cityName, checkIn, checkOut },
-		});
-		const { data } = QueryFromPreviousQueryData[0];
 
 		return res.status(200).json(data);
 	} else {
