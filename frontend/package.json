@@ -23,7 +23,7 @@
         "history": "^5.1.0",
         "little-state-machine": "^4.2.0",
         "lodash": "^4.17.21",
-        "moment": "^2.29.1",
+        "moment": "^2.29.2",
         "react": "^17.0.2",
         "react-accessible-accordion": "^4.0.0",
         "react-content-loader": "^6.0.3",
