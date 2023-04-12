@@ -1,96 +1,36 @@
-![Heroku](https://pyheroku-badge.herokuapp.com/?app=hotel-revealer&style=flat)
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-# HotelRevealer
-> Find hidden Priceline Hotel deals with a click of a button.
+## Getting Started
 
-https://hotelrevealer.org
+First, run the development server:
 
-### Table of Contents
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
 
-- [Description](#description)
-- [Key Features](#key-features)
-- [Stack](#Stack)
-- [Setup](#Setup)
-- [Resources](#Resources)
-    - [Home Page Component](#HomePage)
-    - [Search Results](#SearchResults)
-    - [Recent Deals](#RecentDeals)
-    - [Hotel Details](#HotelDetails)
-- [Contributing](#contributing)
-- [License](#license)
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
----
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## Description
-HotelRevealer was created to help people conveniently attempt to find the hidden hotel behind Priceline's express deals,
-helping you save up to 70% of the regular hotel price.
+[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.ts`.
 
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Key Features
-- Free forever.
-- Modern design.
-- Live data extraction from Priceline's servers.
-- Dedicated Hotel details page to view reviews, amenities and, important information on the hotel.
-- Google Maps integration to see the surrounding area of the hotel.
+## Learn More
 
-## Stack:
-- Node (Web server)
-- Express (Web server framework)
-- React (UI library)
-- Redux (State management)
-- MongoDB (database)
-- styled-components (CSS styling solution library)
-- crypto-js (secure cryptographic algorithms)
+To learn more about Next.js, take a look at the following resources:
 
-## Setup
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-1. Clone this repository
-2. Create an `.env` file and fill it properly ([see below](#configuration)).
-3. Install dependencies: `npm install` or `yarn` if you're using yarn.
-4. Run for development: `npm run dev` or `yarn dev` if you're using yarn.
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-### Configuration
+## Deploy on Vercel
 
-For the configuration, the following settings have to be added in your `.env`-file:
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-- **MONGO_URI**: The connection string
-- [**REACT_APP_GOOGLE_MAP_API_KEY**: Your google map api key](https://developers.google.com/maps/documentation/javascript/get-api-key)
-- **REACT_APP_SECRET**: secure secret used for crypto-js
-
-## Resources
-
-### HomePage
-| route | method | description | Docs |
-|---|---|---|---|
-|  '/' | GET | Show homepage|  [code](./frontend/src/screens/Home/Home.js) |
-
----
-
-### SearchResults
-| route | methods | description | Docs |
-|---|---|---|---|
-|  '/results?q=hashed-form-data' | GET | Show search results for hotel deals | [code](./frontend/src/screens/HotelResults/HotelResults.js) |
-
----
-### RecentDeals
-| route | methods | description | Docs |
-|---|---|---|---|
-|  '/recent-deals' | GET | Show recent searches made by users |  [code](./frontend/src/screens/Home/Grid/RecentDealsGrid.js) |
-
----
-### HotelDetails
-|  route | Methods | description  |  Docs |
-|---|---|---|---|
-|  '/deal?q=hashed-deal-data' | GET | Show hotel details by deal| [code](./frontend/src/screens/HotelDetails/HotelDetails.js) |
-
-
-## Contributing
-
-Pull requests are welcome. You'll probably find lots of improvements to be made.
-
-Open issues for feedback, requesting features, reporting bugs, or discuss ideas.
-
-## License
-
-The app is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
